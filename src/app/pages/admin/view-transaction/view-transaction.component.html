@@ -1,0 +1,75 @@
+<div class="view-transaction">
+    <h2 class="title">Xử lý giao dịch</h2>
+
+    <div nz-row class="content" [nzGutter]="16">
+        <div nz-col [nzSpan]="12">
+            <img [src]="transactionInf.land?.thumbnail??'https://nhadepso.com/wp-content/uploads/2018/08/mau-thiet-ke-noi-that-can-ho-dep-voi-diem-nhan-mau-pastel-nha-dep-so-1.jpg'"
+                alt="ảnh bds" width="350px" height="350px" class="thumbnail">
+        </div>
+        <div nz-col [nzSpan]="12">
+            <h2>Thông tin chuyển cọc</h2>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Chuyển cọc vào lúc:</div>
+                <div nz-col [nzSpan]="16">{{transformDate(transactionInf.createdAt)}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Tên lô đất:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.land.name}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Khu vực:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.land.areaDTO.name}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Dự án:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.land.areaDTO.projectName}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Số tiền cọc:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.land.deposit}},000,000 VND</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Người đặt cọc:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.user.name}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Chủ tài khoản:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.id}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Số điện thoại:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.user.phone}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Chủ tài khoản:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.projectDTO.hostBank}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Số tài khoản:</div>
+                <div nz-col [nzSpan]="
+                16">{{transactionInf.projectDTO.bankNumber}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Ngân hàng</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.projectDTO.bankName}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="8">Trạng thái giao dịch:</div>
+                <div nz-col [nzSpan]="16">{{transactionInf.status == '0'?'Chờ giao dịch':transactionInf.status=='1'? 'Giao dịch thành công': 'Giao dịch thất bại'}}</div>
+            </div>
+            <div nz-row class="item">
+                <div nz-col [nzSpan]="7">
+                    <input [(ngModel)]="status" value="1" id="successTransaction" type="radio" name="transaction-status">
+                    <label for="successTransaction">Giao dịch thành công</label>
+                </div>
+                <div nz-col [nzSpan]="7">
+                    <input [(ngModel)]="status" value="2" id="failureTransaction" type="radio" name="transaction-status" style="margin-left: 15px">
+                    <label for="failureTransaction">Giao dịch thất bại</label>
+                </div>
+                <div nz-col [nzSpan]="6" [nzOffset]="4">
+                    <button nz-button (click)="showConfirm()">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

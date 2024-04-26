@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+}
+
+.text-bold {
+    font-weight: 500;
+}
+
+.text-green {
+    color: #62CD14
+}
+
+.text-red {
+    color: #DE3B40;
+}
+
+.text-orange {
+    color: #EFB034
+}
+
+.background-orange {
+    background-color: #FFA84C;
+    color: #fff;
+}
+
+.background-red {
+    background-color: #DE3B40;
+    color: #fff;
+}
+
+.background-blue {
+    background-color: #15ABFF;
+    color: #fff;
+}
+
+button.background-blue:hover {
+    background-color: #0c669b;
+    color: #fff;
+    border-color:#0c669b;
+}
+
+button.background-red:hover {
+    background-color: #c80b11;
+    color: #fff;
+    border-color: #c80b11;
+}
+
+.background-brown {
+    background-color: #DCA447;
+    color: #fff;
+}
+
+button.background-brown:hover {
+    background-color: #df8f0d;
+    color: #fff;
+    border-color: #df8f0d;
+}
+
+swiper-container .swiper-button-next{
+    color: #000;
+}
+
+.up-coming{
+    background-color:#DE3B40;
+}
+
+.sale {
+    background-color: #62CD14;
+}
+
+.temp-lock {
+    background-color: #EFB034;
+}
+
+.locked {
+    background-color: #565D6D
+}

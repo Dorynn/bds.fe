@@ -1,0 +1,103 @@
+
+
+<h2>Thêm khu đất</h2>
+
+<div nz-row [nzGutter]="32">
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="name" type="text" nz-input>
+        <p>Tên khu đất</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <nz-select [(ngModel)]="projectId" nzShowSearch="" (ngModelChange)="handleChangeProject()">
+            @for (item of projectList; track $index) {
+            <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            }
+        </nz-select>
+        <p>Dự án</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <nz-select [(ngModel)]="areaId" nzShowSearch [nzDisabled]="!isProjectChange">
+            @for (item of areaList; track $index) {
+            <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            }
+        </nz-select>
+        <p>Phân khu</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <nz-select [(ngModel)]="status">
+            <nz-option [nzValue]="0" nzLabel="Sắp mở bán"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Đang mở bán"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="Đang đặt cọc"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="Đã đặt cọc"></nz-option>
+        </nz-select>
+        <p>Trạng thái</p>
+    </div>
+</div>
+
+<div nz-row [nzGutter]="32">
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="price" type="text" nz-input>
+        <p>Giá</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="deposit" type="text" nz-input>
+        <p>Giá cọc</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="acreage" type="text" nz-input>
+        <p>Diện tích</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="address" type="text" nz-input>
+        <p>Địa chỉ cụ thể</p>
+    </div>
+</div>
+
+<div nz-row [nzGutter]="32">
+    <div nz-col [nzSpan]="18">
+        <textarea [(ngModel)]="description" nz-input rows="4"></textarea>
+        <p>Mô tả</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <nz-upload [nzPreview]="handlePreview" [nzShowUploadList]="true" nzListType="picture-card"
+            [(nzFileList)]="thumbnail" (nzChange)="handleChange($event)" [nzShowButton]="thumbnail.length < 1">
+            @if (!previewImage) {
+            <ng-container>
+                <span class="upload-icon" [nzType]="loading? 'loading' : 'plus'" nz-icon></span>
+                <div style="margin-top: 8px">Tải ảnh</div>
+            </ng-container>
+            }
+
+        </nz-upload>
+        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+            (nzOnCancel)="previewVisible=false">
+            <ng-template #modalContent>
+                <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
+            </ng-template>
+        </nz-modal>
+        <p>Ảnh bìa</p>
+    </div>
+
+    <!-- <div nz-col [nzSpan]="18">
+        <p>Ảnh khu đất</p>
+        <nz-upload 
+        [nzPreview]="handlePreview" 
+        [nzShowUploadList]="true" nzListType="picture-card" 
+        [(nzFileList)]="fileLandImage"
+        [nzShowButton]="fileList.length < 4"
+        (nzChange)="handleChange($event)"
+        >
+        <ng-container>
+            <span class="upload-icon" nzType="plus" nz-icon></span>
+            <div style="margin-top: 8px">Tải ảnh</div>
+        </ng-container>
+        </nz-upload>
+        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+            <ng-template #modalContent>
+                <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
+            </ng-template>
+        </nz-modal>
+    </div> -->
+</div>
+
+<button nz-button (click)="handleAddLand()">Thêm khu đất</button>

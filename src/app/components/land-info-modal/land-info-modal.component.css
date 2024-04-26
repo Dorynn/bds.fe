@@ -1,0 +1,23 @@
+nz-modal {
+    border-radius: 5px;
+}
+
+button {
+    background-color: #BC9669;
+    color: #fff;
+    font-weight: 600;
+    border-color: #BC9669;
+    padding: 12px;
+    width: 100%;
+    height: 100%;
+}
+
+button:hover, button:focus  {
+    background-color: #c2863d;
+    color: #fff;
+    border-color: #c2863d;
+
+}
+
+
+

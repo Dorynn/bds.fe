@@ -1,0 +1,61 @@
+<nz-modal [(nzVisible)]="isVisible" [nzClosable]="false" [nzMaskClosable]="false">
+    <ng-container *nzModalTitle>
+        <div class="modal__header">
+            <div>Thanh toán chuyển khoản</div>
+            <div>
+                <countdown (event)="handleEvent($event)" [config]="{leftTime: item.expiryDate*60, format: 'mm:ss'}" class="countdown"></countdown>
+            </div>
+            <div>Thời hạn thanh toán</div>
+        </div>
+    </ng-container>
+
+    <ng-container *nzModalContent>
+        <div class="modal__content">
+            <div class="qr-box">
+                <div class="qr-box__bankname" nz-row nzJustify="space-between">
+                    <span class="vietqr">VIETQR</span>
+                    <span class="vpbank">VPBank</span>
+                </div>
+                <img [src]="item.qr" alt="qr-image">
+                <p class="napas">napas 247</p>
+            </div>
+
+            <div class="payment-info">
+                <div nz-flex nzJustify="space-between">
+                    <span>Ngân hàng hưởng thụ</span>
+                    <span>{{item.bankName}}</span>
+                </div>
+                <div nz-flex nzJustify="space-between">
+                    <span>Số tài khoản</span>
+                    <span>{{item.bankNumber}}</span>
+                </div>
+                <div nz-flex nzJustify="space-between">
+                    <span>Số tiền</span>
+                    <span>{{item.deposit}}</span>
+                </div>
+                <div nz-flex nzJustify="space-between">
+                    <span>
+                        Người nhận
+                    </span>
+                    <span>
+                        {{item.hostBank}}
+                    </span>
+                </div>
+                <div nz-flex nzJustify="space-between">
+                    <span>Nội dung</span>
+                    <span>
+                        {{item.phone}} + {{item.name}}
+                    </span>
+                </div>
+                <div>Vui lòng chuyển <strong>ĐÚNG: Số tài khoản - số tiền - nội dung giao dịch để giao dịch</strong> được ghi nhận</div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *nzModalFooter>
+        <div class="modal__footer">
+            <button nz-button (click)="showConfirmCancel()">Hủy</button>
+            <button nz-button (click)="handleTransaction()">Tôi đã chuyển khoản</button>
+        </div>
+    </ng-container>
+</nz-modal>

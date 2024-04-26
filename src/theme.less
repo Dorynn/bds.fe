@@ -1,0 +1,88 @@
+
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+// @primary-color: #1890ff;
+
+.ant-slider-track {
+    background-color: #323743;
+}
+
+.ant-slider:hover .ant-slider-track{
+    background-color: #3b3f4a;
+}
+
+.ant-slider-handle {
+    border: solid 2px #323743
+}
+
+.ant-pagination-item, .ant-pagination-next button, .ant-pagination-prev ::-webkit-scrollbar-button{
+    border: none !important;
+}
+
+.ant-pagination-item-active a {
+    color: #000;
+}
+
+.ant-pagination-item-active {
+    border: 1px solid #000 !important;
+    border-radius: 50%;
+}
+
+.ant-pagination-item:hover a {
+    color: #000;
+    font-weight: 500;
+}
+
+.ant-pagination-prev .ant-pagination-item-link {
+    border: none !important;
+}
+
+.ant-modal-header, .ant-modal-footer {
+    border: none;
+}
+
+.ant-modal-content {
+    padding: 15px;
+}
+
+.ant-table-container {
+    border: 1px solid #e57222;
+    padding: 10px;
+}
+
+.ant-select-arrow {
+    right: 20px;
+}
+
+.ant-modal-header,.ant-modal-content, .ant-modal-footer {
+    padding: 0;
+}  
+      
+.ant-menu-inline .ant-menu-item-selected::after {
+    opacity: 0;
+}
+
+.ant-menu-inline .ant-menu-item::after {
+    border: none;
+}
+
+.ant-tabs > .ant-tabs-nav {
+    margin: auto;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #000;
+}
+
+.ant-tabs-ink-bar {
+    background: #000;
+}
+
+.ant-spin-nested-loading > div > .ant-spin {
+    max-height: none;
+}

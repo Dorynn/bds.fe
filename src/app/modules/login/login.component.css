@@ -1,0 +1,75 @@
+form [nz-row]:first-child, form [nz-row]:nth-child(2) {
+    border-bottom: 1px solid #9095A1;
+    margin-bottom: 15px;
+}
+
+form input {
+    border: none;
+}
+
+form input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.login-modal__register {
+    text-align: center;
+}
+
+.link-text {
+    color: #EFB034;;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: #EFB034;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    margin-top: 15px;
+    padding: 8px;
+    height: 100%;
+}
+
+.modal__footer {
+    padding: 0 20px 20px 20px;
+}
+
+.modal__footer .other-login-method {
+    margin: 15px 0;
+}
+
+.modal__footer .other-login-method button{
+    width: 50%;
+    padding: 8px;
+    height: 100%;
+    border: 1px solid #000;
+}
+
+.modal__footer .other-login-method button:hover{
+    width: 50%;
+    background-color: #fbf9f9;
+    color: black;
+}
+
+.modal__footer .other-login-method button:focus{
+    width: 50%;
+    background-color: #e6e0e0;
+    color: black;
+}
+
+
+.title {
+    text-align: center;
+    color: #EFB034;
+    padding: 20px;
+}
+
+.error-message {
+    color: #DE3B40;
+}
+
+.error {
+    border-bottom: 1px solid #DE3B40 !important;
+}

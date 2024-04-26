@@ -1,0 +1,15 @@
+.search-box + [nz-button] {
+    background-color: #f57222;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+nz-table {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+nz-pagination {
+    float: right;
+}

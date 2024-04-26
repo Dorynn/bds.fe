@@ -1,0 +1,60 @@
+<h2>Quản lý giao dịch</h2>
+
+<div nz-row>
+    <div class="search-box" nz-col [nzSpan]="6">
+        <nz-input-group nzSearch [nzAddOnBefore]="prefixButton">
+            <input [(ngModel)]="landName" type="text" nz-input placeholder="" (keyup.enter)="handleSearch()">
+        </nz-input-group>
+        <ng-template #prefixButton>
+            Tìm kiếm
+        </ng-template>
+    </div>
+
+    <div nz-col [nzSpan]="8" [nzOffset]="2">
+        <div nz-row>
+            <span nz-col [nzSpan]="6" class="prefix-select">Trạng thái</span>
+            <nz-select [(ngModel)]="status" (ngModelChange)="handleSearchByStatus()" nz-col [nzSpan]="18">
+                <nz-option nzValue="0" nzLabel="Chờ xác nhận"></nz-option>
+                <nz-option nzValue="1" nzLabel="Thanh toán thành công"></nz-option>
+                <nz-option nzValue="2" nzLabel="Thanh toán thất bại"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+</div>
+
+<nz-table [nzData]="transactionList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '430px' }">
+    <thead>
+        <tr>
+            <th nzWidth="50px">STT</th>
+            <th>Tên khu đất</th>
+            <th>Phân khu</th>
+            <th>Dự án</th>
+            <th>Thời gian giao dịch</th>
+            <th>Tên người đặt cọc</th>
+            <th>Số điện thoại</th>
+            <th>Số tiền cọc (triệu đồng)</th>
+            <th>Tình trạng</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(item of transactionList; track $index){
+        <tr>
+            <td>{{$index+1}}</td>
+            <td>{{item.land.name}}</td>
+            <td>{{item.land.areaDTO.name}}</td>
+            <td>{{item.land.areaDTO.projectName}}</td>
+            <td>{{transformDate(item.createdAt)}}</td>
+            <td>{{item.user.name}}</td>
+            <td>{{item.user.phone}}</td>
+            <td>{{item.land.deposit}}</td>
+            <td>{{item.status == '0' ? 'Chờ xác nhận': item.status == '1' ? 'Thanh toán thành công': 'Thanh toán thất bại' }}</td>
+            <td>
+                <button nz-button class="background-blue" (click)="goToViewTransaction(item.id)">Xem</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</nz-table>
+<nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="currentSize" (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>
+

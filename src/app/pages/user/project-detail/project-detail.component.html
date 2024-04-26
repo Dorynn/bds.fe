@@ -1,0 +1,44 @@
+<div class="thumbnail" nz-flex nzAlign="center" nzJustify="center">
+    <div nz-row class="thumbnail__box">
+        <div nz-col [nzSpan]="12" class="thumbnail__text-box">
+            <h3>{{projectDetail.name}}</h3>
+            <p>{{projectDetail.description}}</p>
+        </div>
+        <div class="project-image" [style.backgroundImage]="projectDetail.thumbnail" nz-col [nzSpan]="12"></div>
+    </div>
+</div>
+<div class="menu">
+    <ul nz-flex>
+        <li [routerLink]="['/project-detail',projectId]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">All</li>
+        @for (item of areaList; track $index) {
+        <li [routerLink]="['/project-detail',projectId,'area-detail', item.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{item.name}}</li>
+        }
+    </ul>
+</div>
+
+@for(area of areaList; track area.id){
+<div class="area-group">
+    <h1>{{area.name}}</h1>
+    <swiper-container loop="true" slides-per-view="1" space-between="10"
+        navigation="true" pagination="true" style="--swiper-navigation-color: #fff; --swiper-pagination-color: #6D31ED">
+        @for(land of area.lands; track land){
+        <swiper-slide class="swiper-slide">
+            <div class="wapper" nz-row>
+                <div nz-col [nzSpan]="16" class="wrapper__info">
+                    <span>{{land.name}}</span>
+                    <span class="status" [class]="{'up-coming':land.status==0, 'sale': land.status==1, 'temp-lock':land.status==2, 'locked': land.status==3}">{{land.status==0?'Sắp mở bán':land.status==1?'Đang mở bán':land.status==2?'Đang đặt cọc':'Đã đặt cọc'}}</span>
+                    <p class="brief">{{land.description}} | {{land.acreage}} m2</p>
+                    <p class="price">Giá niêm yết: {{land.price}} tỷ</p>
+                    <button nz-button class="background-brown" (click)="showConfirm(land, area)" [disabled]="land.status!==1">Đặt cọc ngay</button>
+                </div>
+                <div nz-col [nzSpan]="8" (click)="openLandDetailModal(land, area)">
+                    <img class="image" [src]="land.thumbnail??'../../../../assets/img/flat2.jpg'" alt="">
+                </div>
+            </div>
+        </swiper-slide>
+        }
+    </swiper-container>
+</div>
+}
+<app-payment-modal [item]="item" (handleReload)="handleReload($event)"></app-payment-modal>
+<app-land-info-modal [item]="item" ></app-land-info-modal>

@@ -1,0 +1,35 @@
+nz-select, nz-date-picker {
+    width: 100%;
+}
+
+[nz-row] {
+    margin-bottom: 15px;
+}
+
+.status-group label {
+    margin-right: 20px;
+    margin-left: 5px;
+}
+
+.add-account-btn {
+    border: 1px dashed rgb(168, 168, 207);
+    padding: 5px;
+    margin-bottom: 25px;
+}
+
+.add-account-btn [nz-icon] {
+    margin-right: 5px;
+    line-height: 22px; 
+    cursor: pointer; 
+}
+
+.add-project-btn:hover {
+    background-color: #e57222;
+    border:1px solid #e57222;
+    color: white;
+}
+
+
+
+
+

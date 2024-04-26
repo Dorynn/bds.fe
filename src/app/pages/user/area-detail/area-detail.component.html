@@ -1,0 +1,66 @@
+<div class="thumbnail" nz-flex nzAlign="center" nzJustify="center">
+    <div nz-row class="thumbnail__box">
+        <div nz-col [nzSpan]="12" class="thumbnail__text-box">
+            <h3>{{projectDetail.name}}</h3>
+            <p>{{projectDetail.description}}</p>
+        </div>
+        <div class="project-image" nz-col [nzSpan]="12"></div>
+    </div>
+</div>
+
+<div class="menu">
+    <ul nz-flex>
+        <li [routerLink]="['/project-detail',projectId]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">All</li>
+        @for (item of areaList; track $index) {
+        <li [routerLink]="['/project-detail',projectId,'area-detail', item.id]" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:
+            true}" (click)="handleChangeArea(item)">
+            {{item.name}}</li>
+        }
+    </ul>
+</div>
+
+<div class="content">
+    <div class="content-wrapper">
+        <div class="filter" nz-flex nzJustify="end">
+            <nz-select>
+                <nz-option [nzValue]="0" nzLabel="Giá thấp đến cao"></nz-option>
+                <nz-option [nzValue]="1" nzLabel="Giá cao đến thấp"></nz-option>
+            </nz-select>
+            <nz-select>
+                <nz-option [nzValue]="0" nzLabel="Sắp mở bán"></nz-option>
+                <nz-option [nzValue]="1" nzLabel="Đang mở bán"></nz-option>
+                <nz-option [nzValue]="2" nzLabel="Đang đặt cọc"></nz-option>
+                <nz-option [nzValue]="3" nzLabel="Đã đặt cọc"></nz-option>
+            </nz-select>
+            <nz-select></nz-select>
+            <button nz-button class="background-brown">Lọc</button>
+            <button nz-button class="background-brown">Xóa</button>
+        </div>
+
+        <div class="land-list">
+            <h1>{{areaDetail.name}}</h1>
+            <div nz-row [nzGutter]="[32, 32]">
+                @for (item of areaDetail.lands; track $index) {
+                <div nz-col [nzSpan]="12">
+                    <div nz-row class="wrapper">
+                        <div nz-col [nzSpan]="16" class="wrapper__info">
+                            <span>{{item.name}}</span>
+                            <span class="status" [class]="{'up-coming':item.status==0, 'sale': item.status==1, 'temp-lock':item.status==2, 'locked': item.status==3}">{{item.status==0?'Sắp mở bán': item.status==1?'Đang mở bán': item.status ==2?'Đang đặt cọc':'Đã đặt cọc'}}</span>
+                            <p class="brief">{{item.description}} | {{item.acreage}} m2</p>
+                            <p class="price">Giá niêm yết: {{item.price}} tỷ</p>
+                            <button nz-button class="background-brown" (click)="showConfirm(item)" [disabled]="item.status!==1">Đặt cọc ngay</button>
+                        </div>
+                        <div nz-col [nzSpan]="8" (click)="openLandDetailModal(item)">
+                            <img class="image" [src]="item.thumbnail??'../../../../assets/img/flat2.jpg'" alt="" height="100%" width="100%">
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-land-info-modal [item]="item"></app-land-info-modal>
+<app-payment-modal [item]="item" (handleReload)="handleReload($event)"></app-payment-modal>

@@ -1,0 +1,106 @@
+app-homepage {
+    height: 100vh;
+}
+
+nz-carousel {
+    height: 450px;
+    margin-bottom: 50px;
+}
+
+nz-carousel [nz-row]{
+    background-color: #F3F4F6;
+}
+
+[nz-row]:first-child{
+    height: inherit;
+}
+
+.project-info {
+    padding: 0 35px;
+}
+
+.project-info .title {
+    margin-top: 25px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.project-info .project-name {
+    color: #f78e10;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    margin-bottom: 12px;
+    margin-top: 50px;
+}
+
+.project-info .desc {
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.project-info > button {
+    padding-left: 0;
+    color: #f78e10;
+    text-transform: uppercase;
+}
+
+nz-select {
+    width: 100%;
+}
+
+.filter {
+    border: 1px solid #e9e9e9;
+    margin: 95px 50px;
+}
+
+.filter > p {
+    border-bottom: 1px solid #e9e9e9;
+    padding: 20px 40px;
+}
+
+.filter > div {
+    border-bottom: 1px solid #e9e9e9;
+    padding: 10px 40px;
+}
+
+div.button-group {
+    padding: 15px 40px ;
+}
+
+.button-group button:last-child {
+    background-color: #9095A1;
+    color: #fff;
+}
+
+.project-list {
+    margin-right: 50px;
+}
+
+.project-detail {
+    height: 250px;
+    margin-bottom: 20px;    
+}
+
+.project-detail img {
+    border-radius: 15px;
+}
+
+.project-detail button {
+    float: right;
+    /* padding: 0 10px; */
+    color: #9095A1;
+}
+
+[nz-col] {
+    height: 100%;
+}
+
+nz-pagination {
+    float: right;
+    margin-bottom: 30px;
+    margin-right: 50px;
+}
+
+.table-wrapper {
+    border: 1px solid #f78e10;
+}

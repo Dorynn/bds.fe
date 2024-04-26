@@ -1,0 +1,36 @@
+.title {
+    text-align: center;
+    color: #EFB034;
+    padding: 20px;
+}
+
+.modal__content button{
+   margin: 15px 0;
+   padding: 8px;
+   height: 100%;
+   border: 1px solid #000;
+}
+
+.modal__content button:hover{
+    background-color: #fbf9f9;
+    color: black;
+}
+
+.modal__content button:focus{
+    background-color: #e6e0e0;
+    color: black;
+}
+
+.modal__footer {
+    padding: 20px;
+    text-align: left;
+}
+
+.link-text {
+    color: #EFB034;;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+

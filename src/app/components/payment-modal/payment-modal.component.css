@@ -1,0 +1,83 @@
+.modal__header {
+    text-align: center;
+    background-color: #BC9669;
+    color: white;
+    padding: 12px 0;
+}
+
+.modal__content .qr-box{
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    margin: auto;
+    width: 70%;
+}
+
+.modal__content .qr-box img {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.modal__content .qr-box .qr-box__bankname .vietqr {
+    color: #EB353F;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.modal__content .qr-box .qr-box__bankname .vpbank {
+    color: #319667;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.modal__content .qr-box .napas {
+    text-align: center;
+    color:#5D9EB3;
+    font-weight: 600;
+}
+
+.modal__content .payment-info {
+    width: 70%;
+    padding: 20px 0;
+    margin: auto;
+}
+
+.modal__footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    width: 70%;
+    margin: auto;
+}
+
+.modal__footer button {
+    width: 50%;
+}
+
+.modal__footer button:first-child {
+    background-color: #9095A1;
+    color: #fff;
+}
+.modal__footer button:first-child:hover {
+    background-color: #6c6f77;
+    color: #fff;
+    border-color: #6c6f77;
+}
+.modal__footer button:first-child:focus {
+    background-color: #6c6f77;
+    color: #fff;
+    border-color: #6c6f77;
+}
+
+.modal__footer button:last-child {
+    background-color: #2356D4;
+    color: #fff;
+}
+.modal__footer button:last-child:hover {
+    background-color: #0f45cf;
+    color: #fff;
+}
+.modal__footer button:last-child:focus {
+    background-color: #0f45cf;
+    color: #fff;
+}

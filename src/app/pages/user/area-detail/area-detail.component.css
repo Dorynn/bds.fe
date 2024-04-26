@@ -1,0 +1,100 @@
+.thumbnail {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    background: no-repeat center/100% url("../../../../assets/img/img2.jpg");
+}
+
+.thumbnail__box {
+    width: 80%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    height: 350px;
+}
+
+.thumbnail__text-box {
+    background-color: #fff;
+    padding-right: 40px;
+    text-align: justify;
+}
+
+.project-image {
+    background: no-repeat center/100% url("../../../../assets/img/img2.jpg");
+}
+
+.menu {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nz-select {
+    width: 150px;
+    margin-right: 15px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.menu ul li.active {
+    border-bottom: 4px solid #000;
+}
+
+.content {
+    padding: 30px;
+    background-color: #DEE1E6;
+}
+
+.content-wrapper {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.land-list {
+    padding: 16px 64px;
+}
+
+.wrapper {
+    height: 200px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-sizing: border-box;
+}
+
+.wrapper [nz-col] {
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper__info {
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.wrapper img {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.status {
+    border-radius: 10px;
+    padding: 3px 5px;
+    margin-left: 12px;
+    color: #fff;
+}
+
+.brief {
+    margin-top: 10px;
+    display: block;
+}
+
+.filter button.background-brown:last-child {
+    margin-left: 15px;
+}

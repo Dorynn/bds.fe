@@ -1,0 +1,102 @@
+.thumbnail {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    background: no-repeat center/100% url("../../../../assets/img/img2.jpg");
+}
+
+.thumbnail__box {
+    width: 80%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    height: 350px;
+}
+
+.thumbnail__text-box {
+    background-color: #fff;
+    padding-right: 40px;
+    text-align: justify;
+}
+
+.project-image {
+    background: no-repeat center/100% url("../../../../assets//img/img2.jpg");
+}
+
+.menu {
+    margin-bottom: 50px;
+}
+
+.area-group {
+    font-family: 'Times New Roman', Times, serif;
+    width: 90%;
+    background-color: antiquewhite;
+    padding: 20px;
+    margin: auto;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.swiper-button-next{
+    color: #000;
+    background-color: #000;
+}
+
+
+.swiper-button-prev {
+
+}
+
+swiper-slide.swiper-slide {
+    height: 230px;
+    background-color: antiquewhite;
+    border-radius: 4px;
+}
+
+.wapper {
+    position: relative;
+    background-color: #fff;
+    width: 85%;
+    margin: auto;
+}
+
+.wrapper__info {
+    padding: 15px;
+}
+.swiper-slide .image {
+    height: 100%;
+    width: 100%;
+}
+
+.status {
+    border-radius: 10px;
+    padding: 3px 5px;
+    margin-left: 12px;
+    color: #fff;
+}
+
+.brief {
+    margin-top: 10px;
+    display: block;
+}
+
+.menu {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.menu ul li.active {
+    border-bottom: 4px solid #000;
+}

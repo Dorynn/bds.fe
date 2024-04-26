@@ -1,0 +1,51 @@
+.header {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px 15px;
+}
+
+.header__logo>img {
+    height: 50px;
+}
+
+.header__logo>h1 {
+    color: #f78e10;
+}
+
+.header__logo > ul {
+    list-style-type: none;
+    color: #f78e10;
+    margin-left: 30px;
+}
+
+.header__logo > ul li {
+    padding: 8px;
+    font-weight: 500;
+}
+
+.active {
+    border-bottom: 3px solid #f78e10;
+}
+
+.header__login button:first-child {
+    color: #f78e10;
+    font-weight: 500;
+    margin-right: 15px;
+    border: none;
+}
+
+.header__login button:last-child {
+    color: #fff;
+    font-weight: 500;
+    background-color: #f78e10;
+    border: none;
+}
+
+.header__login button:first-child:hover {
+    background-color: #f78f1023;
+    border: none;
+}
+
+.header__login button:last-child:hover {
+    background-color: #d97b08;
+    border: none
+}

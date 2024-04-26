@@ -1,0 +1,32 @@
+.title {
+    width: 100%;
+    background-color: #FFA84C;
+    text-align: center;
+    padding: 8px 0;
+    color: #fff;
+}
+
+.view-transaction {
+    border: 1px solid #FFA84C;
+}
+
+.view-transaction .content {
+    padding: 25px;
+}
+
+.thumbnail {
+
+}
+
+.item {
+    margin-bottom: 5px;
+}
+
+.item:last-child {
+    margin-top: 20px;
+}
+
+.item:last-child button {
+    background-color: #FFA84C;
+    color: #fff;
+}

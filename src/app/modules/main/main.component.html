@@ -1,0 +1,9 @@
+@if(role=='ADMIN'){
+    <nz-spin nzTip="Đang tải..." [nzSpinning]="isSpinning">
+        <app-admin></app-admin>
+    </nz-spin>
+}
+@else {
+    <app-user></app-user>
+}
+
