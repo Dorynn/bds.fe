@@ -64,19 +64,6 @@ export class AddProjectComponent implements OnInit {
     this.getProvinceList();
   }
 
-  onFileSelected(event: any) {
-    console.log(event);
-
-    this.thumbnail = event.target.files?.[0]
-    console.log(this.thumbnail);
-  }
-
-  onFile2Selected(event: any) {
-    this.qrImage = event.target.files?.[0]
-    console.log(this.qrImage);
-
-  }
-
   addProject() {
     this.dataService.changeStatusLoadingAdmin(true)
     const formData = new FormData();
@@ -95,10 +82,6 @@ export class AddProjectComponent implements OnInit {
     formData.append("investorPhone", this.investorPhoneNumber)
     formData.append("projectTypeId", this.type)
     formData.append("districtId", this.district)
-
-    console.log(this.thumbnail);
-
-
     this.apiService.addProject(formData).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -132,8 +115,6 @@ export class AddProjectComponent implements OnInit {
   getProjects() {
     this.apiService.getProjectList({ pageIndex: 0, pageSize: 20 }).subscribe({
       next: (res: any) => {
-        console.log(res.totalRecords);
-        // this.total = res.totalRecords
       }
     })
   }
@@ -168,14 +149,8 @@ export class AddProjectComponent implements OnInit {
   }
 
   handleChange(info: { file: NzUploadFile }): void {
-    console.log('ckcll', info.file);
-    console.log(this.fileImage);
-    console.log(this.fileQr);
     this.thumbnail = this.fileImage[0].originFileObj!;
     this.qrImage = this.fileQr[0]
-    console.log(this.thumbnail);
-
-
 
     switch (info.file.status) {
       case 'uploading':

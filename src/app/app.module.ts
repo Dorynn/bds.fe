@@ -64,7 +64,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { TransactionHistoryComponent } from './pages/user/transaction-history/transaction-history.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { NzListModule } from 'ng-zorro-antd/list';
 registerLocaleData(en);
 
 @NgModule({
@@ -129,7 +129,8 @@ registerLocaleData(en);
     NzUploadModule,
     NzMessageModule,
     NzTabsModule,
-    NzSpinModule
+    NzSpinModule,
+    NzListModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

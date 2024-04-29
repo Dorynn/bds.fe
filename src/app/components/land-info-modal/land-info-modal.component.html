@@ -1,20 +1,95 @@
-<nz-modal [(nzVisible)]="isVisible" [nzStyle]="{ top: '30px' }" (nzOnCancel)="handleCancel()" >
-    <div *nzModalTitle style="padding: 0!important">
-        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
-    </div>
+<nz-modal [(nzVisible)]="isVisible" [nzStyle]="{ top: '30px' }" [nzWidth]="1000" (nzOnCancel)="handleCancel()">
+    <!-- <div *nzModalTitle style="padding: 0!important">
+        hppp
+    </div> -->
     <div *nzModalContent>
-        <h1>{{item.name}}</h1>
-        <p>Giá niêm yết: {{item.price}} tỷ đồng</p>
-        <p>Giá đặt cọc: {{item.deposit}} triệu đồng</p>
-        <div class="status">{{item.status==0?'Sắp mở bán':item.status==1?'Đang mở bán': item.status == 2? 'Đang đặt cọc':'Đã hết'}}</div>
-            <h3>Mô tả</h3>
-            <div><strong>Dự án: </strong>{{item.projectName}}</div>
-            <div><strong>Phân khu: </strong>{{item.areaName}}</div>
-            <div><strong>Chủ đầu tư: </strong>{{item.investor}}</div>
-            <div><strong>Loại hình căn hộ: </strong>{{item.description}}</div>
-            <div><strong>Diện tích: </strong>{{item.acreage}}/m2</div>
+        <div nz-row [nzGutter]="32">
+            <div nz-col [nzSpan]="12">
+                <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                    class="mySwiper" thumbs-swiper=".mySwiper2" loop="true" space-between="10" navigation="true">
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                </swiper-container>
+
+                <swiper-container class="mySwiper2" loop="true" space-between="10" slides-per-view="4" free-mode="true"
+                    watch-slides-progress="true">
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                    <swiper-slide>
+                        <img [src]="item.thumbnail??'../../../assets/img/flat2.jpg'" alt="flat-image" width="100%">
+                    </swiper-slide>
+                </swiper-container>
+            </div>
+            <div nz-col [nzSpan]="12" class="land-desc">
+                <span class="land-name">{{item.name}}</span>
+                <span class="status" [class]="{'up-coming':item.status==0, 'sale': item.status==1, 'temp-lock':item.status==2, 'locked': item.status==3}">
+                    {{item.status==0?'Sắp mở bán':item.status==1?'Đang mở bán': item.status == 2? 'Đang đặt cọc':'Đã hết'}}
+                </span>
+                <div class="project-type">{{item.type}}</div>
+
+                <div nz-row>
+                    <div nz-col [nzSpan]="8">
+                        <strong>Giá niêm yết: </strong>
+                    </div>
+                    <div nz-col [nzSpan]="16">
+                        {{item.price}} tỷ đồng
+                    </div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8">
+                        <strong>Giá đặt cọc: </strong>
+                    </div>
+                    <div nz-col [nzSpan]="16">{{item.deposit}} triệu đồng</div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8"><strong>Mô tả: </strong></div>
+                    <div nz-col [nzSpan]="16">{{item.description}}</div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8"><strong>Dự án: </strong></div>
+                    <div nz-col [nzSpan]="16">{{item.projectName}}</div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8"><strong>Phân khu: </strong></div>
+                    <div nz-col [nzSpan]="16">{{item.areaName}}</div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8"><strong>Chủ đầu tư: </strong></div>
+                    <div nz-col [nzSpan]="16">{{item.investor}}</div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8"><strong>Loại hình căn hộ: </strong></div>
+                    <div nz-col [nzSpan]="16">{{item.typeOfApartment == 1 ? '2PN + 1': '3PN'}}</div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8"><strong>Hướng ban công: </strong></div>
+                    <div nz-col [nzSpan]="16">{{item.direction == 0 ? 'Tây Bắc':item.direction == 1 ? 'Tây Bắc - Đông Nam': 'Đông Nam - Tây Bắc'}}</div>
+                </div>
+                <div nz-row>
+                    <div nz-col [nzSpan]="8"><strong>Diện tích: </strong></div>
+                    <div nz-col [nzSpan]="16">{{item.acreage}}/m2</div>
+                </div>
+                <button nz-button (click)="showConfirm()" [disabled]="item.status == 2 || item.status == 3">Đặt cọc</button>
+            </div>
         </div>
-        <div *nzModalFooter>
-            <button nz-button (click)="showConfirm()" [disabled]="item.status == 2 || item.status == 3">Đặt cọc</button>
-        </div>
+    </div>
+    <div *nzModalFooter>
+    </div>
 </nz-modal>

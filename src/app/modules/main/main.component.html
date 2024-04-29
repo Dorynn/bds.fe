@@ -4,6 +4,8 @@
     </nz-spin>
 }
 @else {
-    <app-user></app-user>
+    <nz-spin nzTip="Đang tải..." [nzSpinning]="iSSpinningUser">
+        <app-user></app-user>
+    </nz-spin>
 }
 

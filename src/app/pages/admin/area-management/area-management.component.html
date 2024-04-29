@@ -11,29 +11,32 @@
     </div>
     <button nz-button (click)="goToAddArea()"><span nz-icon nzType="plus" nzTheme="outline"></span>Thêm phân khu</button>
 </div>
-<nz-table [nzData]="areaList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '400px' }">
-    <thead>
-        <tr>
-            <th nzWidth="50px">STT</th>
-            <th>Tên</th>
-            <th>Dự án</th>
-            <th>Thao tác</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(item of areaList; track item.id){
-        <tr>
-            <td>{{$index+1}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.projectName}}</td>
-            <td>
-                <button nz-button class="background-blue" (click)="goToEditArea(item.id)">Cập nhật</button>
-                <button nz-button style="margin: 10px;" class="background-red">Xóa</button>
-                <!-- <span nz-icon nzType="eye" nzTheme="outline"></span> -->
-            </td>
-        </tr>
-        }
-    </tbody>
-</nz-table>
+
+<div class="table-wrapper">
+    <nz-table [nzData]="areaList" [nzLoading]="loading" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '400px' }">
+        <thead>
+            <tr>
+                <th nzWidth="50px">STT</th>
+                <th>Tên</th>
+                <th>Dự án</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of areaList; track item.id){
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.projectName}}</td>
+                <td>
+                    <button nz-button class="background-blue" (click)="goToEditArea(item.id)">Cập nhật</button>
+                    <button nz-button style="margin: 10px;" class="background-red">Xóa</button>
+                    <!-- <span nz-icon nzType="eye" nzTheme="outline"></span> -->
+                </td>
+            </tr>
+            }
+        </tbody>
+    </nz-table>
+</div>
 <nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="pageSize"
     (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>

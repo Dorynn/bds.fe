@@ -7,10 +7,15 @@
 
 body {
     font-size: 16px;
+    /* font-family: "montserrat", sans-serif */
 }
 
 .text-bold {
     font-weight: 500;
+}
+
+.text-gray {
+    color: #707070;
 }
 
 .text-green {
@@ -40,10 +45,23 @@ body {
     color: #fff;
 }
 
+.background-gray {
+    background-color: #9095A1;
+    color: #fff;
+}
+
+button.background-gray:hover,
+button.background-gray:active {
+    background-color: #9095A1;
+    color: #fff;
+    border-color: #9095A1;
+}
+
+
 button.background-blue:hover {
     background-color: #0c669b;
     color: #fff;
-    border-color:#0c669b;
+    border-color: #0c669b;
 }
 
 button.background-red:hover {
@@ -63,12 +81,18 @@ button.background-brown:hover {
     border-color: #df8f0d;
 }
 
-swiper-container .swiper-button-next{
+button.background-brown:active {
+    background-color: #df8f0d;
+    color: #fff;
+    border-color: #df8f0d;
+}
+
+swiper-container .swiper-button-next {
     color: #000;
 }
 
-.up-coming{
-    background-color:#DE3B40;
+.up-coming {
+    background-color: #DE3B40;
 }
 
 .sale {
@@ -81,4 +105,10 @@ swiper-container .swiper-button-next{
 
 .locked {
     background-color: #565D6D
+}
+
+.table-wrapper {
+    border: 1px solid #e57222;
+    padding: 0 10px;
+    margin: 15px 0;
 }

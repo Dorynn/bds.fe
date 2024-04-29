@@ -1,15 +1,21 @@
 nz-modal {
     border-radius: 5px;
+    width: 90%;
+}
+
+nz-modal [nz-row] {
+    margin: 0;
 }
 
 button {
+    /* position: absolute; */
     background-color: #BC9669;
     color: #fff;
     font-weight: 600;
     border-color: #BC9669;
-    padding: 12px;
+    bottom: 0;
     width: 100%;
-    height: 100%;
+    margin-top: 30px;
 }
 
 button:hover, button:focus  {
@@ -19,5 +25,43 @@ button:hover, button:focus  {
 
 }
 
+swiper-container.mySwiper {
+    height: 400px;
+}
 
+.mySwiper swiper-slide img, .mySwiper2 swiper-slide img {
+    height: 95%;
+    object-fit: cover;
+}
+
+swiper-container.mySwiper2 {
+    height: 80px;
+}
+
+.land-desc {
+    position: relative;
+}
+
+.land-desc .land-name {
+    font-size: 30px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.land-desc [nz-row] {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.project-type {
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.status {
+    border-radius: 50px;
+    padding: 3px 12px;
+    margin-left: 12px;
+    color: #fff;
+}
 

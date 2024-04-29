@@ -1,8 +1,7 @@
 .thumbnail {
     height: 500px;
     width: 100%;
-    object-fit: cover;
-    background: no-repeat center/100% url("../../../../assets/img/img2.jpg");
+    object-fit: contain;
 }
 
 .thumbnail__box {
@@ -19,37 +18,29 @@
     text-align: justify;
 }
 
-.project-image {
-    background: no-repeat center/100% url("../../../../assets//img/img2.jpg");
-}
-
-.menu {
-    margin-bottom: 50px;
+.content {
+    padding: 30px;
+    background-color: #DEE1E6;
 }
 
 .area-group {
     font-family: 'Times New Roman', Times, serif;
     width: 90%;
-    background-color: antiquewhite;
+    background-color: #fff;
     padding: 20px;
     margin: auto;
     margin-bottom: 30px;
     position: relative;
+    border-radius: 4px;
 }
 
-.swiper-button-next{
-    color: #000;
-    background-color: #000;
-}
-
-
-.swiper-button-prev {
-
+.area-group h1{
+    font-weight: 500;
 }
 
 swiper-slide.swiper-slide {
     height: 230px;
-    background-color: antiquewhite;
+    background-color: #fff;
     border-radius: 4px;
 }
 
@@ -58,19 +49,45 @@ swiper-slide.swiper-slide {
     background-color: #fff;
     width: 85%;
     margin: auto;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-top: 3px;
+    height: 180px;
 }
 
 .wrapper__info {
     padding: 15px;
 }
+
+.wrapper__info .land-name{
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .swiper-slide .image {
     height: 100%;
     width: 100%;
+    object-fit: cover;
+}
+
+button.background-brown {
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+button.view-detail {
+    margin-top: 15px;
+}
+
+button.view-detail:hover, button.view-detail:active {
+    border: 1px solid #d9d9d9;
+    color: #000;
 }
 
 .status {
-    border-radius: 10px;
-    padding: 3px 5px;
+    border-radius: 50px;
+    padding: 3px 12px;
     margin-left: 12px;
     color: #fff;
 }

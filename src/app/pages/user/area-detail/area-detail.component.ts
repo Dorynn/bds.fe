@@ -18,7 +18,15 @@ export class AreaDetailComponent implements OnInit {
   areaDetail: any = [];
   item: any = [];
   stompClient: any;
-  user: any = {}
+  user: any = {};
+  landList: any = [];
+  filterParams:any = {
+    areaId: this.areaId,
+    price: '',
+    status: '',
+    typeOfApartment: '',
+    direction: '',
+  }
 
   constructor(
     private apiService: ApiService,
@@ -28,7 +36,6 @@ export class AreaDetailComponent implements OnInit {
     private router: Router,
     private socketService: SocketService
   ) {
-    // this.connectSocket()
   }
 
   connectSocket(){
@@ -61,7 +68,6 @@ export class AreaDetailComponent implements OnInit {
         this.dataService.changeStatusPaymentModal(false);
         this.handleChangeLandStatus('1', this.item.id)
       }
-
     }
   }
 
@@ -75,17 +81,31 @@ export class AreaDetailComponent implements OnInit {
   }
 
   getAreaDetail(): void {
+    this.dataService.changeStatusLoadingUser(true);
     this.apiService.getAreaById(this.areaId).subscribe({
       next: (res: any) => {
         this.areaDetail = res.data;
-        console.log(res);
+        this.landList = res.data.lands;
+        this.dataService.changeStatusLoadingUser(false);
+      },
+      error: (res: any) => {
+        this.dataService.changeStatusLoadingUser(false);
+      }
+    })
+  }
+
+  getLandByAreaId():void {
+    this.apiService.getLandByAreaId(this.filterParams).subscribe({
+      next: (res: any) => {
+        this.landList = res.data;
+      },
+      error: (err: any) => {
 
       }
     })
   }
 
   openLandDetailModal(item: any) {
-
     this.item = {
       ...item,
       projectName: this.projectDetail.name,
@@ -102,6 +122,7 @@ export class AreaDetailComponent implements OnInit {
       bankName: this.projectDetail.bankName,
       bankNumber: this.projectDetail.bankNumber,
       phone: this.user.phone,
+      type: this.projectDetail.projectType.name,
       qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit * 100}&des=${this.user.phone}+${item.name}`
 
     };
@@ -131,6 +152,7 @@ export class AreaDetailComponent implements OnInit {
           bankName: this.projectDetail.bankName,
           bankNumber: this.projectDetail.bankNumber,
           phone: this.user.phone,
+          type: this.projectDetail.projectType.name,
           qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit * 100}&des=${this.user.phone}+${item.name}`
     
         };
@@ -140,8 +162,6 @@ export class AreaDetailComponent implements OnInit {
           nzOkText: 'Đồng ý',
           nzCancelText: 'Hủy',
           nzOnOk: () => {
-            console.log('confirm');
-    
             this.openPaymentModal();
             this.handleChangeLandStatus('2', item.id)
             localStorage.setItem('isPaymentOpen',JSON.stringify(true))
@@ -189,10 +209,20 @@ export class AreaDetailComponent implements OnInit {
   }
 
   handleReload(event: any) {
-    console.log(event);
-    
     if (event.isCancel) {
       this.handleChangeLandStatus('1', event.itemId)
     }
+  }
+
+  handleSearch():void {
+    this.getLandByAreaId();
+  }
+
+  handleClearFilter():void {
+    this.filterParams.price = '';
+    this.filterParams.status = '';
+    this.filterParams.direction = '';
+    this.filterParams.typeOfApartment = '';
+    this.getAreaDetail();
   }
 }

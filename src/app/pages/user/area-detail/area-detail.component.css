@@ -57,6 +57,9 @@ nz-select {
 .content-wrapper {
     background-color: #fff;
     padding: 15px;
+    width: 90%;
+    margin: auto;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .land-list {
@@ -64,9 +67,11 @@ nz-select {
 }
 
 .wrapper {
-    height: 200px;
+    height: 180px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     box-sizing: border-box;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .wrapper [nz-col] {
@@ -76,16 +81,20 @@ nz-select {
 
 .wrapper__info {
     padding: 15px;
-    margin-top: 15px;
 }
 
 .wrapper img {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.wrapper__info .land-name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .status {
-    border-radius: 10px;
-    padding: 3px 5px;
+    border-radius: 50px;
+    padding: 3px 12px;
     margin-left: 12px;
     color: #fff;
 }
@@ -95,6 +104,12 @@ nz-select {
     display: block;
 }
 
-.filter button.background-brown:last-child {
-    margin-left: 15px;
+button.background-brown, button.view-detail {
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+button.view-detail:hover, button.view-detail:active{
+    border: 1px solid #d9d9d9;
+    color: #000;
 }

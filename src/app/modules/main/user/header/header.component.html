@@ -10,7 +10,7 @@
         </ul>
     </div>
     @if (isLogin) {
-    <div nz-col [nzOffset]="12" [nzDropdownMenu]="menu" nz-dropdown nzTrigger="click" style="margin-right: 50px">
+    <div  class="avatar-user" nz-col [nzOffset]="12" [nzDropdownMenu]="menu" nz-dropdown nzTrigger="click" style="margin-right: 50px">
         <img [src]="user.picture" alt="avatar" width="40px" style="border-radius: 100px">
         <span style="color: #f57222; font-weight: 500; text-transform: uppercase;">{{user.name}}</span>
     </div>

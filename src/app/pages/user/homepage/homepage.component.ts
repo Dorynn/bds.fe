@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-homepage',
@@ -19,12 +20,13 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private dataService: DataService,
   ) {}
 
   ngOnInit(): void {
     this.getProjectList({pageIndex: 0, pageSize:4});
-    this.getProvincesHaveProject()
+    this.getProvincesHaveProject();
   }
 
   getProvincesHaveProject(){
@@ -36,6 +38,7 @@ export class HomepageComponent implements OnInit {
   }
 
   getProjectList(params: any):void {
+    this.dataService.changeStatusLoadingUser(true);
     this.apiService.getProjectList(params).subscribe({
       next: (res: any) => {
         console.log(res);
@@ -43,6 +46,10 @@ export class HomepageComponent implements OnInit {
         this.total = res.totalRecords;
         this.currentPage = res.currentPage;
         this.pageSize = res.currentSize;
+        this.dataService.changeStatusLoadingUser(false);
+      },
+      error: (err: any) => {
+        this.dataService.changeStatusLoadingUser(false);
       }
     })
   }

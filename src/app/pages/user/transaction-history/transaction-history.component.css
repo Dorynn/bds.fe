@@ -1,5 +1,6 @@
 .transaction-history {
-    padding: 80px;
+    padding: 80px 150px;
     min-height: 500px;
+    background-color: #DEE1E6;
 }
 

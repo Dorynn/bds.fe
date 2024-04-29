@@ -29,13 +29,15 @@ export class AddLandComponent implements OnInit {
   areaId!: string;
   previewVisible: boolean = false;
   previewImage: string | undefined = '';
-  // fileList: NzUploadFile[] = [];
-  // fileLandImage: NzUploadFile[] = [];
   loading: boolean = false;
   projectList: any = [];
   areaList: any = [];
   projectId: string = '';
   isProjectChange: boolean = false;
+  projectType: string = '';
+  typeOfApartment: string = '';
+  direction: string = '';
+  isMoreInf: boolean = false;
 
   constructor(
     private msg: NzMessageService,
@@ -65,7 +67,6 @@ export class AddLandComponent implements OnInit {
         this.loading = false;
         break;
       case 'error':
-        // this.msg.error('Network error');
         this.loading = false;
         break;
     }
@@ -83,8 +84,14 @@ export class AddLandComponent implements OnInit {
     this.apiService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.areaList = res.data.areas
-        console.log(this.areaList);
+      }
+    })
+  }
 
+  getProjectById() {
+    this.apiService.getProjectById(this.projectId).subscribe({
+      next: (res: any) => {
+        this.projectType = res.data.projectType.id;
       }
     })
   }
@@ -92,6 +99,8 @@ export class AddLandComponent implements OnInit {
   handleChangeProject() {
     this.isProjectChange = true;
     this.getAreaByProjectId();
+    this.getProjectById();
+    this.isMoreInf = true;
   }
 
   handleAddLand() {
@@ -105,7 +114,9 @@ export class AddLandComponent implements OnInit {
     formData.append("price", this.price);
     formData.append("deposit", this.deposit);
     formData.append("acreage", this.acreage);
-    formData.append("areaId", this.areaId)
+    formData.append("areaId", this.areaId);
+    formData.append("typeOfApartment", this.typeOfApartment);
+    formData.append("direction", this.direction)
     this.apiService.createLand(formData).subscribe({
       next: (res: any) => {
         this.msg.success('Thêm mới khu đất thành công!')
@@ -119,7 +130,9 @@ export class AddLandComponent implements OnInit {
         this.deposit = '';
         this.areaId = '';
         this.isProjectChange = false;
-        this.projectId = ''
+        this.projectId = '';
+        this.typeOfApartment="";
+        this.direction = "";
         this.dataService.changeStatusLoadingAdmin(false);
       },
       error:(err: any) => {

@@ -22,39 +22,41 @@
     </div>
 </div>
 
-<nz-table [nzData]="transactionList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '430px' }">
-    <thead>
-        <tr>
-            <th nzWidth="50px">STT</th>
-            <th>Tên khu đất</th>
-            <th>Phân khu</th>
-            <th>Dự án</th>
-            <th>Thời gian giao dịch</th>
-            <th>Tên người đặt cọc</th>
-            <th>Số điện thoại</th>
-            <th>Số tiền cọc (triệu đồng)</th>
-            <th>Tình trạng</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(item of transactionList; track $index){
-        <tr>
-            <td>{{$index+1}}</td>
-            <td>{{item.land.name}}</td>
-            <td>{{item.land.areaDTO.name}}</td>
-            <td>{{item.land.areaDTO.projectName}}</td>
-            <td>{{transformDate(item.createdAt)}}</td>
-            <td>{{item.user.name}}</td>
-            <td>{{item.user.phone}}</td>
-            <td>{{item.land.deposit}}</td>
-            <td>{{item.status == '0' ? 'Chờ xác nhận': item.status == '1' ? 'Thanh toán thành công': 'Thanh toán thất bại' }}</td>
-            <td>
-                <button nz-button class="background-blue" (click)="goToViewTransaction(item.id)">Xem</button>
-            </td>
-        </tr>
-        }
-    </tbody>
-</nz-table>
+<div class="table-wrapper">
+    <nz-table [nzData]="transactionList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '430px' }">
+        <thead>
+            <tr>
+                <th nzWidth="50px">STT</th>
+                <th>Tên khu đất</th>
+                <th>Phân khu</th>
+                <th>Dự án</th>
+                <th>Thời gian giao dịch</th>
+                <th>Tên người đặt cọc</th>
+                <th>Số điện thoại</th>
+                <th>Số tiền cọc (triệu đồng)</th>
+                <th>Tình trạng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of transactionList; track $index){
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>{{item.land.name}}</td>
+                <td>{{item.land.areaDTO.name}}</td>
+                <td>{{item.land.areaDTO.projectName}}</td>
+                <td>{{transformDate(item.createdAt)}}</td>
+                <td>{{item.user.name}}</td>
+                <td>{{item.user.phone}}</td>
+                <td>{{item.land.deposit}}</td>
+                <td>{{item.status == '0' ? 'Chờ xác nhận': item.status == '1' ? 'Thanh toán thành công': 'Thanh toán thất bại' }}</td>
+                <td>
+                    <button nz-button class="background-blue" (click)="goToViewTransaction(item.id)">Xem</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </nz-table>
+</div>
 <nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="currentSize" (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>
 

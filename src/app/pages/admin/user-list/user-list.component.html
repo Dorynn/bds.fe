@@ -10,25 +10,28 @@
         </ng-template>
     </div>
 </div>
-<nz-table [nzData]="userList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '430px' }">
-    <thead>
-        <tr>
-            <th nzWidth="50px">STT</th>
-            <th>Tên</th>
-            <th>Email</th>
-            <th>Số điện thoại</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(item of userList; track item.id){
-        <tr>
-            <td>{{$index+1}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.phone}}</td>
-        </tr>
-        }
-    </tbody>
-</nz-table>
+
+<div class="table-wrapper">
+    <nz-table [nzData]="userList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '430px' }">
+        <thead>
+            <tr>
+                <th nzWidth="50px">STT</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of userList; track item.id){
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phone}}</td>
+            </tr>
+            }
+        </tbody>
+    </nz-table>
+</div>
 <nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="pageSize"
     (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>

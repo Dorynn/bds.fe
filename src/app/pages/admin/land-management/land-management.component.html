@@ -32,32 +32,34 @@
 
     <button nz-button (click)="goToAddLand()" class="add-btn"><span nz-icon nzType="plus" nzTheme="outline"></span>Thêm khu đất</button>
 </div>
-<nz-table [nzData]="landList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '400px' }">
-    <thead>
-        <tr>
-            <th nzWidth="50px">STT</th>
-            <th>Tên khu đất</th>
-            <th>Phân khu</th>
-            <th>Dự án</th>
-            <th>Tình trạng</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(item of landList; track $index){
-        <tr>
-            <td>{{$index+1}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.areaDTO.name}}</td>
-            <td>{{item.areaDTO.projectName}}</td>
-            <td>{{item.status == 0? 'Sắp mở bán': item.status == 1 ? 'Đang mở bán':item.status == 2 ? 'Đang đặt cọc' : 'Đã đặt cọc'}}</td>
-            <td>
-                <button nz-button class="background-blue" (click)="goToEditLand(item.id)">Cập nhật</button>
-                <button nz-button style="margin: 10px;" class="background-red">Xóa</button>
-                <!-- <span nz-icon nzType="eye" nzTheme="outline"></span> -->
-            </td>
-        </tr>
-        }
-    </tbody>
-</nz-table>
+
+<div class="table-wrapper">
+    <nz-table [nzData]="landList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '400px' }">
+        <thead>
+            <tr>
+                <th nzWidth="50px">STT</th>
+                <th>Tên khu đất</th>
+                <th>Phân khu</th>
+                <th>Dự án</th>
+                <th>Tình trạng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of landList; track $index){
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.areaDTO.name}}</td>
+                <td>{{item.areaDTO.projectName}}</td>
+                <td>{{item.status == 0? 'Sắp mở bán': item.status == 1 ? 'Đang mở bán':item.status == 2 ? 'Đang đặt cọc' : 'Đã đặt cọc'}}</td>
+                <td>
+                    <button nz-button class="background-blue" (click)="goToEditLand(item.id)">Cập nhật</button>
+                    <button nz-button style="margin: 10px;" class="background-red">Xóa</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </nz-table>
+</div>
 <nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="pageSize" (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>

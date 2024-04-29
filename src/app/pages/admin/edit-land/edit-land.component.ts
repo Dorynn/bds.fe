@@ -36,6 +36,9 @@ export class EditLandComponent {
   loading: boolean = false;
   landDetail: any = [];
   isChangeThumbnail: boolean = false;
+  direction: string = '';
+  typeOfApartment: string = "";
+  projectType: string = "";
 
   constructor(
     private msg: NzMessageService,
@@ -128,10 +131,17 @@ export class EditLandComponent {
           this.thumbnail = [];
         }
 
-        this.getAreaByProjectId()
+        this.getAreaByProjectId();
+        this.getProjectById();
 
-        console.log(this.thumbnail);
+      }
+    })
+  }
 
+  getProjectById() {
+    this.apiService.getProjectById(this.projectId).subscribe({
+      next: (res: any) => {
+        this.projectType = res.data.projectType.id;
       }
     })
   }

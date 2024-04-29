@@ -8,40 +8,52 @@ nz-carousel {
 }
 
 nz-carousel [nz-row]{
-    background-color: #F3F4F6;
+    background-color: #f3f4f65f;
 }
 
-[nz-row]:first-child{
+.slider-wrapper{
     height: inherit;
+}
+
+.content {
+    position: relative;
 }
 
 .project-info {
     padding: 0 35px;
 }
 
-.project-info .title {
-    margin-top: 25px;
-    font-weight: 500;
-    margin-bottom: 12px;
-}
-
 .project-info .project-name {
-    color: #f78e10;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 25px;
+    color: #f78e10bf;
+    font-family:'Times New Roman', Times, serif;
+    font-style: normal;
+    font-size: 30px;
     margin-bottom: 12px;
     margin-top: 50px;
+    font-weight: 500;
+
 }
 
 .project-info .desc {
     max-height: 200px;
     overflow: hidden;
+    text-align: justify;
+    color: #707070;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .project-info > button {
     padding-left: 0;
-    color: #f78e10;
+    color: #162b75;
     text-transform: uppercase;
+    font-weight: 600;
+}
+
+.project-info > button:hover {
+    background-color: transparent;
+    color: #137cc9;
 }
 
 nz-select {
@@ -77,18 +89,28 @@ div.button-group {
 }
 
 .project-detail {
-    height: 250px;
-    margin-bottom: 20px;    
+    height: 220px;
+    margin-bottom: 20px; 
+}
+
+.project-detail__title {
+    position: relative;   
 }
 
 .project-detail img {
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .project-detail button {
+    margin-top: 15px;
     float: right;
     /* padding: 0 10px; */
     color: #9095A1;
+}
+
+.project-detail button:hover {
+    border-color: #9095A1;
 }
 
 [nz-col] {

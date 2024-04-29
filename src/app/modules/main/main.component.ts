@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
   user!:any;
   role!: string;
   isSpinning: boolean = true;
+  iSSpinningUser: boolean = false;
 
   constructor(
     private dataService: DataService
@@ -27,22 +28,7 @@ export class MainComponent implements OnInit {
     console.log('open');
     this.dataService.isUser.subscribe((role: string)=> this.role = role)
     this.dataService.isLoadingAdmin.subscribe(status=>this.isSpinning=status)
-    // google.accounts.id.initialize({
-    //   client_id: '',
-    //   callback: (res: any) => {
-
-    //   }
-    // });
-
-    // let check = document.getElementById("btn-test");
-    // console.log(check);
-    
-    // google.accounts.id.renderButton(document.getElementById("google-btn"), {
-    //   theme: 'filled_blue',
-    //   size: 'large',
-    //   shape: 'rectangle',
-    //   width: 350,
-    // })
+    this.dataService.isLoadingUser.subscribe(status=> this.iSSpinningUser=status)
   }
   
 }

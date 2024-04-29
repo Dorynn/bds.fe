@@ -132,4 +132,9 @@ export class ApiService {
   verifyOtp(formData: any):Observable<any>{
     return this.http.post(`${baseUrl}/otp/validate`,formData)
   }
+
+  getLandByAreaId(params: any):Observable<any> {
+    return this.http.get(`${baseUrl}/lands/allLandByAreaId`, {params: params})
+  }
+
 }

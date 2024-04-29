@@ -66,10 +66,15 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   getProjectDetail(): void {
+    this.dataService.changeStatusLoadingUser(true);
     this.apiService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.projectDetail = res.data;
         this.areaList = res.data.areas;
+        this.dataService.changeStatusLoadingUser(false);
+      },
+      error: (err: any) => {
+        this.dataService.changeStatusLoadingUser(false);
       }
     })
   }
@@ -95,6 +100,7 @@ export class ProjectDetailComponent implements OnInit {
           bankName: this.projectDetail.bankName,
           bankNumber: this.projectDetail.bankNumber,
           phone: this.user.phone,
+          type: this.projectDetail.projectType.name,
           qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit * 100}&des=${this.user.phone}+${item.name}`
         };
         this.modalService.confirm({
@@ -159,6 +165,7 @@ export class ProjectDetailComponent implements OnInit {
       hostBank: this.projectDetail.hostBank,
       bankName: this.projectDetail.bankName,
       bankNumber: this.projectDetail.bankNumber,
+      type: this.projectDetail.projectType.name,
       phone: this.user.phone,
       qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit * 100}&des=${this.user.phone}+${item.name}`
     };

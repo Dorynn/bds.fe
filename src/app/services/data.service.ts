@@ -12,6 +12,7 @@ export class DataService {
   private statusPaymentModal = new BehaviorSubject(false);
   private statusVerifyPhoneNumber = new BehaviorSubject(false);
   private statusLoadingAdmin = new BehaviorSubject(false);
+  private statusLoadingUser = new BehaviorSubject(false);
   private roleUser = new BehaviorSubject('USER');
   isVisibleLoginModal = this.statusLoginModal.asObservable();
   isVisibleRegisterModal = this.statusRegisterModal.asObservable();
@@ -21,6 +22,7 @@ export class DataService {
   isVisibleVerifyPhoneNumber = this.statusVerifyPhoneNumber.asObservable();
   isUser = this.roleUser.asObservable();
   isLoadingAdmin = this.statusLoadingAdmin.asObservable();
+  isLoadingUser = this.statusLoadingUser.asObservable();
 
   constructor() { }
 
@@ -56,4 +58,7 @@ export class DataService {
     this.statusLoadingAdmin.next(status);
   }
 
+  changeStatusLoadingUser (status: boolean) {
+    this.statusLoadingUser.next(status);
+  }
 }

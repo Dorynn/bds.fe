@@ -13,6 +13,7 @@ export class AreaManagementComponent implements OnInit {
   currentPage: number = 0;
   areaList: any = [];
   searchAreaName: string = '';
+  loading: boolean = false;
   
   constructor(
     private apiService: ApiService,
@@ -24,12 +25,14 @@ export class AreaManagementComponent implements OnInit {
   }
 
   getAreaList(request:any){
+    this.loading = true;
     this.apiService.getAreaList(request).subscribe({
       next: (res: any) => {
         this.areaList = res.data;
         this.total = res.totalRecords;
         this.currentPage = res.currentPage;
         this.pageSize = res.currentSize;
+        this.loading = false;
       }
     })
   }

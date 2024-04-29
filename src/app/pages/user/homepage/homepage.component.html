@@ -1,11 +1,15 @@
-<nz-carousel>
+<nz-carousel nzAutoPlay>
     @for (item of projectList; track item) {
     <div nz-carousel-content>
-        <div nz-row nzAlign="middle">
+        <div nz-row nzAlign="middle" class="slider-wrapper">
             <div nz-col [nzSpan]="6" class="project-info">
                 <div class="project-name">{{item.name}}</div>
                 <p class="desc">{{item.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quia
-                    sint beatae consequatur vitae consectetur quam mollitia, doloribus ex alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Est animi, exercitationem officiis hic similique nulla distinctio doloremque quibusdam veritatis nostrum dolores consectetur aliquid, iusto delectus. Adipisci, minus placeat in, hic rerum sunt molestias enim amet veritatis exercitationem magni pariatur autem obcaecati iste alias nulla tempore sequi quas, eaque omnis asperiores?</p>
+                    sint beatae consequatur vitae consectetur quam mollitia, doloribus ex alias! Lorem ipsum dolor sit
+                    amet consectetur adipisicing elit. Est animi, exercitationem officiis hic similique nulla distinctio
+                    doloremque quibusdam veritatis nostrum dolores consectetur aliquid, iusto delectus. Adipisci, minus
+                    placeat in, hic rerum sunt molestias enim amet veritatis exercitationem magni pariatur autem
+                    obcaecati iste alias nulla tempore sequi quas, eaque omnis asperiores?</p>
                 <button nz-button nzType="text" (click)="goToProjectDetail(item.id)">Khám phá dự án<span nz-icon
                         nzType="right" nzTheme="outline"></span></button>
             </div>
@@ -18,7 +22,7 @@
     }
 </nz-carousel>
 
-<div nz-row>
+<div nz-row class="content">
     <div nz-col [nzSpan]="6">
         <div class="filter">
             <p>Lọc</p>
@@ -33,7 +37,7 @@
                 <p>Khu vực</p>
                 <nz-select [(ngModel)]="provinceId">
                     @for (item of provinceList; track $index) {
-                        <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                    <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
                     }
                 </nz-select>
             </div>
@@ -57,19 +61,23 @@
             <h1>DANH SÁCH DỰ ÁN</h1>
             <nz-divider></nz-divider>
             @for(item of projectList; track $index) {
-            <div class="project-detail" nz-row [nzGutter]="24">
-                <div nz-col [nzSpan]="12" style="height: 100%"><img
-                        [src]="item.thumbnail??'https://cf.bstatic.com/xdata/images/hotel/max1280x900/541778668.jpg?k=90f51fc0e7c2d79d22d888b2d0ebc2156ae9cacbd68973f4a892250e1ef5826f&o=&hp=1'"
-                        alt="" width="100%" height="100%"></div>
-                <div nz-col [nzSpan]="12">
-                    <h2 class="project-detail__title">{{item.name}}</h2>
-                    <p>{{item.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sed
-                        blanditiis porro in cum aspernatur commodi ad asperiores totam voluptates.</p>
-                    <p class="text-bold">Vị trí: {{item.district.provinceName}}</p>
-                    <p class="text-bold">Loại dự án: {{item.projectType.name}}</p>
-                    <button nz-button nzShape="round" (click)="goToProjectDetail(item.id)">Xem chi tiết</button>
+            <nz-ribbon [nzText]="item.status==0?'Sắp mở bán':item.status==1?'Đang mở bán':'Đã kết thúc'" [nzColor]="item.status==0?'red':item.status==1?'green':'default'">
+                <div class="project-detail" nz-row [nzGutter]="24">
+                    <div nz-col [nzSpan]="12" style="height: 100%"><img
+                            [src]="item.thumbnail??'https://cf.bstatic.com/xdata/images/hotel/max1280x900/541778668.jpg?k=90f51fc0e7c2d79d22d888b2d0ebc2156ae9cacbd68973f4a892250e1ef5826f&o=&hp=1'"
+                            alt="" width="100%" height="100%"></div>
+                    <div nz-col [nzSpan]="12">
+                        <h2 class="project-detail__title">{{item.name}}</h2>
+                        <div>{{item.projectType.name}}</div>
+                        <div>Chủ đầu tư: {{item.investor}}</div>
+                        <div><span class="text-bold">Địa chỉ: </span>{{item.district.provinceName}},
+                            {{item.district.name}},
+                            {{item.address}}</div>
+                        <button nz-button nzShape="round" (click)="goToProjectDetail(item.id)">Xem chi tiết</button>
+                    </div>
                 </div>
-            </div>
+            </nz-ribbon>
+            <nz-divider></nz-divider>
             }
         </div>
         <nz-pagination [nzPageIndex]="currentPage" [nzTotal]="total" [nzPageSize]="pageSize"

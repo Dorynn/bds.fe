@@ -13,21 +13,22 @@
 
 .header__logo > ul {
     list-style-type: none;
-    color: #f78e10;
+    color: #f78f10ec;
     margin-left: 30px;
 }
 
 .header__logo > ul li {
     padding: 8px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .active {
-    border-bottom: 3px solid #f78e10;
+    border-bottom: 3px solid #f78f10ec;
 }
 
 .header__login button:first-child {
-    color: #f78e10;
+    color: #f78f10ec;
     font-weight: 500;
     margin-right: 15px;
     border: none;
@@ -36,7 +37,7 @@
 .header__login button:last-child {
     color: #fff;
     font-weight: 500;
-    background-color: #f78e10;
+    background-color: #f78f10ec;
     border: none;
 }
 
@@ -48,4 +49,8 @@
 .header__login button:last-child:hover {
     background-color: #d97b08;
     border: none
+}
+
+.avatar-user {
+    cursor: pointer;
 }
