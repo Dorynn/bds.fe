@@ -9,14 +9,12 @@ export const authGuard: CanActivateFn = (route, state) => {
   let router = inject(Router)
   let userRole = ''
   role.isUser.subscribe(status => userRole = status)
-console.log(userRole);
 
-      if(userRole == 'ADMIN'){
-        router.navigateByUrl("/user")
-      }else{
-        router.navigateByUrl("/homepage")
-      }
-      // return false;
+  if (userRole == 'ADMIN') {
+    router.navigateByUrl("/user")
+  } else {
+    router.navigateByUrl("/homepage")
+  }
   return true;
 };
 
@@ -44,7 +42,7 @@ export class AuthGuard {
 
   // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
   //   console.log(this.role);
-    
+
   //     if(this.role == 'ADMIN'){
   //       this.router.navigateByUrl("/user")
   //     }else{
@@ -52,6 +50,6 @@ export class AuthGuard {
   //     }
   //     return false;
   // }
-  
+
 
 }

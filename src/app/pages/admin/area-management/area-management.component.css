@@ -13,3 +13,7 @@ nz-table {
 nz-pagination {
     float: right;
 }
+
+nz-select {
+    width: 100%;
+}

@@ -29,8 +29,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('register');
-    
     google.accounts.id.initialize({
       client_id: '612650383457-uvm6i6c4juhrma96b3eih4ld7up2mnan.apps.googleusercontent.com',
       callback: (res: any) => this.handleSignUp(res)
@@ -46,15 +44,12 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   }
 
   private decodeToken(token: string){
-    console.log(token);
     return JSON.parse(atob(token.split(".")[1]));
   }
 
   handleSignUp(response: any){
     if(response){
-      console.log(response);
       if (response) {
-        console.log('success');
         const payload = this.decodeToken(response.credential);
         let user = JSON.stringify(payload)
         sessionStorage.setItem("loginInf", user)

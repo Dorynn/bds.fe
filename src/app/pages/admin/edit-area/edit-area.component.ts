@@ -51,7 +51,6 @@ export class EditAreaComponent {
     }
     this.apiService.updateArea(request).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.name = '';
         this.projectId = '';
         this.timeLimit = '';

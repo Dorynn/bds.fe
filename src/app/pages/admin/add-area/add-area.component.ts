@@ -8,24 +8,24 @@ import { DataService } from '../../../services/data.service';
   templateUrl: './add-area.component.html',
   styleUrl: './add-area.component.css'
 })
-export class AddAreaComponent implements OnInit{
+export class AddAreaComponent implements OnInit {
   areaName: string = '';
   projectId: string = '';
   projectList: any = [];
   timeLimit: string = '';
-  
+
   constructor(
     private apiService: ApiService,
     private msg: NzMessageService,
     private dataService: DataService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     this.getProjectList();
-    
+
   }
 
-  getProjectList(){
+  getProjectList() {
     this.apiService.getAllProject().subscribe({
       next: (res: any) => {
         this.projectList = res.data;
@@ -33,16 +33,15 @@ export class AddAreaComponent implements OnInit{
     })
   }
 
-  handleAddArea(){
+  handleAddArea() {
     this.dataService.changeStatusLoadingAdmin(true)
     let request = {
       name: this.areaName,
-      projectId:this.projectId,
+      projectId: this.projectId,
       expiryDate: this.timeLimit
     }
     this.apiService.createArea(request).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.areaName = '';
         this.projectId = '';
         this.timeLimit = '';

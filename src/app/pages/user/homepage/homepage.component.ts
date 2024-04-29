@@ -41,7 +41,6 @@ export class HomepageComponent implements OnInit {
     this.dataService.changeStatusLoadingUser(true);
     this.apiService.getProjectList(params).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.projectList = res.data;
         this.total = res.totalRecords;
         this.currentPage = res.currentPage;
@@ -61,7 +60,6 @@ export class HomepageComponent implements OnInit {
   }
 
   handleChangePage(e: any) {
-    console.log(e);
     this.apiService.getProjectList({pageIndex: e-1, pageSize: this.pageSize}).subscribe({
       next: (res: any) => {
         this.projectList = res.data

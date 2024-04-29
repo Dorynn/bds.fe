@@ -24,8 +24,8 @@ export class LandInfoModalComponent implements OnInit{
     this.stompClient = this.socketService.connect();
     this.stompClient.connect({}, (frame: any) => {
       this.stompClient.subscribe('/topic/lock_land', (message: any)=> {
-        this.getAreaDetail();
-        this.getProjectDetail();
+        // this.getAreaDetail();
+        // this.getProjectDetail();
       })
     })
   }
@@ -64,18 +64,16 @@ export class LandInfoModalComponent implements OnInit{
           nzOkText: 'Đồng ý',
           nzCancelText: 'Hủy',
           nzOnOk: () => {
-            this.dataService.changeStatusLandDetailModal(false);
-            this.dataService.changeStatusPaymentModal(true);
             let formData = new FormData();
             formData.append("id", this.item.id);
             formData.append("status", '2');
             this.apiService.updateLandStatus(formData).subscribe({
               next: (res: any) => {
-                console.log('success', res);
-                
                 this.stompClient.send("/app/lands_lock", {}, JSON.stringify(res))
               }
             })
+            this.dataService.changeStatusLandDetailModal(false);
+            this.dataService.changeStatusPaymentModal(true);
           },
           nzOnCancel: () => {
     

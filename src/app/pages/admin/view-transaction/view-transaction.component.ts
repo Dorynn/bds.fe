@@ -42,7 +42,6 @@ export class ViewTransactionComponent implements OnInit {
   }
 
   updateTransactionStatus(){
-    console.log(this.status);
     let formData = new FormData();
     formData.append("id", String(this.transactionId));
     formData.append("status",this.status);
@@ -63,7 +62,6 @@ export class ViewTransactionComponent implements OnInit {
     formData.append("status", '3');
     this.apiService.updateLandStatus(formData).subscribe({
       next: (res: any) => {
-        console.log('success', res);
       }
     })
   }

@@ -34,7 +34,6 @@ export class ProjectManagerComponent implements OnInit {
   }
 
   handleChangePage(e: any) {
-    console.log(e);
     this.apiService.getProjectList({pageIndex: e-1, pageSize: this.pageSize}).subscribe({
       next: (res: any) => {
         this.projectList = res.data

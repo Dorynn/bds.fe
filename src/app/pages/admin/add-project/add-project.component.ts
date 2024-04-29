@@ -53,7 +53,6 @@ export class AddProjectComponent implements OnInit {
     this.stompClient = this.socketService.connect();
     this.stompClient.connect({}, (frame: any) => {
       this.stompClient.subscribe('/topic/add_project', (message: any) => {
-        console.log(message);
         this.getProjects();
       })
     })
@@ -84,7 +83,6 @@ export class AddProjectComponent implements OnInit {
     formData.append("districtId", this.district)
     this.apiService.addProject(formData).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.name = '';
         this.type = '';
         this.status = '';

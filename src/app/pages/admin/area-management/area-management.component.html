@@ -23,6 +23,21 @@
             </tr>
         </thead>
         <tbody>
+            <!-- <tr>
+                <td>
+                </td>
+                <td>
+                    <input [(ngModel)]="filterParams.areaName" type="text" nz-input placeholder="" (keyup.enter)="handleSearch()">
+                </td>
+                <td>
+                    <nz-select [(ngModel)]="filterParams.projectId" nzShowSearch nzAllowClear (ngModelChange)="handleSearchByProject()">
+                        @for (item of projectList; track $index) {
+                            <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                        }
+                    </nz-select>
+                </td>
+                <td></td>
+            </tr> -->
             @for(item of areaList; track item.id){
             <tr>
                 <td>{{$index+1}}</td>

@@ -20,7 +20,6 @@ export class VerifyPhoneNumberComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.isVisibleVerifyPhoneNumber.subscribe(status => this.isVisible = status)
-    console.log('verify');
   }
 
   getOtp(){
@@ -34,8 +33,6 @@ export class VerifyPhoneNumberComponent implements OnInit {
       }
       this.apiService.getOtp(request).subscribe({
         next: (res: any) => {
-          console.log(res);
-          
         }
       })
     }
@@ -47,7 +44,6 @@ export class VerifyPhoneNumberComponent implements OnInit {
     formData.append("userId", this.userId)
     this.apiService.verifyOtp(formData).subscribe({
       next: (res: any) => {
-        console.log(res);
         
       }
     })

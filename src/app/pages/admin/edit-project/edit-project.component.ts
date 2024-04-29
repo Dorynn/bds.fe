@@ -70,8 +70,6 @@ export class EditProjectComponent implements OnInit {
   }
   
   getProjectById() {
-    console.log(this.projectId);
-    
     return this.apiService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.projectDetail = res.data;
@@ -92,8 +90,6 @@ export class EditProjectComponent implements OnInit {
         this.thumbnail[0].url = res.data.thumbnail;
         this.qrImage[0].url = res.data.qrImg;
         this.getDistrictByProvince();
-        console.log(this.district);
-        
       }
     })
   }  

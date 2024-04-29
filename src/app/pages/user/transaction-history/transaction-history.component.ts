@@ -20,14 +20,10 @@ export class TransactionHistoryComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    console.log('transaction');
     let stringUser = sessionStorage.getItem("user");
     if(stringUser){
-      console.log(stringUser);
-      
       let user = JSON.parse(stringUser);
       this.user = user;
-      console.log(user);
       this.getTransactionOfUser(0);
       
     }
@@ -36,7 +32,6 @@ export class TransactionHistoryComponent implements OnInit {
 
   getTransactionOfUser(status: number){
     this.loading = true;
-    console.log(this.user);
     if(this.user){
       let params = {
         id: this.user?.id,

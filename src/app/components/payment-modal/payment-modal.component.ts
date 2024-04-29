@@ -25,7 +25,6 @@ export class PaymentModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.isVisiblePaymentModal.subscribe(status => this.isVisible = status)
-    console.log('item', this.item);
     let item = localStorage.getItem("item")
     if (item) {
       this.item = JSON.parse(item)
@@ -38,7 +37,6 @@ export class PaymentModalComponent implements OnInit {
   }
 
   handleEvent(e: CountdownEvent) {
-    console.log(e);
     if (e.left == 0) {
       this.onCancel()
       this.handleReload.emit({isCancel: true, itemId: this.item.id})

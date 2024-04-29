@@ -42,11 +42,9 @@ export class AreaDetailComponent implements OnInit {
     this.stompClient = this.socketService.connect();
     this.stompClient.connect({}, (frame: any) => {
       this.stompClient.subscribe('/topic/block_land', (message: any) => {
-        console.log(message);
         this.getAreaDetail();
       })
       this.stompClient.subscribe('/topic/unlock_land', (message: any) => {
-        console.log(message);
         this.getAreaDetail();
       })
     })
@@ -131,8 +129,6 @@ export class AreaDetailComponent implements OnInit {
 
   showConfirm(item: any): void {
     let user = sessionStorage.getItem("user");
-    console.log(user);
-    
     if(user != null){
       this.user = JSON.parse(user);
       if (this.user.isDeleted == 1){
@@ -196,8 +192,6 @@ export class AreaDetailComponent implements OnInit {
 
     this.apiService.updateLandStatus(formData).subscribe({
       next: (res: any) => {
-        console.log(res);
-        console.log(status);
         if (status == '2') {
           this.stompClient.send("/app/lands_lock", {}, JSON.stringify(this.item))
         }

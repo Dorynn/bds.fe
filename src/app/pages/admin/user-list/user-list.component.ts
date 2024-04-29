@@ -28,7 +28,6 @@ export class UserListComponent implements OnInit {
         this.total = res.totalRecords;
         this.currentPage= res.currentPage;
         this.pageSize = res.currentSize;
-        console.log(this.userList);
       }
     })
   }

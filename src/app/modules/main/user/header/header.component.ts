@@ -45,8 +45,6 @@ export class HeaderComponent implements OnInit {
   }
 
   handleLogout():void {
-    console.log('logout');
-    
     this.appService.signOut();
     this.isLogin = false;
   }

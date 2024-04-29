@@ -14,6 +14,11 @@ export class AreaManagementComponent implements OnInit {
   areaList: any = [];
   searchAreaName: string = '';
   loading: boolean = false;
+  projectList: any = [];
+  filterParams: any = {
+    areaName: '',
+    projectId: '',
+  }
   
   constructor(
     private apiService: ApiService,
@@ -22,6 +27,7 @@ export class AreaManagementComponent implements OnInit {
   
   ngOnInit():void {
     this.getAreaList({})
+    this.getAllProject()
   }
 
   getAreaList(request:any){
@@ -33,6 +39,14 @@ export class AreaManagementComponent implements OnInit {
         this.currentPage = res.currentPage;
         this.pageSize = res.currentSize;
         this.loading = false;
+      }
+    })
+  }
+
+  getAllProject(){
+    this.apiService.getAllProject().subscribe({
+      next: (res: any) => {
+        this.projectList = res.data;
       }
     })
   }
@@ -51,5 +65,12 @@ export class AreaManagementComponent implements OnInit {
 
   handleSearch(){
     this.getAreaList({areaName: this.searchAreaName})
+  }
+
+  handleSearchByProject(){
+    if(this.filterParams.projectId == undefined){
+      this.filterParams.projectId = '';
+    }
+    this.getAreaList(this.filterParams);
   }
 }

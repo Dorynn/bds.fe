@@ -37,11 +37,9 @@ export class ProjectDetailComponent implements OnInit {
     this.stompClient = this.socketService.connect();
     this.stompClient.connect({}, (frame: any) => {
       this.stompClient.subscribe('/topic/block_land', (message: any) => {
-        console.log(message);
         this.getProjectDetail();
       })
       this.stompClient.subscribe('/topic/unlock_land', (message: any) => {
-        console.log(message);
         this.getProjectDetail();
       })
     })
@@ -109,11 +107,10 @@ export class ProjectDetailComponent implements OnInit {
           nzOkText: 'Đồng ý',
           nzCancelText: 'Hủy',
           nzOnOk: () => {
-            this.getProjectDetail();
-            this.openPaymentModal();
             this.updateLandStatus('2', item.id);
             localStorage.setItem('isPaymentOpen', JSON.stringify(true))
             localStorage.setItem('item', JSON.stringify(this.item))
+            this.openPaymentModal();
           },
           nzOnCancel: () => {
           }
@@ -133,9 +130,6 @@ export class ProjectDetailComponent implements OnInit {
     formData.append("status", status);
     this.apiService.updateLandStatus(formData).subscribe({
       next: (res: any) => {
-        console.log(status);
-        this.getProjectDetail();
-
         if (status == '2') {
           this.stompClient.send("/app/lands_lock", {}, JSON.stringify(this.item))
         }
@@ -173,8 +167,6 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   handleReload(event: any) {
-    console.log(event);
-    
     if (event.isCancel) {
       this.updateLandStatus('1', event.itemId)
     }

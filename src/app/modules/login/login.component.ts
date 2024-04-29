@@ -31,15 +31,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('loginlll');
     google.accounts.id.initialize({
       client_id: '612650383457-uvm6i6c4juhrma96b3eih4ld7up2mnan.apps.googleusercontent.com',
       callback: (res: any) => this.handleLogin(res)
     });
 
     let check = document.getElementById("google-btn")
-    console.log(check);
-
     google.accounts.id.renderButton(document.getElementById("googleSignInButtonContainer"), {
       theme: 'outline',
       size: 'medium',
@@ -51,13 +48,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   private decodeToken(token: string){
-    console.log(token);
     return JSON.parse(atob(token.split(".")[1]));
   }
 
   handleLogin(response: any) {
     if (response) {
-      console.log('success');
       const payload = this.decodeToken(response.credential);
       let user = JSON.stringify(payload)
       sessionStorage.setItem("loginInf", user)
@@ -82,12 +77,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
         }
       })
     }
-
   }
 
-
   handleCancel(): void {
-    console.log('cancel');
     this.isVisible = false;
     this.statusChange.emit(false)
   }

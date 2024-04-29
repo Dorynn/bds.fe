@@ -79,8 +79,6 @@ export class EditLandComponent {
   }
 
   handlePreview = async (file: NzUploadFile): Promise<void> => {
-    console.log('handle', this.thumbnail);
-    
     if (!file.url && !file['preview']) {
       file['preview'] = await getBase64(file.originFileObj!);
     }
@@ -92,8 +90,6 @@ export class EditLandComponent {
     this.apiService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.areaList = res.data.areas
-        console.log(this.areaList);
-
       }
     })
   }
