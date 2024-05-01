@@ -21,13 +21,7 @@ export class EditProjectComponent implements OnInit {
   name!: string;
   type!: string;
   status!: string;
-  thumbnail: NzUploadFile[] = [
-    {
-      uid: '-1',
-      name: 'image.png',
-      url: 'https://storage.googleapis.com/vinhomes-data-02/styles/images_870_x_530/public/2023_07/gDEHQfH0_1689751750.jpeg?itok=R6lbOml4'
-    }
-  ];
+  thumbnail: NzUploadFile[] = [];
   description!: string;
   district!: string;
   address!: string;
@@ -35,13 +29,7 @@ export class EditProjectComponent implements OnInit {
   bankHost!: string;
   bankNumber!: string;
   bankName!: string;
-  qrImage: NzUploadFile[]=[
-    {
-      uid: '-1',
-      name: 'image.png',
-      url: 'https://res.cloudinary.com/dh2jzuhav/image/upload/v1714054752/ATP_BDS/cfqicbiqfapaovdnb9jr.jpg'
-    }
-  ];
+  qrImage: NzUploadFile[]=[];
   investorPhoneNumber!: string;
   startDate!: Date;
   endDate!: Date;
@@ -53,6 +41,8 @@ export class EditProjectComponent implements OnInit {
   projectDetail: any = [];
   previewVisible: boolean = false;
   previewImage: string | undefined = '';
+  previewImage2: string | undefined = '';
+  previewVisible2: boolean = false;
   isChangeThumbnail: boolean = false;
   isChangeQrImg: boolean = false;
   loading:boolean = true;
@@ -87,8 +77,24 @@ export class EditProjectComponent implements OnInit {
         this.status = res.data.status;
         this.endDate = new Date(res.data.endDate);
         this.startDate = new Date(res.data.startDate);
-        this.thumbnail[0].url = res.data.thumbnail;
-        this.qrImage[0].url = res.data.qrImg;
+        if(res.data.thumbnail){
+          this.thumbnail.push({
+            url: res.data.thumbnail,
+            uid: '-1',
+            name: 'image.png',
+            status: 'done'
+          })
+          // this.previewImage2 = res.data.thumbnail;
+        }
+        if(res.data.qrImg){
+          this.qrImage.push({
+            url: res.data.qrImg,
+            uid: '-1',
+            name: 'image.png',
+            status: 'done'
+          })
+          // this.previewImage = res.data.qrImg;
+        }
         this.getDistrictByProvince();
       }
     })
@@ -131,16 +137,16 @@ export class EditProjectComponent implements OnInit {
     })
   }
 
-  onFileSelected(event: any) {
-    this.thumbnail = event.target.files?.[0]
-    this.isChangeThumbnail = true;
-  }
+  // onFileSelected(event: any) {
+  //   this.thumbnail = event.target.files?.[0]
+  //   this.isChangeThumbnail = true;
+  // }
 
-  onFile2Selected(event: any) {
-    this.qrImage = event.target.files?.[0]
-    this.isChangeQrImg = true;
+  // onFile2Selected(event: any) {
+  //   this.qrImage = event.target.files?.[0]
+  //   this.isChangeQrImg = true;
     
-  }
+  // }
 
   getProvinceList(): void {
     this.apiService.getAllProvince().subscribe({
@@ -171,6 +177,8 @@ export class EditProjectComponent implements OnInit {
   }
 
   handleChange(info: { file: NzUploadFile }): void {
+    console.log(info.file);
+    
     switch (info.file.status) {
       case 'uploading':
         this.loading = true;

@@ -2,13 +2,6 @@ nz-select {
     width: 100%;
 }
 
-[nz-button].add-btn {
-    background-color: #f57222;
-    color: #fff;
-    font-weight: 500;
-    border-radius: 4px;
-}
-
 .filter-box {
     margin: 15px 0;
 }

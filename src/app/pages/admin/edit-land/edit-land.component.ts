@@ -64,12 +64,16 @@ export class EditLandComponent {
 
   handleChange(info: { file: NzUploadFile }): void {
     this.isChangeThumbnail = true;
+    console.log(this.thumbnail[0].status == 'removed');
+    console.log(this.previewImage)
+    // this.previewImage = ''
+    
     switch (info.file.status) {
       case 'uploading':
         this.loading = true;
+        this.handlePreview(info.file);
         break;
       case 'done':
-        this.handlePreview(info.file);
         this.loading = false;
         break;
       case 'error':
@@ -108,19 +112,16 @@ export class EditLandComponent {
         this.description = res.data.description;
         this.name = res.data.name;
         this.status = res.data.status
+        this.typeOfApartment = res.data.typeOfApartment;
+        this.direction = res.data.direction
         if (res.data.thumbnail) {
-          // console.log(res.data.thumbnail);
-          // this.thumbnail[0] = {
-          //   // uid: '-1',
-          //   // name:'image.png',
-          //   // status: 'done',
-          //   // url: res.data.thumbnail
-          //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-          //   uid: '-1',
-          //   name: 'image.png',
-          //   status: 'done'
-          // }
-          // this.previewImage = res.data.thumbnail
+          this.thumbnail.push({
+            url: res.data.thumbnail,
+            uid: '-1',
+            name: 'image.png',
+            status: 'done'
+          })
+          this.previewImage = res.data.thumbnail
         }
 
         if (!this.thumbnail) {
@@ -160,7 +161,9 @@ export class EditLandComponent {
     formData.append("price", this.price);
     formData.append("deposit", this.deposit);
     formData.append("acreage", this.acreage);
-    formData.append("areaId", this.areaId)
+    formData.append("areaId", this.areaId);
+    formData.append("typeOfApartment", this.typeOfApartment);
+    formData.append("direction", this.direction);
     this.apiService.updateLand(formData).subscribe({
       next: (res: any) => {
         this.dataService.changeStatusLoadingAdmin(false);

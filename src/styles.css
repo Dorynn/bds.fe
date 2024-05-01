@@ -50,6 +50,13 @@ body {
     color: #fff;
 }
 
+button.background-orange:hover, 
+button.background-orange:hover {
+    background-color: #fa9d3a;
+    color: #fff;
+    border-color: #FFA84C;
+}
+
 button.background-gray:hover,
 button.background-gray:active {
     background-color: #9095A1;

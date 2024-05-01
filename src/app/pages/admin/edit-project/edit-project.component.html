@@ -81,10 +81,12 @@
 
 <div nz-row [nzGutter]="32">
     <div nz-col [nzSpan]="12">
-        <textarea [(ngModel)]="description" nz-input name="content" id="content" rows="4"  style="height: 104px;"></textarea>
+        <textarea [(ngModel)]="description" nz-input name="content" id="content" rows="4"
+            style="height: 104px;"></textarea>
         <p>Mô tả</p>
     </div>
     <div nz-col [nzSpan]="6">
+        @if (qrImage.length>=1) {
         <nz-upload [nzPreview]="handlePreview" [nzShowUploadList]="true" nzListType="picture-card"
             [(nzFileList)]="qrImage" (nzChange)="handleChange($event)" [nzShowButton]="qrImage.length < 1">
             @if (!previewImage) {
@@ -93,16 +95,34 @@
                 <div style="margin-top: 8px">Tải ảnh</div>
             </ng-container>
             }
-
+            <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+                (nzOnCancel)="previewVisible=false">
+                <ng-template #modalContent>
+                    <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
+                </ng-template>
+            </nz-modal>
         </nz-upload>
-        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
-            (nzOnCancel)="previewVisible=false">
-            <ng-template #modalContent>
-                <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
-            </ng-template>
-        </nz-modal>
+        }@else {
+        <nz-upload [nzPreview]="handlePreview" [nzShowUploadList]="true" nzListType="picture-card"
+            [(nzFileList)]="qrImage" (nzChange)="handleChange($event)" [nzShowButton]="qrImage.length < 1">
+            @if (!previewImage) {
+            <ng-container>
+                <span class="upload-icon" [nzType]="loading? 'loading' : 'plus'" nz-icon></span>
+                <div style="margin-top: 8px">Tải ảnh</div>
+            </ng-container>
+            }
+            <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+                (nzOnCancel)="previewVisible=false">
+                <ng-template #modalContent>
+                    <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
+                </ng-template>
+            </nz-modal>
+        </nz-upload>
         <p>Ảnh qr</p>
+
+        }
     </div>
+    @if (thumbnail.length>=1) {
     <div nz-col [nzSpan]="6">
         <nz-upload [nzPreview]="handlePreview" [nzShowUploadList]="true" nzListType="picture-card"
             [(nzFileList)]="thumbnail" (nzChange)="handleChange($event)" [nzShowButton]="thumbnail.length < 1">
@@ -112,15 +132,15 @@
                 <div style="margin-top: 8px">Tải ảnh</div>
             </ng-container>
             }
-
         </nz-upload>
-        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+        <nz-modal [nzVisible]="previewVisible2" [nzContent]="modalContent" [nzFooter]="null"
             (nzOnCancel)="previewVisible=false">
             <ng-template #modalContent>
-                <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
+                <img [src]="previewImage2" alt="" [ngStyle]="{ width: '100%'}">
             </ng-template>
         </nz-modal>
         <p>Ảnh bìa</p>
     </div>
+    }
 </div>
-<button nz-button class="add-project-btn background-orange" (click)="editProject()">Cập nhật dự án</button>
+<button nz-button class="background-orange" (click)="editProject()">Cập nhật dự án</button>

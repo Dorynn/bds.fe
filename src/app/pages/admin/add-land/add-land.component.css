@@ -5,17 +5,3 @@ nz-select {
 [nz-row] {
     margin-bottom: 15px;
 }
-
-[nz-button] {
-    background-color: #ffa84c;
-    color: #fff;
-    font-weight: 500;
-    border-radius: 4px;
-}
-[nz-button]:hover {
-    background-color: #f59a39;
-    color: #fff;
-    font-weight: 500;
-    border-radius: 4px;
-    border-color: #f59a39;
-}
