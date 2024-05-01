@@ -8,22 +8,31 @@
                 <span class="prefix" nz-col [nzSpan]="2">
                     <i class="fa-regular fa-user"></i>
                 </span>
-                <input [(ngModel)]="phoneNumber" type="text" name="phonenumber" nz-input nz-col [nzSpan]="22" placeholder="Nhập số điện thoại của bạn">
+                <input [(ngModel)]="phoneNumber" type="text" name="phonenumber" nz-input nz-col [nzSpan]="22" placeholder="Nhập số điện thoại của bạn" (keyup)="changePhoneNumber()">
+                @if (isPhoneNotValid) {
+                    <div style="color: red">Số điện thoại bạn nhập vào không hợp lệ</div>
+                }
             </div>
-            <div>Mã xác minh sẽ được gửi đến số điện thoại của bạn, vui lòng xác minh trong vòng <strong>1:45</strong></div>
-            <div nz-row>
-                <span nz-col [nzSpan]="2" class="prefix">
-                    <i class="fa-solid fa-lock"></i>
-                </span>
-                <input [(ngModel)]="otp" nz-col [nzSpan]="20" nz-input placeholder="Nhập mã của bạn" name="otp">
-            </div>
+           @if (isSendPhoneNumber) {
+               <div>Mã xác minh sẽ được gửi đến số điện thoại của bạn, vui lòng xác minh trong vòng <strong><countdown [config]="{leftTime: 60, format: 'mm:ss'}"></countdown></strong></div>
+               <div nz-row>
+                   <span nz-col [nzSpan]="2" class="prefix">
+                       <i class="fa-solid fa-lock"></i>
+                   </span>
+                   <input [(ngModel)]="otp" nz-col [nzSpan]="20" nz-input placeholder="Nhập mã của bạn" name="otp">
+                   <div style="color: red">Mã OTP không hợp lệ</div>
+               </div>
+           }
+            
         </div>
     </ng-container>
     <ng-container *nzModalFooter>
         <div class="modal__footer">
             <button nz-button class="get-code-btn" (click)="getOtp()">Lấy mã</button>
-            <button nz-button class="get-code-btn" (click)="verifyOtp()">Xác thực</button>
-            <button nz-button  class="resend-code-btn">Gửi lại mã</button>
+            @if (isSendPhoneNumber) {
+                <button nz-button class="get-code-btn" (click)="verifyOtp()">Xác thực</button>
+                <button nz-button  class="resend-code-btn">Gửi lại mã</button>
+            }
         </div>
     </ng-container>
 </nz-modal>

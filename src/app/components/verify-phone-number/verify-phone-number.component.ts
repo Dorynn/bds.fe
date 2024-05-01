@@ -12,6 +12,8 @@ export class VerifyPhoneNumberComponent implements OnInit {
   otp: string = '';
   isVisible: boolean = false;
   userId: string = '';
+  isSendPhoneNumber: boolean = false;
+  isPhoneNotValid: boolean = false;
 
   constructor(
     private dataService: DataService,
@@ -20,6 +22,10 @@ export class VerifyPhoneNumberComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.isVisibleVerifyPhoneNumber.subscribe(status => this.isVisible = status)
+  }
+
+  changePhoneNumber(){
+    this.isPhoneNotValid = false;
   }
 
   getOtp(){
@@ -33,6 +39,14 @@ export class VerifyPhoneNumberComponent implements OnInit {
       }
       this.apiService.getOtp(request).subscribe({
         next: (res: any) => {
+          console.log(res);
+          // if (res.message == 'FAILED'){
+          //   this.isPhoneNotValid = true;
+          // }else{
+            this.isSendPhoneNumber = true;
+            this.isPhoneNotValid = false;
+          // }
+          
         }
       })
     }
