@@ -6,9 +6,9 @@
     </div>
     <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
       (click)="isCollapsed = !isCollapsed" nz-col [nzSpan]="2"></span>
-    <div nz-col [nzOffset]="18" [nzDropdownMenu]="menu" nz-dropdown nzTrigger="click">
+    <div class="user" nz-col [nzOffset]="16" [nzDropdownMenu]="menu" nz-dropdown nzTrigger="click">
       <i class="fa-solid fa-user" style="color: #f57222; margin-right: 10px;"></i>
-      <span style="color: #f57222; font-weight: 500; text-transform: uppercase;">Admin</span>
+      <span style="color: #f57222; font-weight: 500; text-transform: uppercase;">Admin {{admin.name}}</span>
     </div>
 
     <nz-dropdown-menu #menu="nzDropdownMenu">

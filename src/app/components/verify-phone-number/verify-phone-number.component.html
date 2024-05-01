@@ -19,8 +19,10 @@
                    <span nz-col [nzSpan]="2" class="prefix">
                        <i class="fa-solid fa-lock"></i>
                    </span>
-                   <input [(ngModel)]="otp" nz-col [nzSpan]="20" nz-input placeholder="Nhập mã của bạn" name="otp">
-                   <div style="color: red">Mã OTP không hợp lệ</div>
+                   <input [(ngModel)]="otp" nz-col [nzSpan]="20" nz-input placeholder="Nhập mã của bạn" name="otp" (keyup)="changeOtp()">
+                   @if (isOtpNotValid) {
+                       <div style="color: red">Mã OTP không hợp lệ</div>
+                   }
                </div>
            }
             
@@ -28,10 +30,11 @@
     </ng-container>
     <ng-container *nzModalFooter>
         <div class="modal__footer">
-            <button nz-button class="get-code-btn" (click)="getOtp()">Lấy mã</button>
             @if (isSendPhoneNumber) {
                 <button nz-button class="get-code-btn" (click)="verifyOtp()">Xác thực</button>
-                <button nz-button  class="resend-code-btn">Gửi lại mã</button>
+                <button nz-button  class="resend-code-btn" (click)="getOtp()">Gửi lại mã</button>
+            }@else {
+                <button nz-button class="get-code-btn" (click)="getOtp()">Lấy mã</button>
             }
         </div>
     </ng-container>

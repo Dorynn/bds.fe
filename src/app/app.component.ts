@@ -24,8 +24,7 @@ export class AppComponent {
             router.navigateByUrl("/homepage")
           }
         }
-      }
-      
+      } 
     })
   }
 }

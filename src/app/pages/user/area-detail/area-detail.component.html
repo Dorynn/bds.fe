@@ -33,13 +33,13 @@
                 <nz-option [nzValue]="2" nzLabel="Đang đặt cọc"></nz-option>
                 <nz-option [nzValue]="3" nzLabel="Đã đặt cọc"></nz-option>
             </nz-select>
-            @if (projectDetail.projectType.id==1) {
+            @if (projectDetail.projectType?.id==1) {
                 <nz-select [(ngModel)]="filterParams.typeOfApartment" nzPlaceHolder="Loại căn hộ">
                     <nz-option [nzValue]="1" nzLabel="2PN + 1"></nz-option>
                     <nz-option [nzValue]="2" nzLabel="3PN"></nz-option>
                 </nz-select>
             }
-            <nz-select [(ngModel)]="filterParams.direction" [nzPlaceHolder]="projectDetail.projectType.id == 1 ?'Hướng ban công' : 'Hướng'">
+            <nz-select [(ngModel)]="filterParams.direction" [nzPlaceHolder]="projectDetail.projectType?.id == 1 ?'Hướng ban công' : 'Hướng'">
                 <nz-option [nzValue]="0" nzLabel="Tây Bắc"></nz-option>
                 <nz-option [nzValue]="1" nzLabel="Tây Nam - Tây Bắc"></nz-option>
                 <nz-option [nzValue]="2" nzLabel="Đông Nam - Tây Bắc"></nz-option>

@@ -65,6 +65,8 @@ import { TransactionHistoryComponent } from './pages/user/transaction-history/tr
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
+import { LoginAdminComponent } from './components/login-admin/login-admin.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -99,6 +101,8 @@ registerLocaleData(en);
     AddLandComponent,
     UserListComponent,
     TransactionHistoryComponent,
+    RegisterAdminComponent,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,

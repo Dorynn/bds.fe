@@ -46,6 +46,8 @@ export class EditProjectComponent implements OnInit {
   isChangeThumbnail: boolean = false;
   isChangeQrImg: boolean = false;
   loading:boolean = true;
+  isExistThumbnail: boolean = false;
+  isExistQrImg: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -78,22 +80,22 @@ export class EditProjectComponent implements OnInit {
         this.endDate = new Date(res.data.endDate);
         this.startDate = new Date(res.data.startDate);
         if(res.data.thumbnail){
+          this.isExistThumbnail = true;
           this.thumbnail.push({
             url: res.data.thumbnail,
             uid: '-1',
-            name: 'image.png',
+            name: 'image1.png',
             status: 'done'
           })
-          // this.previewImage2 = res.data.thumbnail;
         }
         if(res.data.qrImg){
+          this.isExistQrImg = true;
           this.qrImage.push({
             url: res.data.qrImg,
-            uid: '-1',
-            name: 'image.png',
+            uid: '-2',
+            name: 'image2.png',
             status: 'done'
           })
-          // this.previewImage = res.data.qrImg;
         }
         this.getDistrictByProvince();
       }
@@ -118,11 +120,11 @@ export class EditProjectComponent implements OnInit {
     formData.append("investorPhone", this.investorPhoneNumber)
     formData.append("projectTypeId", this.type)
     formData.append("districtId", this.district)
-    formData.append("thumbnail", this.thumbnail[0].originFileObj!)
-    formData.append("qrImg", this.qrImage[0].originFileObj!)
     if (this.isChangeThumbnail) {
+      formData.append("thumbnail", this.thumbnail[0].originFileObj!)
     }
     if (this.isChangeQrImg){
+      formData.append("qrImg", this.qrImage[0].originFileObj!)
     }
 
     this.apiService.updateProject(formData).subscribe({
@@ -178,6 +180,9 @@ export class EditProjectComponent implements OnInit {
 
   handleChange(info: { file: NzUploadFile }): void {
     console.log(info.file);
+    console.log(this.thumbnail);
+    console.log(this.qrImage)
+    
     
     switch (info.file.status) {
       case 'uploading':
@@ -188,7 +193,21 @@ export class EditProjectComponent implements OnInit {
         this.loading = false;
         break;
       case 'error':
+        if(this.thumbnail[0].status == 'error'){
+          this.isChangeThumbnail = true;
+        }
+        if(this.qrImage[0].status == 'error'){
+          this.isChangeQrImg = true;
+        }
         this.loading = false;
+        break;
+      case 'removed':
+        if(this.thumbnail[0].status == 'removed'){
+          this.thumbnail = [];
+        }
+        if(this.qrImage[0].status == 'removed'){
+          this.qrImage = []
+        }
         break;
     }
   }

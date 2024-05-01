@@ -80,7 +80,7 @@
             <nz-divider></nz-divider>
             }
         </div>
-        <nz-pagination [nzPageIndex]="currentPage" [nzTotal]="total" [nzPageSize]="pageSize"
+        <nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="pageSize"
             (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>
     </div>
 </div>

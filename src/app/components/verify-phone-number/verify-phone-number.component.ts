@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzMessageComponent, NzMessageService } from 'ng-zorro-antd/message';
 import { ApiService } from '../../services/api.service';
 import { DataService } from '../../services/data.service';
 
@@ -14,14 +15,21 @@ export class VerifyPhoneNumberComponent implements OnInit {
   userId: string = '';
   isSendPhoneNumber: boolean = false;
   isPhoneNotValid: boolean = false;
+  isOtpNotValid: boolean = false;
+  user!:any;
 
   constructor(
     private dataService: DataService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private msg: NzMessageService
   ){}
 
   ngOnInit(): void {
-    this.dataService.isVisibleVerifyPhoneNumber.subscribe(status => this.isVisible = status)
+    this.dataService.isVisibleVerifyPhoneNumber.subscribe(status => this.isVisible = status);
+    let stringUser = sessionStorage.getItem("user");
+    if(stringUser){
+      this.user = JSON.parse(stringUser);
+    }
   }
 
   changePhoneNumber(){
@@ -58,12 +66,26 @@ export class VerifyPhoneNumberComponent implements OnInit {
     formData.append("userId", this.userId)
     this.apiService.verifyOtp(formData).subscribe({
       next: (res: any) => {
-        
+        if (res.message == 'Veryfied') {
+          this.msg.success("Xác thực thành công");
+          this.isOtpNotValid = false;
+          this.dataService.changeStatusVerifyPhoneNumberModal(false);
+          this.isVisible = false;
+          this.apiService.createUser({email: this.user.email, name: this.user.name}).subscribe({
+            next: (res2:any) => {
+              sessionStorage.setItem("user", JSON.stringify(res2.data))
+            }
+          })
+        }
       }
     })
   }
 
   onCancel(): void {
     this.isVisible = false;
+  }
+
+  changeOtp(){
+    this.isOtpNotValid = false;
   }
 }

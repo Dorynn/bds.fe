@@ -4,14 +4,18 @@ import { Observable } from 'rxjs';
 import { ENV } from '../../environments/environment';
 
 const baseUrl = 'http://localhost:8686/api/v1';
+const baseUrlAdmin = 'http://localhost:8686';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
+  token:string |null = ''
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+    this.token = localStorage.getItem("token");
+  }
 
   getProjectList(request: any):Observable<any>{
     return this.http.get('http://localhost:8686/api/v1/projects',{params: request});
@@ -22,7 +26,7 @@ export class ApiService {
   }
 
   addProject(request: any):Observable<any>{
-    return this.http.post(`${baseUrl}/projects`,request);
+    return this.http.post(`${baseUrl}/projects`,request, {headers: { 'Authorization': `Bearer ${this.token}` }});
   }
 
   getProjectById(id: string | null):Observable<any> {
@@ -58,11 +62,11 @@ export class ApiService {
   }
 
   createProject(request: any):Observable<any>{
-    return this.http.post(`${baseUrl}/projects`,request);
+    return this.http.post(`${baseUrl}/projects`,request,{headers: { 'Authorization': `Bearer ${this.token}` }});
   }
 
   updateProject(request: any):Observable<any>{
-    return this.http.put(`${baseUrl}/projects`,request)
+    return this.http.put(`${baseUrl}/projects`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
   }
 
   getAreaList(request:any):Observable<any> {
@@ -70,11 +74,11 @@ export class ApiService {
   }
 
   createArea(request: any):Observable<any> {
-    return this.http.post(`${baseUrl}/areas`, request);
+    return this.http.post(`${baseUrl}/areas`, request,{headers: { 'Authorization': `Bearer ${this.token}` }});
   }
 
   updateArea(request: any):Observable<any> {
-    return this.http.put(`${baseUrl}/areas`, request)
+    return this.http.put(`${baseUrl}/areas`, request, {headers: { 'Authorization': `Bearer ${this.token}` }})
   }
 
   getLandList(request: any):Observable<any> {
@@ -82,11 +86,11 @@ export class ApiService {
   }
 
   createLand(request: any):Observable<any> {
-    return this.http.post(`${baseUrl}/lands`,request)
+    return this.http.post(`${baseUrl}/lands`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
   }
 
   updateLand(request: any):Observable<any> {
-    return this.http.put(`${baseUrl}/lands`,request)
+    return this.http.put(`${baseUrl}/lands`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
   }
 
   getLandById(id: string | null):Observable<any> {
@@ -94,7 +98,7 @@ export class ApiService {
   }
 
   updateLandStatus(request: any):Observable<any>{
-    return this.http.put(`${baseUrl}/lands/temporarilyLockOrUnLock`,request)
+    return this.http.put(`${baseUrl}/lands/temporarilyLockOrUnLock`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
   }
 
   getTransactionList(params: any):Observable<any> {
@@ -102,7 +106,7 @@ export class ApiService {
   }
 
   updateTransaction(request: any):Observable<any> {
-    return this.http.put(`${baseUrl}/transactions/confirmTransactionSuccessOrFail`,request);
+    return this.http.put(`${baseUrl}/transactions/confirmTransactionSuccessOrFail`,request, {headers: { 'Authorization': `Bearer ${this.token}` }});
   }
 
   getTransactionById(id: string | null):Observable<any> {
@@ -137,4 +141,23 @@ export class ApiService {
     return this.http.get(`${baseUrl}/lands/allLandByAreaId`, {params: params})
   }
 
+  signUpAdmin(request: any):Observable<any> {
+    return this.http.post(`${baseUrlAdmin}/auth/sign_up_admin`, request)
+  }
+
+  loginAdmin(request: any):Observable<any> {
+    return this.http.post(`${baseUrlAdmin}/auth/sign_in_admin`, request);
+  }
+
+  logOutAdmin(request: any):Observable<any> {
+    return this.http.post(`${baseUrlAdmin}/auth/logout_admin`, request);
+  }
+
+  refreshToken(request: any):Observable<any> {
+    return this.http.post(`${baseUrlAdmin}/auth/refresh_token`, request);
+  }
+
+  getAdminInf(token: string):Observable<any>{
+    return this.http.get(`${baseUrlAdmin}/auth/my_information`, {headers: { 'Authorization': `Bearer ${token}` }})
+  }
 }

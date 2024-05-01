@@ -73,3 +73,9 @@ form input:focus {
 .error {
     border-bottom: 1px solid #DE3B40 !important;
 }
+
+.login-admin-btn {
+    width: 100%;
+    margin-top: 15px;
+    font-weight: 600;
+}

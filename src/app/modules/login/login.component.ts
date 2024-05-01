@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   isConfirmLoading = false;
   isEmpty: boolean = false;
   isInvalid: boolean = false;
+  isLoginAsAdmin: boolean = false;
 
   constructor(
     private dataService: DataService,
@@ -67,7 +68,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         next: (res: any) => {
           this.msg.success('Đăng nhập thành công!')
           sessionStorage.setItem("user", JSON.stringify(res.data)); 
-          if(res.data.phone == null){
+          if(res.data.isDeleted == 2){
             this.dataService.changeStatusVerifyPhoneNumberModal(true);
           }
           if(res.data.role.name === 'ADMIN'){
@@ -92,5 +93,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
   showRegisterModal() {
     this.dataService.changeStatusLoginModal(false);
     this.dataService.changeStatusRegisterModal(true);
+  }
+
+  handleLoginAsAdmin(){
+    this.isLoginAsAdmin = true;
+  }
+
+  handleLoginAsUser(){
+    this.isLoginAsAdmin = false;
   }
 }

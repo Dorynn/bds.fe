@@ -62,7 +62,8 @@ export class HomepageComponent implements OnInit {
   handleChangePage(e: any) {
     this.apiService.getProjectList({pageIndex: e-1, pageSize: this.pageSize}).subscribe({
       next: (res: any) => {
-        this.projectList = res.data
+        this.currentPage = e-1;
+        this.projectList = res.data;
       }
     })
   }

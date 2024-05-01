@@ -39,6 +39,7 @@ export class EditLandComponent {
   direction: string = '';
   typeOfApartment: string = "";
   projectType: string = "";
+  isExistThumbnail: boolean = false;
 
   constructor(
     private msg: NzMessageService,
@@ -64,22 +65,25 @@ export class EditLandComponent {
 
   handleChange(info: { file: NzUploadFile }): void {
     this.isChangeThumbnail = true;
-    console.log(this.thumbnail[0].status == 'removed');
-    console.log(this.previewImage)
-    // this.previewImage = ''
-    
+
     switch (info.file.status) {
       case 'uploading':
         this.loading = true;
-        this.handlePreview(info.file);
         break;
       case 'done':
+        this.handlePreview(info.file);
         this.loading = false;
         break;
       case 'error':
         this.loading = false;
         break;
+      case 'removed':
+        this.thumbnail = [];
+        break;
     }
+
+    console.log(this.thumbnail);
+
   }
 
   handlePreview = async (file: NzUploadFile): Promise<void> => {
@@ -114,20 +118,20 @@ export class EditLandComponent {
         this.status = res.data.status
         this.typeOfApartment = res.data.typeOfApartment;
         this.direction = res.data.direction
+
         if (res.data.thumbnail) {
+          this.isExistThumbnail = true;
           this.thumbnail.push({
             url: res.data.thumbnail,
             uid: '-1',
             name: 'image.png',
             status: 'done'
           })
-          this.previewImage = res.data.thumbnail
         }
 
         if (!this.thumbnail) {
           this.thumbnail = [];
         }
-
         this.getAreaByProjectId();
         this.getProjectById();
 
@@ -175,4 +179,5 @@ export class EditLandComponent {
       }
     })
   }
+
 }

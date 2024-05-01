@@ -14,6 +14,7 @@ export class DataService {
   private statusLoadingAdmin = new BehaviorSubject(false);
   private statusLoadingUser = new BehaviorSubject(false);
   private roleUser = new BehaviorSubject('USER');
+  private adminInf = new BehaviorSubject({});
   isVisibleLoginModal = this.statusLoginModal.asObservable();
   isVisibleRegisterModal = this.statusRegisterModal.asObservable();
   isVisibleRegisterModalStep2 = this.statusRegisterModalStep2.asObservable()
@@ -23,6 +24,7 @@ export class DataService {
   isUser = this.roleUser.asObservable();
   isLoadingAdmin = this.statusLoadingAdmin.asObservable();
   isLoadingUser = this.statusLoadingUser.asObservable();
+  admin = this.adminInf.asObservable();
 
   constructor() { }
 
@@ -60,5 +62,9 @@ export class DataService {
 
   changeStatusLoadingUser (status: boolean) {
     this.statusLoadingUser.next(status);
+  }
+
+  setAdminInf(inf: any) {
+    this.adminInf.next(inf);
   }
 }

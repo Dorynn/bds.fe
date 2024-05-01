@@ -79,10 +79,10 @@
         <p>Mô tả</p>
     </div>
     <div nz-col [nzSpan]="6">
-        @if (thumbnail.length>=1) {
+        @if (isExistThumbnail) {
         <nz-upload [nzPreview]="handlePreview" [nzShowUploadList]="true" nzListType="picture-card"
             [(nzFileList)]="thumbnail" [nzShowButton]="thumbnail.length < 1" (nzChange)="handleChange($event)">
-            @if (this.thumbnail[0].status == 'removed') {
+            @if (!previewImage) {
             <ng-container>
                 <span class="upload-icon" [nzType]="loading? 'loading' : 'plus'" nz-icon></span>
                 <div style="margin-top: 8px">Tải ảnh</div>
