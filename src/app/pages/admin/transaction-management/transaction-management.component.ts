@@ -54,7 +54,11 @@ export class TransactionManagementComponent implements OnInit {
   }
 
   handleSearchByStatus(){
-    this.getTransactionList({status: this.status})
+    if(this.status == null){
+      this.getTransactionList({});
+    }else{
+      this.getTransactionList({status: this.status})
+    }
   }
 
   handleSearch(){

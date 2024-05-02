@@ -13,7 +13,7 @@
     <div nz-col [nzSpan]="8" [nzOffset]="2">
         <div nz-row>
             <span nz-col [nzSpan]="6" class="prefix-select">Trạng thái</span>
-            <nz-select [(ngModel)]="status" (ngModelChange)="handleSearchByStatus()" nz-col [nzSpan]="18">
+            <nz-select [(ngModel)]="status" (ngModelChange)="handleSearchByStatus()" nz-col [nzSpan]="18" nzAllowClear="true">
                 <nz-option nzValue="0" nzLabel="Chờ xác nhận"></nz-option>
                 <nz-option nzValue="1" nzLabel="Thanh toán thành công"></nz-option>
                 <nz-option nzValue="2" nzLabel="Thanh toán thất bại"></nz-option>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { AppService } from '../../../services/app.service';
@@ -9,7 +9,7 @@ import { DataService } from '../../../services/data.service';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
   isCollapsed = false;
   admin!:any;
 
@@ -23,6 +23,31 @@ export class AdminComponent {
       this.admin = JSON.parse(stringAdmin);
       this.dataService.setRole(this.admin.role);
       this.dataService.setAdminInf(this.admin);
+    }
+  }
+
+  ngOnInit(): void {
+  
+    this.scheduleFunctionExecution();
+  }
+
+  scheduleFunctionExecution(): void {
+    const delayInMilliseconds = 60*1000*50 ; 
+    
+    setInterval(() => {
+      this.refreshToken(); 
+    }, delayInMilliseconds);
+  }
+
+  refreshToken(): void {
+    console.log('Function executed after 50 minutes');
+    let token = localStorage.getItem("token");
+    if (token){
+      this.apiService.refreshToken({token: token}).subscribe({
+        next: (res: any) => {
+          localStorage.setItem("token", res.data)
+        }
+      })
     }
   }
 
