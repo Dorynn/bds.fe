@@ -28,7 +28,7 @@
                         <div nz-col [nzSpan]="14" class="wrapper__info">
                             <span class="land-name">{{land.name}}</span>
                             <span class="status" [class]="{'up-coming':land.status==0, 'sale': land.status==1, 'temp-lock':land.status==2, 'locked': land.status==3}">{{land.status==0?'Sắp mở bán':land.status==1?'Đang mở bán':land.status==2?'Đang đặt cọc':'Đã đặt cọc'}}</span>
-                            <div class="brief">{{land.typeOfApartment}} | {{land.acreage}} m2 | {{land.direction}}</div>
+                            <div class="brief">{{land.typeOfApartment == 1 ? '2PN +1' : '3PN'}} | {{land.acreage}} m2 | {{land.direction == 0 ? 'Tây Bắc': item.direction == 1 ? 'Tây Nam - Tây Bắc': 'Đông Nam - Tây Bắc'}}</div>
                             <div class="price">Giá niêm yết: {{land.price}} tỷ</div>
                             <button nz-button class="background-brown" (click)="showConfirm(land, area)" [disabled]="land.status!==1">Đặt cọc ngay</button>
                             <button nz-button class="view-detail"  (click)="openLandDetailModal(land, area)">Xem chi tiết </button>
