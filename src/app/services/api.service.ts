@@ -98,7 +98,7 @@ export class ApiService {
   }
 
   updateLandStatus(request: any):Observable<any>{
-    return this.http.put(`${baseUrl}/lands/temporarilyLockOrUnLock`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
+    return this.http.put(`${baseUrl}/lands/temporarilyLockOrUnLock`,request)
   }
 
   getTransactionList(params: any):Observable<any> {
