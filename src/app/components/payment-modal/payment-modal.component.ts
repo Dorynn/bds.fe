@@ -29,6 +29,8 @@ export class PaymentModalComponent implements OnInit {
     if (item) {
       this.item = JSON.parse(item)
     }
+    console.log('payment');
+    
   }
 
   onCancel(): void {
@@ -39,29 +41,17 @@ export class PaymentModalComponent implements OnInit {
   handleEvent(e: CountdownEvent) {
     if (e.left == 0) {
       this.onCancel()
-      this.handleReload.emit({isCancel: true, itemId: this.item.id})
+      this.handleReload.emit({ isCancel: true, itemId: this.item.id })
       localStorage.setItem('isPaymentOpen', JSON.stringify(false));
       localStorage.removeItem("item")
     }
   }
 
   handleTransaction(): void {
-    let user = sessionStorage.getItem("user")
-    if(user){
-      let parseUser = JSON.parse(user)
-      let request = {
-        userId: parseUser.id,
-        landId: this.item.id
-      }
-      this.apiService.createTransaction(request).subscribe({
-        next: (res: any) => {
-          this.msg.success(`Giao dịch đã được tạo, vui lòng chờ đợi nhân viên sẽ sớm kiểm tra và liên hệ xác nhận. Quý khách có thể theo dõi trạng thái trong phần lịch sử giao dịch!`)
-          this.onCancel();
-          localStorage.removeItem("isPaymentOpen")
-          localStorage.removeItem("item")
-        }
-      })
-    }
+    this.msg.success(`Giao dịch đã được tạo, vui lòng chờ đợi nhân viên sẽ sớm kiểm tra và liên hệ xác nhận. Quý khách có thể theo dõi trạng thái trong phần lịch sử giao dịch!`)
+    this.onCancel();
+    localStorage.removeItem("isPaymentOpen")
+    localStorage.removeItem("item")
   }
 
   showConfirmCancel(): void {
@@ -72,12 +62,21 @@ export class PaymentModalComponent implements OnInit {
       nzCancelText: 'Hủy',
       nzOnOk: () => {
         this.msg.success("Hủy đặt cọc thành công!")
-        this.onCancel()
-        this.handleReload.emit({isCancel: true, itemId: this.item.id})
+        this.onCancel();
+        this.deleteTransaction();
+        this.handleReload.emit({ isCancel: true, itemId: this.item.id, transactionId: this.item.transactionId })
         localStorage.setItem('isPaymentOpen', JSON.stringify(false));
         localStorage.removeItem("item")
       },
       nzOnCancel: () => {
+
+      }
+    })
+  }
+
+  deleteTransaction() {
+    this.apiService.deleteTransaction(this.item.transactionId).subscribe({
+      next: (res: any) => {
 
       }
     })

@@ -160,4 +160,12 @@ export class ApiService {
   getAdminInf(token: string):Observable<any>{
     return this.http.get(`${baseUrlAdmin}/auth/my_information`, {headers: { 'Authorization': `Bearer ${token}` }})
   }
+
+  deleteTransaction(id: string):Observable<any>{
+    return this.http.delete(`${baseUrl}/transactions/${id}`)
+  }
+
+  getType():Observable<any>{
+    return this.http.get(`${baseUrl}/project-types`);
+  }
 }

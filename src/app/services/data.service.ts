@@ -13,6 +13,7 @@ export class DataService {
   private statusVerifyPhoneNumber = new BehaviorSubject(false);
   private statusLoadingAdmin = new BehaviorSubject(false);
   private statusLoadingUser = new BehaviorSubject(false);
+  private statusProjectInformationModal = new BehaviorSubject(false);
   private roleUser = new BehaviorSubject('USER');
   private adminInf = new BehaviorSubject({});
   isVisibleLoginModal = this.statusLoginModal.asObservable();
@@ -25,6 +26,7 @@ export class DataService {
   isLoadingAdmin = this.statusLoadingAdmin.asObservable();
   isLoadingUser = this.statusLoadingUser.asObservable();
   admin = this.adminInf.asObservable();
+  isProjectInformationModal = this.statusProjectInformationModal.asObservable();
 
   constructor() { }
 
@@ -67,4 +69,9 @@ export class DataService {
   setAdminInf(inf: any) {
     this.adminInf.next(inf);
   }
+
+  changeStatusProjectInformationModal(status: boolean) {
+    this.statusProjectInformationModal.next(status);
+  }
+
 }

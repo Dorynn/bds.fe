@@ -7,9 +7,9 @@
                         <tr>
                             <th></th>
                             <th>Tên lô đất</th>
+                            <th>Dự án</th>
                             <th>Giá đặt cọc</th>
                             <th>Chi tiết lô đất</th>
-                            <th>Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -17,9 +17,9 @@
                             <tr>
                                 <td><img [src]="item.land.thumbnail" alt="" width="40px" height="40px"></td>
                                 <td>{{item.land.name}}</td>
-                                <td>{{item.land.deposit}} triệu đồng</td>
+                                <td>{{item.land.areaDTO.projectName}}</td>
+                                <td>{{item.land.deposit}} đ</td>
                                 <td><button nz-button (click)="getLandById(item.land)">Xem</button></td>
-                                <td>{{tab.label}}</td>
                             </tr>
                         }
                     </tbody>

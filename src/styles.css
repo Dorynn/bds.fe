@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-size: 16px;
     /* font-family: "montserrat", sans-serif */
@@ -50,7 +54,7 @@ body {
     color: #fff;
 }
 
-button.background-orange:hover, 
+button.background-orange:hover,
 button.background-orange:hover {
     background-color: #fa9d3a;
     color: #fff;

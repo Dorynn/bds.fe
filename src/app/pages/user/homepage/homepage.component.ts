@@ -17,6 +17,7 @@ export class HomepageComponent implements OnInit {
   provinceList: any = [];
   projectType: string = '';
   provinceId:string='';
+  typeList: any = [];
 
   constructor(
     private apiService: ApiService,
@@ -27,6 +28,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.getProjectList({pageIndex: 0, pageSize:4});
     this.getProvincesHaveProject();
+    this.getType()
   }
 
   getProvincesHaveProject(){
@@ -53,7 +55,13 @@ export class HomepageComponent implements OnInit {
     })
   }
 
-  
+  getType(){
+    this.apiService.getType().subscribe({
+      next: (res: any) => {
+        this.typeList = res.data;
+      }
+    })
+  }
 
   goToProjectDetail(id: string):void {
     this.router.navigateByUrl(`/project-detail/${id}`)

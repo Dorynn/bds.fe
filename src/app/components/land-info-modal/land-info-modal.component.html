@@ -1,7 +1,4 @@
 <nz-modal [(nzVisible)]="isVisible" [nzStyle]="{ top: '30px' }" [nzWidth]="1000" (nzOnCancel)="handleCancel()">
-    <!-- <div *nzModalTitle style="padding: 0!important">
-        hppp
-    </div> -->
     <div *nzModalContent>
         <div nz-row [nzGutter]="32">
             <div nz-col [nzSpan]="12">
@@ -49,14 +46,14 @@
                         <strong>Giá niêm yết: </strong>
                     </div>
                     <div nz-col [nzSpan]="16">
-                        {{item.price}} tỷ đồng
+                        {{item.price}} đ
                     </div>
                 </div>
                 <div nz-row>
                     <div nz-col [nzSpan]="8">
                         <strong>Giá đặt cọc: </strong>
                     </div>
-                    <div nz-col [nzSpan]="16">{{item.deposit}} triệu đồng</div>
+                    <div nz-col [nzSpan]="16">{{item.deposit}} đ</div>
                 </div>
                 <div nz-row>
                     <div nz-col [nzSpan]="8"><strong>Mô tả: </strong></div>
@@ -76,11 +73,11 @@
                 </div>
                 <div nz-row>
                     <div nz-col [nzSpan]="8"><strong>Loại hình căn hộ: </strong></div>
-                    <div nz-col [nzSpan]="16">{{item.typeOfApartment == 1 ? '2PN + 1': '3PN'}}</div>
+                    <div nz-col [nzSpan]="16">{{item.typeOfApartment}}</div>
                 </div>
                 <div nz-row>
                     <div nz-col [nzSpan]="8"><strong>Hướng ban công: </strong></div>
-                    <div nz-col [nzSpan]="16">{{item.direction == 0 ? 'Tây Bắc':item.direction == 1 ? 'Tây Bắc - Đông Nam': 'Đông Nam - Tây Bắc'}}</div>
+                    <div nz-col [nzSpan]="16">{{item.direction}}</div>
                 </div>
                 <div nz-row>
                     <div nz-col [nzSpan]="8"><strong>Diện tích: </strong></div>

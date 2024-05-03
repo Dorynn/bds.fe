@@ -1,0 +1,10 @@
+.title {
+    text-align: center;
+    padding: 15px;
+}
+
+.modal-content {
+    height: 550px;
+    overflow-y: scroll;
+}
+

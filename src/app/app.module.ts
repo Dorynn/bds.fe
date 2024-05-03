@@ -67,6 +67,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { LoginAdminComponent } from './components/login-admin/login-admin.component';
+import { ProjectInformationModalComponent } from './components/project-information-modal/project-information-modal.component';
+
 registerLocaleData(en);
 
 @NgModule({
@@ -102,7 +104,8 @@ registerLocaleData(en);
     UserListComponent,
     TransactionHistoryComponent,
     RegisterAdminComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    ProjectInformationModalComponent
   ],
   imports: [
     BrowserModule,

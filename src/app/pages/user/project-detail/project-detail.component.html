@@ -1,48 +1,94 @@
-<div class="thumbnail" [ngStyle]="{'background': 'no-repeat center/100% url(' + projectDetail.thumbnail +')'}" nz-flex nzAlign="center" nzJustify="center">
+<div class="thumbnail" [ngStyle]="{'background': 'no-repeat center/100% url(' + projectDetail.thumbnail +')'}" nz-flex
+    nzAlign="center" nzJustify="center">
     <div nz-row class="thumbnail__box">
         <div nz-col [nzSpan]="12" class="thumbnail__text-box">
             <h2 class="thumbnail__project-name">{{projectDetail.name}}</h2>
             <p>{{projectDetail.description}}</p>
+            <button nz-button (click)="openProjectInformationModal()">Xem thêm</button>
         </div>
-        <img class="project-image" [src]="projectDetail.thumbnail" nz-col [nzSpan]="12" height="100%"/>
+        <img class="project-image" [src]="projectDetail.thumbnail" nz-col [nzSpan]="12" height="100%" />
     </div>
 </div>
-<div class="menu">
+<div class="menu" [ngClass]="{'sticky': isSticky}">
     <ul nz-flex>
-        <li [routerLink]="['/project-detail',projectId]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Tất cả</li>
+        <!-- <li [routerLink]="['/project-detail',projectId]" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Tất cả</li> -->
         @for (item of areaList; track $index) {
-        <li [routerLink]="['/project-detail',projectId,'area-detail', item.id]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{item.name}}</li>
+        <li><a [href]="'/project-detail/'+projectId+'#area'+$index">{{item.name}}</a></li>
         }
     </ul>
 </div>
 
+<div class="filter-wrapper">
+    <div class="filter" nz-flex nzJustify="end">
+        <nz-select [(ngModel)]="filterParams.price" nzPlaceHolder="Giá">
+            <nz-option [nzValue]="0" nzLabel="Giá thấp đến cao"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Giá cao đến thấp"></nz-option>
+        </nz-select>
+        <nz-select [(ngModel)]="filterParams.status" nzPlaceHolder="Trạng thái">
+            <nz-option [nzValue]="0" nzLabel="Sắp mở bán"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Đang mở bán"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="Đang đặt cọc"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="Đã đặt cọc"></nz-option>
+        </nz-select>
+        @if (projectDetail.projectType?.id==1) {
+            <nz-select [(ngModel)]="filterParams.typeOfApartment" nzPlaceHolder="Loại căn hộ">
+                <nz-option [nzValue]="1" nzLabel="2PN + 1"></nz-option>
+                <nz-option [nzValue]="2" nzLabel="3PN"></nz-option>
+            </nz-select>
+        }
+        <nz-select [(ngModel)]="filterParams.direction" [nzPlaceHolder]="projectDetail.projectType?.id == 1 ?'Hướng ban công' : 'Hướng'">
+            <nz-option [nzValue]="0" nzLabel="Tây Bắc"></nz-option>
+            <nz-option [nzValue]="1" nzLabel="Tây Nam - Tây Bắc"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="Đông Nam - Tây Bắc"></nz-option>
+        </nz-select>
+        <div nz-flex [nzGap]="10">
+            <button nz-button class="background-gray" (click)="handleSearch()">Lọc</button>
+            <button nz-button (click)="handleClearFilter()">Xóa</button>
+        </div>
+    </div>
+</div>
+
 <div class="content">
-    @for(area of areaList; track area.id){
-    <div class="area-group">
-        <h1>{{area.name}}</h1>
-        <swiper-container slides-per-view="2" loop="true" space-between="10" navigation="true" pagination="true" style="--swiper-navigation-color: #bc9669; --swiper-pagination-color: #bc9669">
-            @if (area.lands.length >= 1) {
+    <div class="content-wrapper">
+        @for(area of areaList; track area.id){
+        <div class="area-group" [id]="'area'+$index">
+            <h1>{{area.name}}</h1>
+            <div nz-row [nzGutter]="[32, 32]">
                 @for(land of area.lands; track $index){
-                <swiper-slide class="swiper-slide">
+                <div nz-col [nzSpan]="12">
                     <div class="wapper" nz-row>
                         <div nz-col [nzSpan]="14" class="wrapper__info">
                             <span class="land-name">{{land.name}}</span>
-                            <span class="status" [class]="{'up-coming':land.status==0, 'sale': land.status==1, 'temp-lock':land.status==2, 'locked': land.status==3}">{{land.status==0?'Sắp mở bán':land.status==1?'Đang mở bán':land.status==2?'Đang đặt cọc':'Đã đặt cọc'}}</span>
-                            <div class="brief">{{land.typeOfApartment == 1 ? '2PN +1' : '3PN'}} | {{land.acreage}} m2 | {{land.direction == 0 ? 'Tây Bắc': item.direction == 1 ? 'Tây Nam - Tây Bắc': 'Đông Nam - Tây Bắc'}}</div>
-                            <div class="price">Giá niêm yết: {{land.price}} tỷ</div>
-                            <button nz-button class="background-brown" (click)="showConfirm(land, area)" [disabled]="land.status!==1">Đặt cọc ngay</button>
-                            <button nz-button class="view-detail"  (click)="openLandDetailModal(land, area)">Xem chi tiết </button>
+                            <span class="status"
+                                [class]="{'up-coming':land.status==0, 'sale': land.status==1, 'temp-lock':land.status==2, 'locked': land.status==3}">
+                                {{land.status==0?'Sắp mở bán':land.status==1?'Đang mở bán':land.status==2?'Đang đặt cọc':'Đã đặt cọc'}}</span>
+                            <div class="brief">
+                                {{land.typeOfApartment}} | {{land.acreage}} m2 |
+                                {{land.direction}}</div>
+                            <div class="price">Giá niêm yết: {{land.price}} đ</div>
+                            <button nz-button class="background-brown" (click)="showConfirm(land, area)"
+                                [disabled]="land.status!==1">Đặt cọc ngay</button>
+                            <button nz-button class="view-detail" (click)="openLandDetailModal(land, area)">Xem chi tiết
+                            </button>
                         </div>
                         <div nz-col [nzSpan]="10">
-                                <img class="image" [src]="land.thumbnail??'../../../../assets/img/flat2.jpg'" alt="" height="100%">
-                            </div>
+                            <img class="image" [src]="land.thumbnail??'../../../../assets/img/flat2.jpg'" alt=""
+                                height="100%">
                         </div>
-                </swiper-slide>
+                    </div>
+                </div>
                 }
-            }
-        </swiper-container>
+            </div>
+        
+        </div>
+        }
     </div>
-    }
 </div>
+@if (isSticky) {
+    <div class="scroll-down-btn" (click)="scrollToTop()"><i class="fa-solid fa-chevron-up"></i></div>
+}
+
 <app-payment-modal [item]="item" (handleReload)="handleReload($event)"></app-payment-modal>
-<app-land-info-modal [item]="item" ></app-land-info-modal>
+<app-land-info-modal [item]="item" (handleOk)="handleOkLandModel($event)"></app-land-info-modal>
+<app-project-information-modal></app-project-information-modal>

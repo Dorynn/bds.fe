@@ -29,8 +29,9 @@
             <div>
                 <p>Loại</p>
                 <nz-select [(ngModel)]="projectType">
-                    <nz-option [nzValue]="1" nzLabel="Chung cư"></nz-option>
-                    <nz-option [nzValue]="2" nzLabel="Đất nền"></nz-option>
+                    @for (item of typeList; track $index) {
+                        <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                    }
                 </nz-select>
             </div>
             <div>
