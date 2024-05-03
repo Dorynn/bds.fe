@@ -1,18 +1,20 @@
 <h2>Cập nhật dự án</h2>
 
 <div nz-row [nzGutter]="32">
-    <div nz-col [nzSpan]="8">
+    <div nz-col [nzSpan]="6">
         <input [(ngModel)]="name" type="text" nz-input placeholder="Tên dự án">
         <p>Tên dự án</p>
     </div>
-    <div nz-col [nzSpan]="8">
-        <nz-select [(ngModel)]="type">
-            <nz-option [nzValue]="1" [nzLabel]="'Chung cư'"></nz-option>
-            <nz-option [nzValue]="2" [nzLabel]="'Đất nền'"></nz-option>
-        </nz-select>
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="type" type="text" nz-input [nzAutocomplete]="auto" (ngModelChange)="onChangeType($event)">
+        <nz-autocomplete [nzDataSource]="filterTypeOptions" #auto></nz-autocomplete>
         <p>Loại dự án</p>
     </div>
-    <div nz-col [nzSpan]="8">
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="defaultDeposit" type="text" nz-input>
+        <p>Tiền đặt cọc mặc định</p>
+    </div>
+    <div nz-col [nzSpan]="6">
         <nz-select [(ngModel)]="status">
             <nz-option [nzValue]="0" nzLabel="Sắp mở bán"></nz-option>
             <nz-option [nzValue]="1" nzLabel="Đang mở bán"></nz-option>
@@ -23,7 +25,7 @@
 </div>
 
 <div nz-row [nzGutter]="32">
-    <div nz-col [nzSpan]="8">
+    <div nz-col [nzSpan]="6">
         <nz-select [(ngModel)]="provinceId" (ngModelChange)="onChangeProvince()" nzShowSearch nzAllowClear>
             @for (item of provinceList; track $index) {
             <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
@@ -31,7 +33,7 @@
         </nz-select>
         <p>Tỉnh/Thành phố</p>
     </div>
-    <div nz-col [nzSpan]="8">
+    <div nz-col [nzSpan]="6">
         <nz-select [(ngModel)]="district" nzShowSearch nzAllowClear>
             @for (item of districtList; track $index) {
             <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
@@ -39,24 +41,13 @@
         </nz-select>
         <p>Quận/Huyện</p>
     </div>
-    <div nz-col [nzSpan]="8">
+    <div nz-col [nzSpan]="6">
         <input [(ngModel)]="address" type="text" nz-input>
         <p>Địa chỉ cụ thể</p>
     </div>
-</div>
-
-<div nz-row [nzGutter]="32">
-    <div nz-col [nzSpan]="8">
-        <input [(ngModel)]="bankHost" type="text" nz-input nz-col>
-        <p>Chủ tài khoản</p>
-    </div>
-    <div nz-col [nzSpan]="8">
-        <input [(ngModel)]="bankNumber" type="text" nz-input nz-col>
-        <p>Số tài khoản</p>
-    </div>
-    <div nz-col [nzSpan]="8">
-        <input [(ngModel)]="bankName" type="text" nz-input nz-col>
-        <p>Tên ngân hàng</p>
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="expiryDate" type="text" nz-input>
+        <p>Thời hạn thực hiện thanh toán</p>
     </div>
 </div>
 
@@ -76,6 +67,21 @@
     <div nz-col [nzSpan]="6">
         <nz-date-picker [(ngModel)]="endDate"></nz-date-picker>
         <p>Ngày khởi công</p>
+    </div>
+</div>
+
+<div nz-row [nzGutter]="32">
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="bankHost" type="text" nz-input nz-col>
+        <p>Chủ tài khoản</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="bankNumber" type="text" nz-input nz-col>
+        <p>Số tài khoản</p>
+    </div>
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="bankName" type="text" nz-input nz-col>
+        <p>Tên ngân hàng</p>
     </div>
 </div>
 

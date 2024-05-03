@@ -43,6 +43,10 @@ export class AddProjectComponent implements OnInit {
   fileImage: any[] = [];
   fileQr: any[] = [];
   loading: boolean = false;
+  typeList: any = [];
+  filterTypeOptions: string[] = [];
+  defaultDeposit: string = '';
+  expiryDate: string = '';
 
   constructor(
     private apiService: ApiService,
@@ -61,6 +65,7 @@ export class AddProjectComponent implements OnInit {
   ngOnInit(): void {
     this.getProjects();
     this.getProvinceList();
+    this.getTypeList();
   }
 
   addProject() {
@@ -79,8 +84,10 @@ export class AddProjectComponent implements OnInit {
     formData.append("hostBank", this.bankHost)
     formData.append("investor", this.investor)
     formData.append("investorPhone", this.investorPhoneNumber)
-    formData.append("projectTypeId", this.type)
+    formData.append("projectType", this.type)
     formData.append("districtId", this.district)
+    formData.append("defaultDeposit", this.defaultDeposit);
+    formData.append("expiryDate", this.expiryDate)
     this.apiService.addProject(formData).subscribe({
       next: (res: any) => {
         this.name = '';
@@ -99,6 +106,8 @@ export class AddProjectComponent implements OnInit {
         this.provinceId = '';
         this.startDate = new Date();
         this.endDate = new Date();
+        this.expiryDate = '';
+        this.defaultDeposit = '';
         this.stompClient.send("/app/projects", {}, JSON.stringify(formData));
         this.msg.success("Thêm mới dự án thành công!");
         this.dataService.changeStatusLoadingAdmin(false);
@@ -108,6 +117,22 @@ export class AddProjectComponent implements OnInit {
         this.msg.error("Thêm mới dự án thất bại!")
       }
     })
+  }
+
+  getTypeList() {
+    this.apiService.getType().subscribe({
+      next: (res: any) => {
+        res.data.map((e: any) => {
+          this.typeList.push(e.name)
+          this.filterTypeOptions = this.typeList
+        })
+      }
+    })
+  }
+
+  onChangeType(value: string):void {
+    console.log('logo')
+    this.filterTypeOptions = this.typeList.filter((option: string) => option.toLowerCase().indexOf(value.toLowerCase())!== -1)
   }
 
   getProjects() {
@@ -159,7 +184,6 @@ export class AddProjectComponent implements OnInit {
         this.loading = false;
         break;
       case 'error':
-        this.msg.error('Network error');
         this.loading = false;
         break;
     }

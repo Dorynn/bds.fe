@@ -6,6 +6,8 @@ import { ENV } from '../../environments/environment';
 const baseUrl = 'http://localhost:8686/api/v1';
 const baseUrlAdmin = 'http://localhost:8686';
 
+type NewType = Observable<any>;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +17,7 @@ export class ApiService {
     private http: HttpClient
   ) { 
     this.token = localStorage.getItem("token");
+    console.log(this.token)
   }
 
   getProjectList(request: any):Observable<any>{
@@ -102,11 +105,11 @@ export class ApiService {
   }
 
   getTransactionList(params: any):Observable<any> {
-    return this.http.get(`${baseUrl}/transactions`, {params: params})
+    return this.http.get(`${baseUrl}/transactions`,{headers: { 'Authorization': `Bearer ${this.token}`}, params: params})
   }
 
   updateTransaction(request: any):Observable<any> {
-    return this.http.put(`${baseUrl}/transactions/confirmTransactionSuccessOrFail`,request, {headers: { 'Authorization': `Bearer ${this.token}` }});
+    return this.http.put(`${baseUrl}/transactions/confirmTransactionSuccessOrFail`,request, {headers: { 'Authorization': `Bearer ${this.token}`}});
   }
 
   getTransactionById(id: string | null):Observable<any> {
@@ -167,5 +170,9 @@ export class ApiService {
 
   getType():Observable<any>{
     return this.http.get(`${baseUrl}/project-types`);
+  }
+
+  importFile(formData: any):Observable<any>{
+    return this.http.post(`${baseUrl}/lands/create_multi_lands_from_excel_file`, formData)
   }
 }

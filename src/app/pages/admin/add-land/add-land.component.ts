@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { ApiService } from '../../../services/api.service';
 import { DataService } from '../../../services/data.service';
@@ -38,6 +38,7 @@ export class AddLandComponent implements OnInit {
   typeOfApartment: string = '';
   direction: string = '';
   isMoreInf: boolean = false;
+  landFile!: NzUploadFile[];
 
   constructor(
     private msg: NzMessageService,
@@ -92,6 +93,7 @@ export class AddLandComponent implements OnInit {
     this.apiService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.projectType = res.data.projectType.id;
+        this.deposit = res.data.defaultDeposit;
       }
     })
   }
@@ -138,6 +140,28 @@ export class AddLandComponent implements OnInit {
       error:(err: any) => {
         this.dataService.changeStatusLoadingAdmin(false);
         this.msg.error(`Tạo mới khu đất thất bại, lỗi ${err}`)
+      }
+    })
+  }
+
+  importFile(info: NzUploadChangeParam): void {
+
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      this.msg.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+
+    }
+  }
+
+  handleUploadLandFile(){
+    let formData = new FormData()
+    formData.append("file", this.landFile[0].originFileObj!)
+    this.apiService.importFile(formData).subscribe({
+      next: (res: any) => {
+        this.msg.success("Import file success")
       }
     })
   }

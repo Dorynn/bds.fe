@@ -35,19 +35,12 @@
 @if (isMoreInf) {
     <div nz-row [nzGutter]="32">
         <div nz-col [nzSpan]="6">
-            <nz-select [(ngModel)]="direction">
-                <nz-option [nzValue]="0" nzLabel="Tây Bắc"></nz-option>
-                <nz-option [nzValue]="1" nzLabel="Tây Nam - Tây Bắc"></nz-option>
-                <nz-option [nzValue]="2" nzLabel="Đông Nam - Tây Bắc"></nz-option>
-            </nz-select>
+            <input [(ngModel)]="direction" nz-input type="text">
             <p>Hướng {{projectType == '1' ? 'ban công': ''}}</p>
         </div>
         @if (projectType=='1') {
             <div nz-col [nzSpan]="6">
-                <nz-select [(ngModel)]="typeOfApartment">
-                    <nz-option [nzValue]="1" nzLabel="2PN + 1"></nz-option>
-                    <nz-option [nzValue]="2" nzLabel="3PN"></nz-option>
-                </nz-select>
+                <input [(ngModel)]="typeOfApartment" nz-input type="text">
                 <p>Loại căn hộ</p>
             </div>
         }
@@ -57,15 +50,15 @@
 <div nz-row [nzGutter]="32">
     <div nz-col [nzSpan]="6">
         <input [(ngModel)]="price" type="text" nz-input>
-        <p>Giá</p>
+        <p>Giá (VND)</p>
     </div>
     <div nz-col [nzSpan]="6">
         <input [(ngModel)]="deposit" type="text" nz-input>
-        <p>Giá cọc</p>
+        <p>Giá cọc (VND)</p>
     </div>
     <div nz-col [nzSpan]="6">
         <input [(ngModel)]="acreage" type="text" nz-input>
-        <p>Diện tích</p>
+        <p>Diện tích (m2)</p>
     </div>
     <div nz-col [nzSpan]="6">
         <input [(ngModel)]="address" type="text" nz-input>
@@ -120,4 +113,16 @@
     </div> -->
 </div>
 
+
 <button class="background-orange" nz-button (click)="handleAddLand()">Thêm khu đất</button>
+
+<nz-upload
+[(nzFileList)]="landFile"
+(nzChange)="importFile($event)"
+>
+<button nz-button>
+  <span nz-icon nzType="upload"></span>
+  Import file
+</button>
+</nz-upload>
+<button nz-button (click)="handleUploadLandFile()">Tải lên</button>

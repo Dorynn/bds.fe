@@ -23,17 +23,17 @@
 </div>
 
 <div class="table-wrapper">
-    <nz-table [nzData]="transactionList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '430px' }">
+    <nz-table [nzData]="transactionList" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '430px', x:'500px' }">
         <thead>
             <tr>
                 <th nzWidth="50px">STT</th>
                 <th>Tên khu đất</th>
                 <th>Phân khu</th>
                 <th>Dự án</th>
-                <th>Thời gian giao dịch</th>
-                <th>Tên người đặt cọc</th>
+                <th nzWidth="150px">Thời gian</th>
+                <th>Người đặt cọc</th>
                 <th>Số điện thoại</th>
-                <th>Số tiền cọc (triệu đồng)</th>
+                <th>Tiền cọc</th>
                 <th>Tình trạng</th>
                 <th></th>
             </tr>
@@ -48,10 +48,18 @@
                 <td>{{transformDate(item.createdAt)}}</td>
                 <td>{{item.user.name}}</td>
                 <td>{{item.user.phone}}</td>
-                <td>{{item.land.deposit}}</td>
+                <td>{{item.land.deposit}} đ</td>
                 <td>{{item.status == '0' ? 'Chờ xác nhận': item.status == '1' ? 'Thanh toán thành công': 'Thanh toán thất bại' }}</td>
                 <td>
-                    <button nz-button class="background-blue" (click)="goToViewTransaction(item.id)">Xem</button>
+                    @if (item.status != '0') {
+                        <button nz-button nzType="text" (click)="changeTransactionStatus(item.id, item.land.id, '0', '2')"><span nz-icon nzType="question-circle" nzTheme="outline"></span></button>
+                    }
+                    @if (item.status != '2') {
+                        <button nz-button nzType="text" (click)="changeTransactionStatus(item.id, item.land.id, '2', '1')"><span nz-icon nzType="close-circle" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></span></button>
+                    }
+                    @if (item.status != '1') {
+                        <button nz-button nzType="text" (click)="changeTransactionStatus(item.id, item.land.id, '1', '3')"><span nz-icon nzType="check-circle" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></span></button>
+                    }
                 </td>
             </tr>
             }

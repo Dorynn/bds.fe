@@ -19,7 +19,6 @@
                 <th nzWidth="50px">STT</th>
                 <th>Tên</th>
                 <th>Chủ đầu tư</th>
-                <th nzWidth="100px">Số lượng phân khu</th>
                 <th nzWidth="150px">Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
@@ -30,7 +29,6 @@
                 <td>{{$index+1}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.investor}}</td>
-                <td>Số lượng</td>
                 <td>{{item.status==0?'Sắp mở bán':item.status==1?'Đang mở bán':'Đã kết thúc'}}</td>
                 <td>
                     <button nz-button class="background-blue" (click)="goToEditProject(item.id)">Cập nhật</button>

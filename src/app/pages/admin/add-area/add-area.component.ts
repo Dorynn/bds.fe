@@ -12,7 +12,6 @@ export class AddAreaComponent implements OnInit {
   areaName: string = '';
   projectId: string = '';
   projectList: any = [];
-  timeLimit: string = '';
 
   constructor(
     private apiService: ApiService,
@@ -38,13 +37,11 @@ export class AddAreaComponent implements OnInit {
     let request = {
       name: this.areaName,
       projectId: this.projectId,
-      expiryDate: this.timeLimit
     }
     this.apiService.createArea(request).subscribe({
       next: (res: any) => {
         this.areaName = '';
         this.projectId = '';
-        this.timeLimit = '';
         this.msg.success("Thêm mới phân khu thành công!")
         this.dataService.changeStatusLoadingAdmin(false);
       },

@@ -48,6 +48,10 @@ export class EditProjectComponent implements OnInit {
   loading:boolean = true;
   isExistThumbnail: boolean = false;
   isExistQrImg: boolean = false;
+  typeList: any = [];
+  filterTypeOptions: string[] = [];
+  defaultDeposit: string = '';
+  expiryDate: string = '';
 
   constructor(
     private apiService: ApiService,
@@ -59,14 +63,26 @@ export class EditProjectComponent implements OnInit {
   ngOnInit(): void {
     this.getProjectById();
     this.getProvinceList();
+    this.getTypeList();
   }
-  
+
+  getTypeList() {
+    this.apiService.getType().subscribe({
+      next: (res: any) => {
+        res.data.map((e: any) => {
+          this.typeList.push(e.name)
+          this.filterTypeOptions = this.typeList
+        })
+      }
+    })
+  }
+
   getProjectById() {
     return this.apiService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.projectDetail = res.data;
         this.name = res.data.name;
-        this.type = res.data.projectType.id;
+        this.type = res.data.projectType.name;
         this.address = res.data.address;
         this.bankHost = res.data.hostBank;
         this.bankName = res.data.bankName;
@@ -79,6 +95,8 @@ export class EditProjectComponent implements OnInit {
         this.status = res.data.status;
         this.endDate = new Date(res.data.endDate);
         this.startDate = new Date(res.data.startDate);
+        this.expiryDate = res.data.expiryDate;
+        this.defaultDeposit = res.data.defaultDeposit;
         if(res.data.thumbnail){
           this.isExistThumbnail = true;
           this.thumbnail.push({
@@ -118,8 +136,11 @@ export class EditProjectComponent implements OnInit {
     formData.append("hostBank", this.bankHost)
     formData.append("investor", this.investor)
     formData.append("investorPhone", this.investorPhoneNumber)
-    formData.append("projectTypeId", this.type)
+    formData.append("projectType", this.type)
     formData.append("districtId", this.district)
+    formData.append("defaultDeposit", this.defaultDeposit);
+    formData.append("expiryDate", this.expiryDate)
+    
     if (this.isChangeThumbnail) {
       formData.append("thumbnail", this.thumbnail[0].originFileObj!)
     }
@@ -179,11 +200,6 @@ export class EditProjectComponent implements OnInit {
   }
 
   handleChange(info: { file: NzUploadFile }): void {
-    console.log(info.file);
-    console.log(this.thumbnail);
-    console.log(this.qrImage)
-    
-    
     switch (info.file.status) {
       case 'uploading':
         this.loading = true;
@@ -210,6 +226,11 @@ export class EditProjectComponent implements OnInit {
         }
         break;
     }
+  }
+
+  onChangeType(value: string):void {
+    console.log('logo')
+    this.filterTypeOptions = this.typeList.filter((option: string) => option.toLowerCase().indexOf(value.toLowerCase())!== -1)
   }
 }
 

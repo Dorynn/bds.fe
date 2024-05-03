@@ -32,7 +32,8 @@ export class AdminComponent implements OnInit {
   }
 
   scheduleFunctionExecution(): void {
-    const delayInMilliseconds = 60*1000*50 ; 
+    const delayInMilliseconds = 60*1000*30 ; 
+    console.log('token');
     
     setInterval(() => {
       this.refreshToken(); 

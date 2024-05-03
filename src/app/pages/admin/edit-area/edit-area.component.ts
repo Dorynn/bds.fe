@@ -14,7 +14,6 @@ export class EditAreaComponent {
   projectName: string = '';
   projectId: string = '';
   projectList: any = [];
-  timeLimit: string = '';
   areaId: string | null = this.route.snapshot.paramMap.get('id')
 
   constructor(
@@ -33,7 +32,6 @@ export class EditAreaComponent {
       next: (res: any) => {
         this.name = res.data.name;
         this.projectName = res.data.projectName;
-        this.timeLimit = res.data.expiryDate;
         this.projectId = res.data.projectId
       }
     })
@@ -47,13 +45,12 @@ export class EditAreaComponent {
       id: this.areaId,
       name: this.name,
       projectId: this.projectId,
-      expiryDate: this.timeLimit
     }
     this.apiService.updateArea(request).subscribe({
       next: (res: any) => {
-        this.name = '';
-        this.projectId = '';
-        this.timeLimit = '';
+        // this.name = '';
+        // this.projectId = '';
+        this.getAreaById()
         this.msg.success("Cập nhật phân khu thành công!")
         this.dataService.changeStatusLoadingAdmin(false);
       },

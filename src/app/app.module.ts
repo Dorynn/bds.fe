@@ -68,6 +68,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { LoginAdminComponent } from './components/login-admin/login-admin.component';
 import { ProjectInformationModalComponent } from './components/project-information-modal/project-information-modal.component';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 
 registerLocaleData(en);
 
@@ -137,7 +139,9 @@ registerLocaleData(en);
     NzMessageModule,
     NzTabsModule,
     NzSpinModule,
-    NzListModule
+    NzListModule,
+    NzToolTipModule,
+    NzAutocompleteModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
