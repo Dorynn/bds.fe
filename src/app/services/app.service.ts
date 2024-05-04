@@ -12,7 +12,7 @@ export class AppService {
     private dataService: DataService
   ) { }
 
-  signOut(){
+  signOut() {
     google.accounts.id.disableAutoSelect();
     sessionStorage.removeItem("loginInf");
     sessionStorage.removeItem("user");

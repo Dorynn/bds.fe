@@ -104,12 +104,14 @@ nz-select {
     display: block;
 }
 
-button.background-brown, button.view-detail {
+button.background-brown,
+button.view-detail {
     margin-right: 15px;
     margin-top: 15px;
 }
 
-button.view-detail:hover, button.view-detail:active{
+button.view-detail:hover,
+button.view-detail:active {
     border: 1px solid #d9d9d9;
     color: #000;
 }

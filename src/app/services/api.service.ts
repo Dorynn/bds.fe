@@ -12,179 +12,179 @@ type NewType = Observable<any>;
   providedIn: 'root'
 })
 export class ApiService {
-  token:string |null = ''
+  token: string | null = ''
   constructor(
     private http: HttpClient
-  ) { 
+  ) {
     this.token = localStorage.getItem("token");
     console.log(this.token)
   }
 
-  getProjectList(request: any):Observable<any>{
-    return this.http.get('http://localhost:8686/api/v1/projects',{params: request});
+  getProjectList(request: any): Observable<any> {
+    return this.http.get('http://localhost:8686/api/v1/projects', { params: request });
   }
 
-  getAllProject():Observable<any>{
+  getAllProject(): Observable<any> {
     return this.http.get(`${baseUrl}/projects/allProjects`)
   }
 
-  addProject(request: any):Observable<any>{
-    return this.http.post(`${baseUrl}/projects`,request, {headers: { 'Authorization': `Bearer ${this.token}` }});
+  addProject(request: any): Observable<any> {
+    return this.http.post(`${baseUrl}/projects`, request, { headers: { 'Authorization': `Bearer ${this.token}` } });
   }
 
-  getProjectById(id: string | null):Observable<any> {
+  getProjectById(id: string | null): Observable<any> {
     return this.http.get(`${baseUrl}/projects/${id}`)
   }
-  
-  getAreaById(id: string | null):Observable<any> {
+
+  getAreaById(id: string | null): Observable<any> {
     return this.http.get(`${baseUrl}/areas/${id}`)
   }
 
-  getAllProvince():Observable<any> {
+  getAllProvince(): Observable<any> {
     return this.http.get(`${baseUrl}/provinces`);
   }
 
-  getDistrictByProvinceId(provinceId: any):Observable<any> {
+  getDistrictByProvinceId(provinceId: any): Observable<any> {
     return this.http.get(`${baseUrl}/provinces/${provinceId}`)
   }
 
-  getProvincesHaveProject():Observable<any> {
+  getProvincesHaveProject(): Observable<any> {
     return this.http.get(`${baseUrl}/provinces/withProject`);
   }
 
-  getDistrictHaveProjectByProvinceId(provinceId: any):Observable<any> {
+  getDistrictHaveProjectByProvinceId(provinceId: any): Observable<any> {
     return this.http.get(`${baseUrl}/provinces/${provinceId}/allDistrictWithProject`)
   }
 
-  getAllDistrictHaveProject():Observable<any> {
+  getAllDistrictHaveProject(): Observable<any> {
     return this.http.get(`${baseUrl}/districts/withProject`)
   }
 
-  getProvinceByDistrictId(districId: any):Observable<any> {
+  getProvinceByDistrictId(districId: any): Observable<any> {
     return this.http.get(`${baseUrl}/districts/${districId}/getProvinceBy`)
   }
 
-  createProject(request: any):Observable<any>{
-    return this.http.post(`${baseUrl}/projects`,request,{headers: { 'Authorization': `Bearer ${this.token}` }});
+  createProject(request: any): Observable<any> {
+    return this.http.post(`${baseUrl}/projects`, request, { headers: { 'Authorization': `Bearer ${this.token}` } });
   }
 
-  updateProject(request: any):Observable<any>{
-    return this.http.put(`${baseUrl}/projects`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
+  updateProject(request: any): Observable<any> {
+    return this.http.put(`${baseUrl}/projects`, request, { headers: { 'Authorization': `Bearer ${this.token}` } })
   }
 
-  getAreaList(request:any):Observable<any> {
-    return this.http.get(`${baseUrl}/areas`,{params: request});
+  getAreaList(request: any): Observable<any> {
+    return this.http.get(`${baseUrl}/areas`, { params: request });
   }
 
-  createArea(request: any):Observable<any> {
-    return this.http.post(`${baseUrl}/areas`, request,{headers: { 'Authorization': `Bearer ${this.token}` }});
+  createArea(request: any): Observable<any> {
+    return this.http.post(`${baseUrl}/areas`, request, { headers: { 'Authorization': `Bearer ${this.token}` } });
   }
 
-  updateArea(request: any):Observable<any> {
-    return this.http.put(`${baseUrl}/areas`, request, {headers: { 'Authorization': `Bearer ${this.token}` }})
+  updateArea(request: any): Observable<any> {
+    return this.http.put(`${baseUrl}/areas`, request, { headers: { 'Authorization': `Bearer ${this.token}` } })
   }
 
-  getLandList(request: any):Observable<any> {
-    return this.http.get(`${baseUrl}/lands`, {params: request})
+  getLandList(request: any): Observable<any> {
+    return this.http.get(`${baseUrl}/lands`, { params: request })
   }
 
-  createLand(request: any):Observable<any> {
-    return this.http.post(`${baseUrl}/lands`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
+  createLand(request: any): Observable<any> {
+    return this.http.post(`${baseUrl}/lands`, request, { headers: { 'Authorization': `Bearer ${this.token}` } })
   }
 
-  updateLand(request: any):Observable<any> {
-    return this.http.put(`${baseUrl}/lands`,request, {headers: { 'Authorization': `Bearer ${this.token}` }})
+  updateLand(request: any): Observable<any> {
+    return this.http.put(`${baseUrl}/lands`, request, { headers: { 'Authorization': `Bearer ${this.token}` } })
   }
 
-  getLandById(id: string | null):Observable<any> {
+  getLandById(id: string | null): Observable<any> {
     return this.http.get(`${baseUrl}/lands/${id}`)
   }
 
-  updateLandStatus(request: any):Observable<any>{
-    return this.http.put(`${baseUrl}/lands/temporarilyLockOrUnLock`,request)
+  updateLandStatus(request: any): Observable<any> {
+    return this.http.put(`${baseUrl}/lands/temporarilyLockOrUnLock`, request)
   }
 
-  getTransactionList(params: any):Observable<any> {
-    return this.http.get(`${baseUrl}/transactions`,{headers: { 'Authorization': `Bearer ${this.token}`}, params: params})
+  getTransactionList(params: any): Observable<any> {
+    return this.http.get(`${baseUrl}/transactions`, { headers: { 'Authorization': `Bearer ${this.token}` }, params: params })
   }
 
-  updateTransaction(request: any):Observable<any> {
-    return this.http.put(`${baseUrl}/transactions/confirmTransactionSuccessOrFail`,request, {headers: { 'Authorization': `Bearer ${this.token}`}});
+  updateTransaction(request: any): Observable<any> {
+    return this.http.put(`${baseUrl}/transactions/confirmTransactionSuccessOrFail`, request, { headers: { 'Authorization': `Bearer ${this.token}` } });
   }
 
-  getTransactionById(id: string | null):Observable<any> {
+  getTransactionById(id: string | null): Observable<any> {
     return this.http.get(`${baseUrl}/transactions/${id}`);
   }
 
-  getUserList(params:any):Observable<any>{
-    return this.http.get(`${baseUrl}/users`, {params: params})
+  getUserList(params: any): Observable<any> {
+    return this.http.get(`${baseUrl}/users`, { params: params })
   }
 
-  createTransaction(request:any):Observable<any>{
+  createTransaction(request: any): Observable<any> {
     return this.http.post(`${baseUrl}/transactions`, request)
   }
 
-  getTransactionOfUser(params: any):Observable<any>{
-    return this.http.get(`${baseUrl}/transactions/withUser`, {params: params})
+  getTransactionOfUser(params: any): Observable<any> {
+    return this.http.get(`${baseUrl}/transactions/withUser`, { params: params })
   }
 
-  createUser(request: any):Observable<any> {
-    return this.http.post(`${baseUrl}/users/login_user`,request)
+  createUser(request: any): Observable<any> {
+    return this.http.post(`${baseUrl}/users/login_user`, request)
   }
 
-  getOtp(request: any):Observable<any>{
+  getOtp(request: any): Observable<any> {
     return this.http.post(`${baseUrl}/otp/send-otp`, request)
   }
 
-  verifyOtp(formData: any):Observable<any>{
-    return this.http.post(`${baseUrl}/otp/validate`,formData)
+  verifyOtp(formData: any): Observable<any> {
+    return this.http.post(`${baseUrl}/otp/validate`, formData)
   }
 
-  getLandByAreaId(params: any):Observable<any> {
-    return this.http.get(`${baseUrl}/lands/allLandByAreaId`, {params: params})
+  getLandByAreaId(params: any): Observable<any> {
+    return this.http.get(`${baseUrl}/lands/allLandByAreaId`, { params: params })
   }
 
-  signUpAdmin(request: any):Observable<any> {
+  signUpAdmin(request: any): Observable<any> {
     return this.http.post(`${baseUrlAdmin}/auth/sign_up_admin`, request)
   }
 
-  loginAdmin(request: any):Observable<any> {
+  loginAdmin(request: any): Observable<any> {
     return this.http.post(`${baseUrlAdmin}/auth/sign_in_admin`, request);
   }
 
-  logOutAdmin(request: any):Observable<any> {
+  logOutAdmin(request: any): Observable<any> {
     return this.http.post(`${baseUrlAdmin}/auth/logout_admin`, request);
   }
 
-  refreshToken(request: any):Observable<any> {
+  refreshToken(request: any): Observable<any> {
     return this.http.post(`${baseUrlAdmin}/auth/refresh_token`, request);
   }
 
-  getAdminInf(token: string):Observable<any>{
-    return this.http.get(`${baseUrlAdmin}/auth/my_information`, {headers: { 'Authorization': `Bearer ${token}` }})
+  getAdminInf(token: string): Observable<any> {
+    return this.http.get(`${baseUrlAdmin}/auth/my_information`, { headers: { 'Authorization': `Bearer ${token}` } })
   }
 
-  deleteTransaction(id: string):Observable<any>{
+  deleteTransaction(id: string): Observable<any> {
     return this.http.delete(`${baseUrl}/transactions/${id}`)
   }
 
-  getType():Observable<any>{
+  getType(): Observable<any> {
     return this.http.get(`${baseUrl}/project-types`);
   }
 
-  importFile(formData: any):Observable<any>{
+  importFile(formData: any): Observable<any> {
     return this.http.post(`${baseUrl}/lands/create_multi_lands_from_excel_file`, formData)
   }
 
-  getAllTypeOfApartment():Observable<any>{
+  getAllTypeOfApartment(): Observable<any> {
     return this.http.get(`${baseUrl}/lands/all-type-of-apartment`)
   }
 
-  getAllDirection():Observable<any>{
+  getAllDirection(): Observable<any> {
     return this.http.get(`${baseUrl}/lands/all-direction`)
   }
 
-  filterLandByProjectId(params: any):Observable<any>{
-    return this.http.get(`${baseUrl}/lands/all-lands-by-project-id`,{params: params});
+  filterLandByProjectId(params: any): Observable<any> {
+    return this.http.get(`${baseUrl}/lands/all-lands-by-project-id`, { params: params });
   }
 }

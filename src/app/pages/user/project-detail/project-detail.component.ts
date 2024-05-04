@@ -87,7 +87,7 @@ export class ProjectDetailComponent implements OnInit {
     this.getDirectionList();
   }
 
-  scrollToTop():void {
+  scrollToTop(): void {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -197,7 +197,7 @@ export class ProjectDetailComponent implements OnInit {
     }
   }
 
-  handleDeleteTransaction(id: string){
+  handleDeleteTransaction(id: string) {
     this.apiService.deleteTransaction(id).subscribe({
       next: (res: any) => {
         localStorage.removeItem("isPaymentOpen")
@@ -263,14 +263,14 @@ export class ProjectDetailComponent implements OnInit {
     }
 
     console.log(this.item);
-    
+
   }
 
-  openProjectInformationModal(){
+  openProjectInformationModal() {
     this.dataService.changeStatusProjectInformationModal(true);
   }
 
-  getTypeOfApartmentList(){
+  getTypeOfApartmentList() {
     this.apiService.getAllTypeOfApartment().subscribe({
       next: (res: any) => {
         this.typeOfApartmentList = res.data
@@ -278,7 +278,7 @@ export class ProjectDetailComponent implements OnInit {
     })
   }
 
-  getDirectionList(){
+  getDirectionList() {
     this.apiService.getAllDirection().subscribe({
       next: (res: any) => {
         this.directionList = res.data;
@@ -286,10 +286,10 @@ export class ProjectDetailComponent implements OnInit {
     })
   }
 
-  handleFilterLand(){
-    
+  handleFilterLand() {
+
     this.apiService.filterLandByProjectId(this.filterParams).subscribe({
-      next: (res: any)=> {
+      next: (res: any) => {
       }
     })
   }

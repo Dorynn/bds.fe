@@ -1,30 +1,30 @@
 <div class="transaction-history">
     <nz-tabset>
         @for (tab of tabs; track $index) {
-            <nz-tab [nzTitle]="tab.label" (nzSelect)="changeTab(tab.status)">
-                <nz-table [nzData]="transactionList" nzShowPagination="false" [nzScroll]="{y: '500px'}">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Tên lô đất</th>
-                            <th>Dự án</th>
-                            <th>Giá đặt cọc</th>
-                            <th>Chi tiết lô đất</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (item of transactionList; track $index) {
-                            <tr>
-                                <td><img [src]="item.land.thumbnail" alt="" width="40px" height="40px"></td>
-                                <td>{{item.land.name}}</td>
-                                <td>{{item.land.areaDTO.projectName}}</td>
-                                <td>{{item.land.deposit}} đ</td>
-                                <td><button nz-button (click)="getLandById(item.land)">Xem</button></td>
-                            </tr>
-                        }
-                    </tbody>
-                </nz-table>
-            </nz-tab>
+        <nz-tab [nzTitle]="tab.label" (nzSelect)="changeTab(tab.status)">
+            <nz-table [nzData]="transactionList" nzShowPagination="false" [nzScroll]="{y: '500px'}">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Tên lô đất</th>
+                        <th>Dự án</th>
+                        <th>Giá đặt cọc</th>
+                        <th>Chi tiết lô đất</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of transactionList; track $index) {
+                    <tr>
+                        <td><img [src]="item.land.thumbnail" alt="" width="40px" height="40px"></td>
+                        <td>{{item.land.name}}</td>
+                        <td>{{item.land.areaDTO.projectName}}</td>
+                        <td>{{item.land.deposit}} đ</td>
+                        <td><button nz-button (click)="getLandById(item.land)">Xem</button></td>
+                    </tr>
+                    }
+                </tbody>
+            </nz-table>
+        </nz-tab>
         }
     </nz-tabset>
 </div>

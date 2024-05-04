@@ -13,15 +13,15 @@ export class AppComponent {
     private router: Router,
     private route: ActivatedRoute,
     private dataService: DataService
-  ){
+  ) {
     dataService.isUser.subscribe(r => this.role = r)
-    this.router.events.subscribe((e:any)=>{
-      if(e instanceof NavigationEnd){
-        if (e.url == '/'){
-            router.navigateByUrl("/homepage")
+    this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        if (e.url == '/') {
+          router.navigateByUrl("/homepage")
         }
-      } 
+      }
     })
   }
-  
+
 }

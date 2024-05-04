@@ -10,35 +10,35 @@ import { DataService } from '../../../services/data.service';
 export class TransactionHistoryComponent implements OnInit {
   transactionList: any = [];
   item!: any;
-  user!:any;
-  tabs = [{status: 0, label:'Chờ xác nhận'}, {status:1, label:'Thanh toán thành công'}, {status:2, label:'Thanh toán thất bại'}];
+  user!: any;
+  tabs = [{ status: 0, label: 'Chờ xác nhận' }, { status: 1, label: 'Thanh toán thành công' }, { status: 2, label: 'Thanh toán thất bại' }];
   loading: boolean = false
 
   constructor(
     private apiService: ApiService,
     private dataService: DataService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     let stringUser = sessionStorage.getItem("user");
-    if(stringUser){
+    if (stringUser) {
       let user = JSON.parse(stringUser);
       this.user = user;
       this.getTransactionOfUser(0);
-      
+
     }
-    
+
   }
 
-  getTransactionOfUser(status: number){
+  getTransactionOfUser(status: number) {
     this.loading = true;
-    if(this.user){
+    if (this.user) {
       let params = {
         id: this.user?.id,
         status: status
       }
       this.apiService.getTransactionOfUser(params).subscribe({
-        next: (res:any) => {
+        next: (res: any) => {
           this.transactionList = res.data;
           this.loading = false;
         },
@@ -53,12 +53,12 @@ export class TransactionHistoryComponent implements OnInit {
     this.apiService.getProjectById(id).subscribe({
       next: (res: any) => {
         this.item.type = res.data.projectType.name,
-        this.item.investor = res.data.investor
+          this.item.investor = res.data.investor
       }
     })
   }
 
-  getLandById(item: any){
+  getLandById(item: any) {
     this.getProjectDetail(item.areaDTO.projectId)
     this.item = {
       ...item,
@@ -69,6 +69,6 @@ export class TransactionHistoryComponent implements OnInit {
   }
 
   changeTab(event: any) {
-    this.getTransactionOfUser(event); 
+    this.getTransactionOfUser(event);
   }
 }

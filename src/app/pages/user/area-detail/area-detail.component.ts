@@ -20,7 +20,7 @@ export class AreaDetailComponent implements OnInit {
   stompClient: any;
   user: any = {};
   landList: any = [];
-  filterParams:any = {
+  filterParams: any = {
     areaId: this.areaId,
     price: '',
     status: '',
@@ -38,7 +38,7 @@ export class AreaDetailComponent implements OnInit {
   ) {
   }
 
-  connectSocket(){
+  connectSocket() {
     this.stompClient = this.socketService.connect();
     this.stompClient.connect({}, (frame: any) => {
       this.stompClient.subscribe('/topic/block_land', (message: any) => {
@@ -57,11 +57,11 @@ export class AreaDetailComponent implements OnInit {
     let isPaymentOpen = localStorage.getItem("isPaymentOpen");
     let item = localStorage.getItem("item");
     let user = sessionStorage.getItem("user");
-    if (user){
+    if (user) {
       this.user = JSON.parse(user);
     }
-    if(isPaymentOpen==='true'){
-      if(item){
+    if (isPaymentOpen === 'true') {
+      if (item) {
         this.item = JSON.parse(item)
         this.dataService.changeStatusPaymentModal(false);
         this.handleChangeLandStatus('1', this.item.id)
@@ -92,7 +92,7 @@ export class AreaDetailComponent implements OnInit {
     })
   }
 
-  getLandByAreaId():void {
+  getLandByAreaId(): void {
     this.apiService.getLandByAreaId(this.filterParams).subscribe({
       next: (res: any) => {
         this.landList = res.data;
@@ -129,9 +129,9 @@ export class AreaDetailComponent implements OnInit {
 
   showConfirm(item: any): void {
     let user = sessionStorage.getItem("user");
-    if(user != null){
+    if (user != null) {
       this.user = JSON.parse(user);
-      if (this.user.isDeleted == 1){
+      if (this.user.isDeleted == 1) {
         this.item = {
           ...item,
           projectName: this.projectDetail.name,
@@ -150,7 +150,7 @@ export class AreaDetailComponent implements OnInit {
           phone: this.user.phone,
           type: this.projectDetail.projectType.name,
           qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit * 100}&des=${this.user.phone}+${item.name}`
-    
+
         };
         this.modalService.confirm({
           nzTitle: 'Xác nhận đặt cọc',
@@ -160,18 +160,18 @@ export class AreaDetailComponent implements OnInit {
           nzOnOk: () => {
             this.openPaymentModal();
             this.handleChangeLandStatus('2', item.id)
-            localStorage.setItem('isPaymentOpen',JSON.stringify(true))
+            localStorage.setItem('isPaymentOpen', JSON.stringify(true))
             localStorage.setItem('item', JSON.stringify(this.item))
           },
           nzOnCancel: () => {
-    
+
           }
-    
+
         })
-      }else {
+      } else {
         this.dataService.changeStatusVerifyPhoneNumberModal(true);
       }
-    }else{
+    } else {
       this.dataService.changeStatusLoginModal(true);
     }
   }
@@ -208,11 +208,11 @@ export class AreaDetailComponent implements OnInit {
     }
   }
 
-  handleSearch():void {
+  handleSearch(): void {
     this.getLandByAreaId();
   }
 
-  handleClearFilter():void {
+  handleClearFilter(): void {
     this.filterParams.price = '';
     this.filterParams.status = '';
     this.filterParams.direction = '';

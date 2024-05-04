@@ -1,4 +1,5 @@
-form [nz-row]:first-child, form [nz-row]:nth-child(2) {
+form [nz-row]:first-child,
+form [nz-row]:nth-child(2) {
     border-bottom: 1px solid #9095A1;
     margin-bottom: 15px;
 }
@@ -17,7 +18,8 @@ form input:focus {
 }
 
 .link-text {
-    color: #EFB034;;
+    color: #EFB034;
+    ;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -40,20 +42,20 @@ form input:focus {
     margin: 15px 0;
 }
 
-.modal__footer .other-login-method button{
+.modal__footer .other-login-method button {
     width: 50%;
     padding: 8px;
     height: 100%;
     border: 1px solid #000;
 }
 
-.modal__footer .other-login-method button:hover{
+.modal__footer .other-login-method button:hover {
     width: 50%;
     background-color: #fbf9f9;
     color: black;
 }
 
-.modal__footer .other-login-method button:focus{
+.modal__footer .other-login-method button:focus {
     width: 50%;
     background-color: #e6e0e0;
     color: black;

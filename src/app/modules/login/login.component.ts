@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   }
 
-  private decodeToken(token: string){
+  private decodeToken(token: string) {
     return JSON.parse(atob(token.split(".")[1]));
   }
 
@@ -63,15 +63,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
         email: payload.email,
         name: payload.name,
       }
-      
+
       this.apiService.createUser(request).subscribe({
         next: (res: any) => {
           this.msg.success('Đăng nhập thành công!')
-          sessionStorage.setItem("user", JSON.stringify(res.data)); 
-          if(res.data.isDeleted == 2){
+          sessionStorage.setItem("user", JSON.stringify(res.data));
+          if (res.data.isDeleted == 2) {
             this.dataService.changeStatusVerifyPhoneNumberModal(true);
           }
-          if(res.data.role.name === 'ADMIN'){
+          if (res.data.role.name === 'ADMIN') {
             this.router.navigateByUrl("/user")
             this.dataService.setRole('ADMIN')
           }
@@ -95,11 +95,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.dataService.changeStatusRegisterModal(true);
   }
 
-  handleLoginAsAdmin(){
+  handleLoginAsAdmin() {
     this.isLoginAsAdmin = true;
   }
 
-  handleLoginAsUser(){
+  handleLoginAsUser() {
     this.isLoginAsAdmin = false;
   }
 }

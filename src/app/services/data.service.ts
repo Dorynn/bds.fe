@@ -30,39 +30,39 @@ export class DataService {
 
   constructor() { }
 
-  changeStatusLoginModal (status: boolean) {
+  changeStatusLoginModal(status: boolean) {
     this.statusLoginModal.next(status);
   }
 
-  changeStatusRegisterModal (status: boolean) {
+  changeStatusRegisterModal(status: boolean) {
     this.statusRegisterModal.next(status);
   }
 
-  changeStatusRegisterModalStep2 (status: boolean) {
+  changeStatusRegisterModalStep2(status: boolean) {
     this.statusRegisterModalStep2.next(status);
   }
 
-  changeStatusLandDetailModal (status: boolean) {
+  changeStatusLandDetailModal(status: boolean) {
     this.statusLandDetailModal.next(status);
   }
 
-  changeStatusPaymentModal (status: boolean) {
+  changeStatusPaymentModal(status: boolean) {
     this.statusPaymentModal.next(status);
   }
 
-  changeStatusVerifyPhoneNumberModal (status: boolean) {
+  changeStatusVerifyPhoneNumberModal(status: boolean) {
     this.statusVerifyPhoneNumber.next(status)
   }
 
-  setRole(role: string){
+  setRole(role: string) {
     this.roleUser.next(role);
   }
 
-  changeStatusLoadingAdmin (status: boolean) {
+  changeStatusLoadingAdmin(status: boolean) {
     this.statusLoadingAdmin.next(status);
   }
 
-  changeStatusLoadingUser (status: boolean) {
+  changeStatusLoadingUser(status: boolean) {
     this.statusLoadingUser.next(status);
   }
 

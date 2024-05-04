@@ -12,26 +12,26 @@ export class HomepageComponent implements OnInit {
   projectList: any = [];
   currentPage: number = 0;
   total: number = 0;
-  status: string ='';
+  status: string = '';
   pageSize: number = 10;
   provinceList: any = [];
   projectType: string = '';
-  provinceId:string='';
+  provinceId: string = '';
   typeList: any = [];
 
   constructor(
     private apiService: ApiService,
     private router: Router,
     private dataService: DataService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.getProjectList({pageIndex: 0, pageSize:10});
+    this.getProjectList({ pageIndex: 0, pageSize: 10 });
     this.getProvincesHaveProject();
     this.getType()
   }
 
-  getProvincesHaveProject(){
+  getProvincesHaveProject() {
     this.apiService.getProvincesHaveProject().subscribe({
       next: (res: any) => {
         this.provinceList = res.data;
@@ -39,7 +39,7 @@ export class HomepageComponent implements OnInit {
     })
   }
 
-  getProjectList(params: any):void {
+  getProjectList(params: any): void {
     this.dataService.changeStatusLoadingUser(true);
     this.apiService.getProjectList(params).subscribe({
       next: (res: any) => {
@@ -56,7 +56,7 @@ export class HomepageComponent implements OnInit {
     })
   }
 
-  getType(){
+  getType() {
     this.apiService.getType().subscribe({
       next: (res: any) => {
         this.typeList = res.data;
@@ -64,22 +64,22 @@ export class HomepageComponent implements OnInit {
     })
   }
 
-  goToProjectDetail(id: string):void {
+  goToProjectDetail(id: string): void {
     this.router.navigateByUrl(`/project-detail/${id}`)
   }
 
   handleChangePage(e: any) {
-    this.apiService.getProjectList({pageIndex: e-1, pageSize: this.pageSize}).subscribe({
+    this.apiService.getProjectList({ pageIndex: e - 1, pageSize: this.pageSize }).subscribe({
       next: (res: any) => {
-        this.currentPage = e-1;
+        this.currentPage = e - 1;
         this.projectList = res.data;
       }
     })
   }
 
-  handleFilter(){
+  handleFilter() {
     let params = {
-      pageIndex:0,
+      pageIndex: 0,
       pageSize: 10,
       status: this.status,
       provinceId: this.provinceId,
@@ -88,11 +88,11 @@ export class HomepageComponent implements OnInit {
     this.getProjectList(params);
   }
 
-  handleClear(){
+  handleClear() {
     this.status = '';
     this.provinceId = '';
     this.projectType = '';
-    this.getProjectList({pageSize:10})
+    this.getProjectList({ pageSize: 10 })
   }
 
 }

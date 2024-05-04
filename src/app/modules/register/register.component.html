@@ -1,15 +1,19 @@
-<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzWidth]="450" [nzContent]="modalContent" [nzFooter]="modalFooter"
-    (nzOnCancel)="handleCancel()">
-    <ng-template #modalTitle><h2 class="title">Đăng ký</h2></ng-template>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzWidth]="450" [nzContent]="modalContent"
+    [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>
+        <h2 class="title">Đăng ký</h2>
+    </ng-template>
 
     <ng-template #modalContent>
         <div class="modal__content">
             <div id="googleSignUpButtonContainer"></div>
-            <div>Bằng cách đăng ký, bạn đồng ý với <strong>điều khoản sử dụng</strong> và <strong>điều khoản bảo mật</strong></div>
+            <div>Bằng cách đăng ký, bạn đồng ý với <strong>điều khoản sử dụng</strong> và <strong>điều khoản bảo
+                    mật</strong></div>
         </div>
     </ng-template>
 
     <ng-template #modalFooter>
-        <div class="modal__footer">Bạn đã có tài khoản? <span class="link-text" type="button" (click)="showLoginModal()">Đăng nhập</span></div>
+        <div class="modal__footer">Bạn đã có tài khoản? <span class="link-text" type="button"
+                (click)="showLoginModal()">Đăng nhập</span></div>
     </ng-template>
 </nz-modal>
