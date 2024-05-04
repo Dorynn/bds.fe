@@ -19,7 +19,8 @@ export class ProjectInformationModalComponent implements OnInit {
   }
 
   handleCancel(){
-    this.isVisible = false
+    this.isVisible = false;
+    this.dataService.changeStatusProjectInformationModal(false);
   }
 
   handleOk(){
