@@ -243,7 +243,7 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   handleSearch(): void {
-    // this.getLandByAreaId();
+    this.handleFilterLand()
   }
 
   handleClearFilter(): void {
@@ -251,7 +251,7 @@ export class ProjectDetailComponent implements OnInit {
     this.filterParams.status = '';
     this.filterParams.direction = '';
     this.filterParams.typeOfApartment = '';
-    // this.getAreaDetail();
+    this.getProjectDetail()
   }
 
   handleOkLandModel(event: any) {
@@ -290,6 +290,10 @@ export class ProjectDetailComponent implements OnInit {
 
     this.apiService.filterLandByProjectId(this.filterParams).subscribe({
       next: (res: any) => {
+        this.areaList = res.data.areas;
+      },
+      error: (err: any) => {
+        this.areaList = [];
       }
     })
   }
