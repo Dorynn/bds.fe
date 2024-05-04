@@ -13,7 +13,7 @@ export class HomepageComponent implements OnInit {
   currentPage: number = 0;
   total: number = 0;
   status: string ='';
-  pageSize: number = 4;
+  pageSize: number = 10;
   provinceList: any = [];
   projectType: string = '';
   provinceId:string='';
@@ -26,7 +26,7 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getProjectList({pageIndex: 0, pageSize:4});
+    this.getProjectList({pageIndex: 0, pageSize:10});
     this.getProvincesHaveProject();
     this.getType()
   }
@@ -51,6 +51,7 @@ export class HomepageComponent implements OnInit {
       },
       error: (err: any) => {
         this.dataService.changeStatusLoadingUser(false);
+        this.projectList = []
       }
     })
   }
@@ -79,7 +80,7 @@ export class HomepageComponent implements OnInit {
   handleFilter(){
     let params = {
       pageIndex:0,
-      pageSize: 4,
+      pageSize: 10,
       status: this.status,
       provinceId: this.provinceId,
       projectTypeId: this.projectType
@@ -91,7 +92,7 @@ export class HomepageComponent implements OnInit {
     this.status = '';
     this.provinceId = '';
     this.projectType = '';
-    this.getProjectList({pageSize:4})
+    this.getProjectList({pageSize:10})
   }
 
 }

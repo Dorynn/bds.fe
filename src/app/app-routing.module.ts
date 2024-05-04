@@ -51,54 +51,54 @@ const routes: Routes = [
             component: AreaDetailComponent
           },
           
-          {
-            path: 'add-project',
-            component: AddProjectComponent
-          },
-          {
-            path: 'project-management',
-            component: ProjectManagerComponent
-          },
-          {
-            path: 'area-management',
-            component: AreaManagementComponent
-          },
-          {
-            path: 'add-area',
-            component: AddAreaComponent
-          },
-          {
-            path: 'edit-area/:id',
-            component: EditAreaComponent
-          },
-          {
-            path: 'edit-project/:id',
-            component: EditProjectComponent
-          },
-          {
-            path: 'land-management',
-            component: LandManagementComponent
-          },
-          {
-            path: 'add-land',
-            component: AddLandComponent
-          },
-          {
-            path: 'edit-land/:id',
-            component: EditLandComponent
-          },
-          {
-            path: 'transaction-management',
-            component: TransactionManagementComponent
-          },
-          {
-            path: 'view-transaction/:id',
-            component: ViewTransactionComponent
-          },
-          {
-            path: 'user',
-            component: UserListComponent
-          },
+          // {
+          //   path: 'add-project',
+          //   component: AddProjectComponent
+          // },
+          // {
+          //   path: 'project-management',
+          //   component: ProjectManagerComponent
+          // },
+          // {
+          //   path: 'area-management',
+          //   component: AreaManagementComponent
+          // },
+          // {
+          //   path: 'add-area',
+          //   component: AddAreaComponent
+          // },
+          // {
+          //   path: 'edit-area/:id',
+          //   component: EditAreaComponent
+          // },
+          // {
+          //   path: 'edit-project/:id',
+          //   component: EditProjectComponent
+          // },
+          // {
+          //   path: 'land-management',
+          //   component: LandManagementComponent
+          // },
+          // {
+          //   path: 'add-land',
+          //   component: AddLandComponent
+          // },
+          // {
+          //   path: 'edit-land/:id',
+          //   component: EditLandComponent
+          // },
+          // {
+          //   path: 'transaction-management',
+          //   component: TransactionManagementComponent
+          // },
+          // {
+          //   path: 'view-transaction/:id',
+          //   component: ViewTransactionComponent
+          // },
+          // {
+          //   path: 'user',
+          //   component: UserListComponent
+          // },
           {
             path: 'transaction-history',
             component: TransactionHistoryComponent

@@ -3,7 +3,7 @@
     <div nz-row class="thumbnail__box">
         <div nz-col [nzSpan]="12" class="thumbnail__text-box">
             <h2 class="thumbnail__project-name">{{projectDetail.name}}</h2>
-            <p>{{projectDetail.description}}</p>
+            <p class="project-desc">{{projectDetail.description}}</p>
             <button nz-button (click)="openProjectInformationModal()">Xem thêm</button>
         </div>
         <img class="project-image" [src]="projectDetail.thumbnail" nz-col [nzSpan]="12" height="100%" />
@@ -33,14 +33,15 @@
         </nz-select>
         @if (projectDetail.projectType?.id==1) {
             <nz-select [(ngModel)]="filterParams.typeOfApartment" nzPlaceHolder="Loại căn hộ">
-                <nz-option [nzValue]="1" nzLabel="2PN + 1"></nz-option>
-                <nz-option [nzValue]="2" nzLabel="3PN"></nz-option>
+                @for (item of typeOfApartmentList; track $index) {
+                    <nz-option [nzValue]="item.typeOfApartment" [nzLabel]="item.typeOfApartment"></nz-option>
+                }
             </nz-select>
         }
         <nz-select [(ngModel)]="filterParams.direction" [nzPlaceHolder]="projectDetail.projectType?.id == 1 ?'Hướng ban công' : 'Hướng'">
-            <nz-option [nzValue]="0" nzLabel="Tây Bắc"></nz-option>
-            <nz-option [nzValue]="1" nzLabel="Tây Nam - Tây Bắc"></nz-option>
-            <nz-option [nzValue]="2" nzLabel="Đông Nam - Tây Bắc"></nz-option>
+            @for (item of directionList; track $index) {
+                <nz-option [nzValue]="item.direction" [nzLabel]="item.direction"></nz-option>
+            }
         </nz-select>
         <div nz-flex [nzGap]="10">
             <button nz-button class="background-gray" (click)="handleSearch()">Lọc</button>
@@ -66,7 +67,7 @@
                             <div class="brief">
                                 {{land.typeOfApartment}} | {{land.acreage}} m2 |
                                 {{land.direction}}</div>
-                            <div class="price">Giá niêm yết: {{land.price}} đ</div>
+                            <div class="price">Giá niêm yết: {{land.price*land.acreage}} đ</div>
                             <button nz-button class="background-brown" (click)="showConfirm(land, area)"
                                 [disabled]="land.status!==1">Đặt cọc ngay</button>
                             <button nz-button class="view-detail" (click)="openLandDetailModal(land, area)">Xem chi tiết
@@ -91,4 +92,4 @@
 
 <app-payment-modal [item]="item" (handleReload)="handleReload($event)"></app-payment-modal>
 <app-land-info-modal [item]="item" (handleOk)="handleOkLandModel($event)"></app-land-info-modal>
-<app-project-information-modal></app-project-information-modal>
+<app-project-information-modal [item]="projectDetail"></app-project-information-modal>

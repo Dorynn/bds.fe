@@ -23,13 +23,15 @@ export class ProjectDetailComponent implements OnInit {
   transactionCode: string = '';
   transactionId: string = '';
   filterParams: any = {
-    areaId: this.areaId,
+    projectId: this.projectId,
     price: '',
     status: '',
     typeOfApartment: '',
     direction: '',
   };
   isOpenPayment: boolean = false;
+  typeOfApartmentList: any = [];
+  directionList: any = []
 
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
@@ -80,7 +82,9 @@ export class ProjectDetailComponent implements OnInit {
       }
     }
 
-    this.dataService.isVisiblePaymentModal.subscribe(status => this.isOpenPayment = status)
+    this.dataService.isVisiblePaymentModal.subscribe(status => this.isOpenPayment = status);
+    this.getTypeOfApartmentList();
+    this.getDirectionList();
   }
 
   scrollToTop():void {
@@ -180,7 +184,7 @@ export class ProjectDetailComponent implements OnInit {
       code: this.transactionCode,
       transactionId: this.transactionId,
       expiryDate: this.projectDetail.expiryDate,
-      qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit * 100}&des=${this.transactionCode}`
+      qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit}&des=${this.transactionCode}`
     };
 
     this.dataService.changeStatusLandDetailModal(true);
@@ -231,7 +235,7 @@ export class ProjectDetailComponent implements OnInit {
           type: this.projectDetail.projectType.name,
           code: this.transactionCode,
           transactionId: res.data.id,
-          qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit * 100}&des=${this.transactionCode}`
+          qr: `https://qr.sepay.vn/img?acc=${this.projectDetail.bankNumber}&bank=${this.projectDetail.bankName}&amount=${item.deposit}&des=${this.transactionCode}`
         };
       }
     })
@@ -255,7 +259,7 @@ export class ProjectDetailComponent implements OnInit {
       ...this.item,
       code: event.code,
       transactionId: event.transactionId,
-      qr: `https://qr.sepay.vn/img?acc=${event.bankNumber}&bank=${event.bankName}&amount=${event.deposit * 100}&des=${event.code}`
+      qr: `https://qr.sepay.vn/img?acc=${event.bankNumber}&bank=${event.bankName}&amount=${event.deposit}&des=${event.code}`
     }
 
     console.log(this.item);
@@ -265,4 +269,29 @@ export class ProjectDetailComponent implements OnInit {
   openProjectInformationModal(){
     this.dataService.changeStatusProjectInformationModal(true);
   }
+
+  getTypeOfApartmentList(){
+    this.apiService.getAllTypeOfApartment().subscribe({
+      next: (res: any) => {
+        this.typeOfApartmentList = res.data
+      }
+    })
+  }
+
+  getDirectionList(){
+    this.apiService.getAllDirection().subscribe({
+      next: (res: any) => {
+        this.directionList = res.data;
+      }
+    })
+  }
+
+  handleFilterLand(){
+    
+    this.apiService.filterLandByProjectId(this.filterParams).subscribe({
+      next: (res: any)=> {
+      }
+    })
+  }
+
 }

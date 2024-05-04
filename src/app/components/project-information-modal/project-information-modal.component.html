@@ -5,32 +5,42 @@
 
 	<ng-container *nzModalContent>
 		<div class="modal-content">
-			<p>Content one</p>
-			<p>Content two</p>
-			<p>Content three</p>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur soluta aliquid dolorum illo, quae ea
-				recusandae! Sint eum voluptate animi earum distinctio. Recusandae illo earum debitis cum laudantium dolores?
-				Dignissimos eos porro ducimus ipsa itaque in doloribus earum atque dolore veritatis quod vel, id, nostrum nisi
-				eius voluptates quos aliquid, impedit beatae rerum at dolor incidunt optio? Dolores labore a beatae ipsam eveniet
-				assumenda velit nulla, error maiores molestias architecto distinctio reiciendis, amet officiis consequatur tempora
-				blanditiis nemo eius repellat? Odio esse quos, deserunt magnam corporis pariatur suscipit sunt laboriosam mollitia
-				tenetur accusantium laudantium rerum quam, voluptatum maxime consequatur totam.</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias amet, quas architecto corporis dignissimos,
-				odit sed quisquam, vero quis impedit aperiam porro veritatis deserunt recusandae nulla nesciunt at incidunt
-				asperiores debitis pariatur laudantium voluptatum ratione rem! Minus, inventore aliquam eveniet exercitationem
-				eos, deserunt iusto laudantium nisi animi culpa facilis amet, tempora possimus dolorum numquam magnam veniam neque
-				non natus debitis! Qui hic at accusantium atque ut aliquam, saepe ex magnam possimus ipsum iste eum. Suscipit
-				maxime dolorum inventore incidunt vel aspernatur repellat modi in, recusandae similique mollitia quidem molestias
-				voluptas sunt cumque omnis. Voluptas necessitatibus totam facere voluptatibus iure blanditiis ab, ullam soluta
-				adipisci voluptatem modi, numquam ea beatae minima vero tempora quas obcaecati sequi aperiam laborum a suscipit
-				cum! Unde placeat iste nemo nostrum asperiores autem rerum modi excepturi eaque similique dolorem facere suscipit,
-				porro quas, sunt est quod deleniti architecto illo alias! Beatae magnam sunt doloremque et nam voluptatem illo
-				nemo? Nulla provident cupiditate soluta dolores, nemo explicabo laborum? Molestiae, doloribus! Maiores quam
-				quisquam quaerat officiis sunt, minus facere deleniti quas impedit doloremque beatae vel sequi iusto consequatur,
-				ex minima quia, facilis autem dicta. Consequuntur, fugit? Error, voluptatibus nostrum! Porro velit hic praesentium
-				doloribus voluptatem, eaque cupiditate reprehenderit.</p>
-				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est temporibus dolorum consectetur repellat laudantium ipsum reiciendis itaque iste dicta nisi! Necessitatibus corrupti eveniet, error tempora omnis laborum reprehenderit pariatur, quasi amet commodi maiores hic sapiente aliquam quisquam asperiores, quae totam facere modi unde sed praesentium odit quas! Iure magni nesciunt repellendus mollitia, unde excepturi ducimus reprehenderit id quo nemo, doloremque quis possimus sapiente suscipit aspernatur cupiditate omnis magnam sunt amet eius voluptatibus modi veritatis. Debitis odit ullam, iure facere ut, eum ea cum neque ad optio porro vero excepturi perferendis, nostrum delectus quia dolore. Esse autem quos id ipsa ratione repudiandae quaerat illum perspiciatis voluptas sint molestias fugit tenetur suscipit ab saepe laborum explicabo itaque error, dignissimos, dolore, fuga accusantium repellat laudantium ducimus? Blanditiis et illo tempora! Possimus eius dolores voluptatem. In at facilis voluptatum, nemo optio soluta dignissimos quasi quod aperiam ab quibusdam ex blanditiis illum saepe voluptate sint?</p>
-
+			<div class="item">
+				<img [src]="item.thumbnail" alt="anh bia" width="100%">
+			</div>
+			<p>{{item.name | uppercase}}</p>
+			<div>
+				<p>MÔ TẢ: </p>
+				<p>{{item.description}}</p>
+			</div>
+			<div class="item">
+				<span>ĐỊA CHỈ: </span>
+				<span>{{item.address}}</span>
+			</div>
+			<div class="item">
+				<span>THỜI GIAN: </span>
+				<span>{{item.startDate}} - {{item.endDate}}</span>
+			</div>
+			<div class="item">
+				<span>CHỦ ĐẦU TƯ: </span>
+				<span>{{item.investor}}</span>
+			</div>
+			<div class="item">
+				<span>SỐ ĐIỆN THOẠI: </span>
+				<span>{{item.investorPhone}}</span>
+			</div>
+			<div class="item">
+				<span>CHỦ TÀI KHOẢN: </span>
+				<span>{{item.hostBank}}</span>
+			</div>
+			<div class="item">
+				<span>SỐ TÀI KHOẢN: </span>
+				<span>{{item.bankNumber}}</span>
+			</div>
+			<div class="item">
+				<span>TÊN NGÂN HÀNG: </span>
+				<span>{{item.bankName}}</span>
+			</div>
 		</div>
 	</ng-container>
 

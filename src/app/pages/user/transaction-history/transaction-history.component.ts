@@ -59,13 +59,13 @@ export class TransactionHistoryComponent implements OnInit {
   }
 
   getLandById(item: any){
-    this.dataService.changeStatusLandDetailModal(true);
     this.getProjectDetail(item.areaDTO.projectId)
     this.item = {
       ...item,
       projectName: item.areaDTO.projectName,
       areaName: item.areaDTO.name
     }
+    this.dataService.changeStatusLandDetailModal(true);
   }
 
   changeTab(event: any) {

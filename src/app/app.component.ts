@@ -17,12 +17,8 @@ export class AppComponent {
     dataService.isUser.subscribe(r => this.role = r)
     this.router.events.subscribe((e:any)=>{
       if(e instanceof NavigationEnd){
-        if (e.url == '/' || e.url == '/homepage'){
-          if(this.role == 'ADMIN'){
-            router.navigateByUrl("/user")
-          }else{
+        if (e.url == '/'){
             router.navigateByUrl("/homepage")
-          }
         }
       } 
     })

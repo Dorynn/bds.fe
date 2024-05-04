@@ -27,7 +27,7 @@ nz-carousel [nz-row]{
     color: #f78e10bf;
     font-family:'Times New Roman', Times, serif;
     font-style: normal;
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 12px;
     margin-top: 50px;
     font-weight: 500;
@@ -35,7 +35,7 @@ nz-carousel [nz-row]{
 }
 
 .project-info .desc {
-    max-height: 200px;
+    max-height: 180px;
     overflow: hidden;
     text-align: justify;
     color: #707070;
@@ -94,6 +94,7 @@ div.button-group {
 }
 
 .project-detail__title {
+    width: 400px;
     position: relative;   
 }
 

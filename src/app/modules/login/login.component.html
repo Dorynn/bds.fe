@@ -6,23 +6,12 @@
 
     <ng-template #modalContent>
         <div class="modal__content">
-            @if (isLoginAsAdmin) {
-            <app-login-admin></app-login-admin>
-            }@else {
             <div id="googleSignInButtonContainer"></div>
-            <button class="login-admin-btn" nz-button (click)="handleLoginAsAdmin()">Đăng nhập tài khoản admin</button>
-            }
         </div>
     </ng-template>
     <ng-template #modalFooter>
-        @if (!isLoginAsAdmin) {
         <div class="modal__footer">Bạn đã có tài khoản? <span class="link-text" type="button"
                 (click)="showRegisterModal()">Đăng ký</span></div>
-        }
-        @else {
-        <div class="modal__footer">Bạn muốn đăng nhập tài khoản user? <span class="link-text" type="button"
-                (click)="handleLoginAsUser()">Đăng nhập</span></div>
-        }
 
     </ng-template>
 </nz-modal>

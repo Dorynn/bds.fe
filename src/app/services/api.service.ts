@@ -175,4 +175,16 @@ export class ApiService {
   importFile(formData: any):Observable<any>{
     return this.http.post(`${baseUrl}/lands/create_multi_lands_from_excel_file`, formData)
   }
+
+  getAllTypeOfApartment():Observable<any>{
+    return this.http.get(`${baseUrl}/lands/all-type-of-apartment`)
+  }
+
+  getAllDirection():Observable<any>{
+    return this.http.get(`${baseUrl}/lands/all-direction`)
+  }
+
+  filterLandByProjectId(params: any):Observable<any>{
+    return this.http.get(`${baseUrl}/lands/all-lands-by-project-id`,{params: params});
+  }
 }
